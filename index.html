@@ -144,11 +144,62 @@
     a {
       color: #58a6ff;
       text-decoration: none;
+      cursor: pointer;
     }
 
     a:hover {
       text-decoration: underline;
     }
+
+    /* Modal Styles */
+    #contact-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #contact-modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 2.5rem;
+      max-width: 450px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      color: #8b949e;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border: none;
+      background: none;
+      transition: color 0.2s;
+    }
+
+    .close-btn:hover {
+      color: #f85149;
+    }
+
   </style>
 </head>
 <body>
@@ -163,6 +214,20 @@
     </div>
   </div>
 
+  <!-- Contact Modal -->
+  <div id="contact-modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeContactModal()">&times;</button>
+      <h2 style="color: #58a6ff; margin-bottom: 1.5rem; border: none; padding: 0;">// Contact Info</h2>
+      <p style="margin-bottom: 1rem; font-size: 1.1rem;">
+        <strong>Email:</strong> <a href="mailto:ivan.latrille1@gmail.com">ivan.latrille1@gmail.com</a>
+      </p>
+      <p style="font-size: 1.1rem; color: #c9d1d9;">
+        <strong>Phone:</strong> +56 9 3772 2669
+      </p>
+    </div>
+  </div>
+
   <!-- Main Portfolio Content -->
   <div id="main-content">
     <header>
@@ -170,7 +235,8 @@
       <p class="subtitle">Software Engineer | VR & AI Developer</p>
       <p style="margin-top: 0.5rem;">
         <a href="https://github.com/MarketablePlushiee" target="_blank">GitHub</a> | 
-        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank">LinkedIn</a> | 
+        <a onclick="openContactModal(event)">Contact</a>
       </p>
       <p style="margin-top: 0.3rem; color: #8b949e; font-size: 0.9rem;">
         📍 Quilicura, Santiago Metropolitan Region, Chile
@@ -264,7 +330,7 @@
       
       <div style="margin-bottom: 1.5rem;">
         <h3 style="color: #58a6ff; font-size: 1.1rem;">Universidad Bernardo O'Higgins</h3>
-        <p style="color: #c9d1d9;"><strong>B.S. in Virtual Reality and Digital Game Design Engineering</strong> (2023 - 2028)</p>
+        <p style="color: #c9d1d9;"><strong>B.S. in Virtual Reality and Digital Game Design Engineering</strong> (In Progress, Expected 2028)</p>
       </div>
 
       <div style="margin-bottom: 1.5rem;">
@@ -286,18 +352,15 @@
       <p><strong>Tools & Engines:</strong> Unity, Unreal Engine, OpenXR, Git, Visual Studio</p>
     </section>
 
-    <section id="contact">
-      <h2>// Contact</h2>
-      <p><strong>Email:</strong> <a href="mailto:ivan.latrille1@gmail.com">ivan.latrille1@gmail.com</a></p>
-      <p style="margin-top: 0.5rem;"><strong>Phone:</strong> +56 9 3772 2669</p>
-    </section>
   </div>
 
   <script>
     const cmdInput = document.getElementById('cmd');
     const heroTerminal = document.getElementById('hero-terminal');
     const mainContent = document.getElementById('main-content');
+    const contactModal = document.getElementById('contact-modal');
 
+    // Terminal Logic
     function openPortfolio() {
       heroTerminal.style.opacity = '0';
       setTimeout(() => {
@@ -312,6 +375,31 @@
       }
     });
 
+    // Contact Modal Logic
+    function openContactModal(e) {
+      e.preventDefault();
+      contactModal.classList.add('show');
+    }
+
+    function closeContactModal() {
+      contactModal.classList.remove('show');
+    }
+
+    // Close Modal on 'Escape' key
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && contactModal.classList.contains('show')) {
+        closeContactModal();
+      }
+    });
+
+    // Close Modal when clicking outside the content box
+    contactModal.addEventListener('click', function(e) {
+      if (e.target === contactModal) {
+        closeContactModal();
+      }
+    });
+
+    // Game Demo Logic
     function toggleGameDemo() {
       const container = document.getElementById('game-container');
       const btn = document.getElementById('demo-btn');
