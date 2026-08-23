@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Portfolio</title>
+  <style>
+    /* Estilos globales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: hidden;
+    }
+
+    /* Pantalla de inicio (Terminal) */
+    #hero-terminal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #050505;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      transition: opacity 0.5s ease, visibility 0.5s;
+    }
+
+    .terminal-box {
+      border: 1px solid #30363d;
+      padding: 2rem;
+      border-radius: 8px;
+      background-color: #161b22;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .terminal-text {
+      color: #58a6ff;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .command-input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #238636;
+      color: #3fb950;
+      font-family: inherit;
+      font-size: 1.2rem;
+      text-align: center;
+      outline: none;
+      width: 80%;
+      padding: 5px;
+    }
+
+    .hint-text {
+      font-size: 0.8rem;
+      color: #8b949e;
+      margin-top: 1rem;
+    }
+
+    /* Contenido Principal */
+    #main-content {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    #main-content.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    header {
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      color: #58a6ff;
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      color: #8b949e;
+      margin-top: 0.5rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      color: #3fb950;
+      margin-bottom: 1rem;
+      border-left: 3px solid #3fb950;
+      padding-left: 0.5rem;
+    }
+
+    .project-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-card h3 {
+      color: #58a6ff;
+      margin-bottom: 0.5rem;
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #8b949e;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+
+    a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Terminal / Hero Screen -->
+  <div id="hero-terminal">
+    <div class="terminal-box">
+      <p class="terminal-text">> System initialized.</p>
+      <p style="margin-bottom: 1rem;">Type <span style="color: #3fb950;">hello world</span> or press ENTER to enter:</p>
+      <input type="text" id="cmd" class="command-input" placeholder="..." autofocus autocomplete="off">
+      <p class="hint-text">[ Press ENTER or type "hello world" ]</p>
+    </div>
+  </div>
+
+  <!-- Main Portfolio Content -->
+  <div id="main-content">
+    <header>
+      <h1>[ Your Name ]</h1>
+      <p class="subtitle">Software & VR Developer</p>
+      <p style="margin-top: 0.5rem;">
+        <a href="https://github.com/yourusername" target="_blank">GitHub</a> | 
+        <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> | 
+        <a href="mailto:youremail@example.com">Contact</a>
+      </p>
+    </header>
+
+    <section id="about">
+      <h2>// About Me</h2>
+      <p>Focused on software development, logic implementation, and interactive systems. Passionate about real-time graphics, gameplay mechanics, and system optimization.</p>
+    </section>
+
+    <section id="projects">
+      <h2>// Featured Projects</h2>
+
+      <div class="project-card">
+        <h3>Project Title 01</h3>
+        <p>Short description of the problem solved or the mechanics implemented in this project.</p>
+        <div class="tags">
+          <span class="tag">C#</span>
+          <span class="tag">Unity</span>
+          <span class="tag">VR / OpenXR</span>
+        </div>
+        <a href="#" target="_blank">View Repository →</a>
+      </div>
+
+      <div class="project-card">
+        <h3>Project Title 02</h3>
+        <p>Short description highlighting optimization, architecture, or interactive gameplay logic.</p>
+        <div class="tags">
+          <span class="tag">C++</span>
+          <span class="tag">Unreal Engine</span>
+          <span class="tag">Graphics</span>
+        </div>
+        <a href="#" target="_blank">View Repository →</a>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>// Technical Skills</h2>
+      <p><strong>Languages:</strong> C#, C++, JavaScript, HTML/CSS</p>
+      <p><strong>Tools & Engines:</strong> Unity, Unreal Engine, OpenXR, Git, Visual Studio</p>
+    </section>
+  </div>
+
+  <script>
+    const cmdInput = document.getElementById('cmd');
+    const heroTerminal = document.getElementById('hero-terminal');
+    const mainContent = document.getElementById('main-content');
+
+    function openPortfolio() {
+      heroTerminal.style.opacity = '0';
+      setTimeout(() => {
+        heroTerminal.style.display = 'none';
+        mainContent.classList.add('visible');
+      }, 500);
+    }
+
+    cmdInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const value = cmdInput.value.trim().toLowerCase();
+        // Permite entrar al presionar Enter o si escribió "hello world"
+        if (value === 'hello world' || value === '' || value === 'start') {
+          openPortfolio();
+        } else {
+          openPortfolio(); // Entra de todos modos al presionar Enter
+        }
+      }
+    });
+  </script>
+</body>
+</html>
