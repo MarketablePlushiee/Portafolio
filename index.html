@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Developer Portfolio</title>
   <style>
-    /* Estilos globales */
+    /* Global Styles */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -18,7 +18,7 @@
       overflow-x: hidden;
     }
 
-    /* Pantalla de inicio (Terminal) */
+    /* Hero Terminal Screen */
     #hero-terminal {
       position: fixed;
       top: 0;
@@ -70,7 +70,7 @@
       margin-top: 1rem;
     }
 
-    /* Contenido Principal */
+    /* Main Content */
     #main-content {
       opacity: 0;
       visibility: hidden;
@@ -170,12 +170,10 @@
       <p class="subtitle">Software Engineer | VR & AI Developer</p>
       <p style="margin-top: 0.5rem;">
         <a href="https://github.com/MarketablePlushiee" target="_blank">GitHub</a> | 
-        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank">LinkedIn</a> | 
-        <a href="mailto:ivan.latrille1@gmail.com">Contact</a>
+        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank">LinkedIn</a>
       </p>
-      <!-- Datos de contacto exigidos por la rúbrica -->
       <p style="margin-top: 0.3rem; color: #8b949e; font-size: 0.9rem;">
-        📍 Quilicura, Región Metropolitana, Chile | 📱 +56 9 3772 2669
+        📍 Quilicura, Santiago Metropolitan Region, Chile
       </p>
     </header>
 
@@ -187,7 +185,7 @@
     <section id="projects">
       <h2>// Featured Projects</h2>
 
-      <!-- Proyecto 1: ML-Agents -->
+      <!-- Project 1: ML-Agents -->
       <div class="project-card">
         <h3>Autonomous Agent (ML-Agents DRL)</h3>
         <p>Reinforcement Learning proof of concept implemented in Unity and Python using the Unity ML-Agents Toolkit. Designed and trained an autonomous agent to navigate dynamic obstacle courses through policy optimization.</p>
@@ -198,12 +196,12 @@
           <li><strong>Metrics & Telemetry:</strong> Real-time training metrics, entropy loss, and cumulative rewards tracked via TensorBoard.</li>
         </ul>
 
-        <!-- GIF Principal de la simulación -->
+        <!-- Main Simulation GIF -->
         <div style="width: 100%; max-width: 520px; margin: 1.2rem auto 1rem auto; border: 1px solid #30363d; border-radius: 8px; overflow: hidden; background: #000;">
           <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
         </div>
 
-        <!-- Sección TensorBoard: Galería de 3 imágenes -->
+        <!-- TensorBoard Section: Gallery -->
         <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// TensorBoard Training Telemetry:</p>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
           <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
@@ -228,7 +226,7 @@
         <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank">View Repository →</a>
       </div>
 
-      <!-- Proyecto 2: Magic Heart -->
+      <!-- Project 2: Magic Heart -->
       <div class="project-card">
         <h3>Magic Heart - Survival Defense (URP & VFX)</h3>
         <p>Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and dynamic audio management.</p>
@@ -239,14 +237,14 @@
           <li><strong>Audio & Input Architecture:</strong> Multi-channel AudioMixer with dynamic pause controls and hybrid touch/mouse Raycast tracking.</li>
         </ul>
 
-        <!-- Botón para desplegar la Demo -->
+        <!-- Web Demo Launch Button -->
         <div style="margin: 1.2rem 0;">
           <button onclick="toggleGameDemo()" id="demo-btn" style="background-color: #238636; color: #ffffff; border: 1px solid #2ea043; padding: 0.6rem 1.2rem; font-family: inherit; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
             ▶ Launch Web Demo
           </button>
         </div>
 
-        <!-- Contenedor adaptado a las dimensiones de Itch.io (610x870) -->
+        <!-- Itch.io Game Container (610x870) -->
         <div id="game-container" style="display: none; width: 100%; max-width: 610px; height: 870px; margin: 1.5rem auto; border: 2px solid #30363d; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 8px 24px rgba(0,0,0,0.6);">
         </div>
 
@@ -266,18 +264,19 @@
       
       <div style="margin-bottom: 1.5rem;">
         <h3 style="color: #58a6ff; font-size: 1.1rem;">Universidad Bernardo O'Higgins</h3>
-        <p style="color: #c9d1d9;"><strong>Ingeniería en Realidad Virtual y Diseño de Juegos Digitales</strong> (2023 - 2028)</p>
+        <p style="color: #c9d1d9;"><strong>B.S. in Virtual Reality and Digital Game Design Engineering</strong> (2023 - 2028)</p>
       </div>
 
       <div style="margin-bottom: 1.5rem;">
         <h3 style="color: #58a6ff; font-size: 1.1rem;">Colegio Padre Pedro Arrupe</h3>
-        <p style="color: #c9d1d9;"><strong>Técnico de Nivel Medio en Mecánica Automotriz</strong> (2017 - 2018)</p>
+        <p style="color: #c9d1d9;"><strong>High School Diploma & Technical-Professional Degree in Automotive Mechanics</strong> (2007 - 2018)</p>
+        <p style="color: #8b949e; font-size: 0.9rem; margin-top: 0.3rem;">Completed primary and high school education, obtaining a mid-level technical degree focused on automotive systems diagnostics and repair.</p>
       </div>
 
       <div style="margin-bottom: 1rem;">
-        <h3 style="color: #58a6ff; font-size: 1.1rem;">Asistente Logístico y de Difusión</h3>
-        <p style="color: #c9d1d9;"><em>Automotora Inalco S.A. | Inalcar S.A. | Automotriz Forcenter S.A.</em> (Ene 2022 - Actual)</p>
-        <p style="color: #8b949e; font-size: 0.9rem; margin-top: 0.3rem;">Gestión operativa de sucursal, apoyo en marketing directo, atención de clientes y resolución de problemas logísticos en el punto de venta.</p>
+        <h3 style="color: #58a6ff; font-size: 1.1rem;">Logistics & Outreach Assistant</h3>
+        <p style="color: #c9d1d9;"><em>Automotora Inalco S.A. | Inalcar S.A. | Automotriz Forcenter S.A.</em> (Jan 2022 - Present)</p>
+        <p style="color: #8b949e; font-size: 0.9rem; margin-top: 0.3rem;">Branch operational management, direct marketing support, customer service, and logistical problem-solving at the point of sale.</p>
       </div>
     </section>
 
@@ -285,6 +284,12 @@
       <h2>// Technical Skills</h2>
       <p><strong>Languages:</strong> C#, C++, Python, JavaScript, HTML/CSS</p>
       <p><strong>Tools & Engines:</strong> Unity, Unreal Engine, OpenXR, Git, Visual Studio</p>
+    </section>
+
+    <section id="contact">
+      <h2>// Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:ivan.latrille1@gmail.com">ivan.latrille1@gmail.com</a></p>
+      <p style="margin-top: 0.5rem;"><strong>Phone:</strong> +56 9 3772 2669</p>
     </section>
   </div>
 
