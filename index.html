@@ -183,7 +183,7 @@
     <section id="projects">
       <h2>// Featured Projects</h2>
 
-      <!-- Proyecto 1: ML-Agents -->
+<!-- Proyecto 1: ML-Agents -->
       <div class="project-card">
         <h3>Autonomous Agent (ML-Agents DRL)</h3>
         <p>Reinforcement Learning proof of concept implemented in Unity and Python using the Unity ML-Agents Toolkit. Designed and trained an autonomous agent to navigate dynamic obstacle courses through policy optimization.</p>
@@ -194,9 +194,23 @@
           <li><strong>Metrics & Telemetry:</strong> Real-time training metrics, entropy loss, and cumulative rewards tracked via TensorBoard.</li>
         </ul>
 
-        <!-- Contenedor para vista previa/GIF del agente -->
-        <div style="width: 100%; max-width: 500px; margin: 1.2rem auto; border: 1px solid #30363d; border-radius: 8px; overflow: hidden; background: #000; text-align: center;">
-          <img src="./ml-preview.gif" alt="ML-Agents Demo" style="width: 100%; height: auto; display: block;" onerror="this.parentNode.style.display='none'">
+        <!-- GIF Principal de la simulación -->
+        <div style="width: 100%; max-width: 520px; margin: 1.2rem auto 1rem auto; border: 1px solid #30363d; border-radius: 8px; overflow: hidden; background: #000;">
+          <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
+        </div>
+
+        <!-- Sección TensorBoard: Galería de 3 imágenes -->
+        <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// TensorBoard Training Telemetry:</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
+          <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
+            <img src="tb-1.png" alt="TensorBoard Reward" style="width: 100%; height: auto; display: block;">
+          </div>
+          <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
+            <img src="tb-2.png" alt="TensorBoard Episode Length" style="width: 100%; height: auto; display: block;">
+          </div>
+          <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
+            <img src="tb-3.png" alt="TensorBoard Loss" style="width: 100%; height: auto; display: block;">
+          </div>
         </div>
 
         <div class="tags">
