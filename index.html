@@ -133,12 +133,12 @@
       padding-left: 0.5rem;
     }
 
-    /* Grid Layout Responsivo */
+    /* Grid Layout Responsivo - Simétrico */
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
-      align-items: start;
+      /* Eliminado align-items: start para que las tarjetas ocupen toda la altura */
     }
 
     @media (min-width: 1000px) {
@@ -155,6 +155,7 @@
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
+      height: 100%;
     }
 
     .project-card h3 {
@@ -163,11 +164,16 @@
       font-size: 1.2rem;
     }
 
+    /* Empuja el enlace de GitHub siempre hacia abajo para mantener simetría */
+    .project-card > a {
+      margin-top: auto;
+    }
+
     /* Estilos interactivos de la demo de Magic Heart */
     .game-preview-wrapper {
       width: 100%;
-      max-width: 450px; /* Formato vertical tipo celular */
-      height: 750px;
+      max-width: 610px; /* Tamaño original de tu código */
+      height: 870px;    /* Tamaño original de tu código */
       margin: 1.5rem auto;
       border: 2px solid #30363d;
       border-radius: 12px;
@@ -189,7 +195,8 @@
     .game-cover-interactive img {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Evita que se corte la imagen */
+      background-color: #000;
       z-index: 1;
     }
 
@@ -234,6 +241,49 @@
       display: none;
     }
 
+    /* Lightbox (Zoom de Imágenes) */
+    #lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px; right: 30px;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover {
+      color: #f85149;
+    }
+
+    .zoomable {
+      cursor: zoom-in;
+      transition: transform 0.2s;
+    }
+
+    .zoomable:hover {
+      transform: scale(1.03);
+    }
+
     .tags {
       display: flex;
       gap: 0.5rem;
@@ -262,7 +312,6 @@
 </head>
 <body data-lang="en">
 
-  <!-- Terminal / Hero Screen -->
   <div id="hero-terminal">
     <div class="terminal-box">
       <p class="terminal-text">> System initialized.</p>
@@ -274,7 +323,11 @@
     </div>
   </div>
 
-  <!-- Main Portfolio Content -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Zoomed Image">
+  </div>
+
   <div id="main-content">
     <header>
       <button id="lang-toggle" onclick="toggleLang()">🌐 EN / ES</button>
@@ -289,7 +342,7 @@
         <a href="mailto:ivan.latrille1@gmail.com">ivan.latrille1@gmail.com</a>
       </p>
       <p style="margin-top: 0.3rem; color: #8b949e; font-size: 0.9rem;">
-        📍 Santiago Metropolitan Region, Chile
+        📍 Quilicura, Región Metropolitana, Chile
       </p>
     </header>
 
@@ -304,38 +357,42 @@
 
       <div class="projects-grid">
         
-        <!-- Project 1: ML-Agents -->
         <div class="project-card">
           <h3>Autonomous Agent (ML-Agents DRL)</h3>
           <p class="lang-en">Reinforcement Learning proof of concept implemented in Unity and Python using the Unity ML-Agents Toolkit. Designed and trained an autonomous agent to navigate dynamic obstacle courses through policy optimization.</p>
           <p class="lang-es">Prueba de concepto de Aprendizaje por Refuerzo implementada en Unity y Python. Diseñé y entrené un agente autónomo para navegar circuitos de obstáculos dinámicos mediante optimización de políticas.</p>
           
           <ul style="margin: 0.8rem 0 1rem 1.2rem; color: #8b949e; font-size: 0.85rem; line-height: 1.4;">
-            <li class="lang-en"><strong>Algorithm & Training:</strong> Proximal Policy Optimization (PPO) using vector observations.</li>
-            <li class="lang-es"><strong>Algoritmo y Entrenamiento:</strong> Proximal Policy Optimization (PPO) usando observaciones vectoriales.</li>
+            <li class="lang-en"><strong>Algorithm & Training:</strong> Proximal Policy Optimization (PPO) using vector observations and continuous action spaces.</li>
+            <li class="lang-es"><strong>Algoritmo y Entrenamiento:</strong> Proximal Policy Optimization (PPO) usando observaciones vectoriales y espacios de acción continua.</li>
+            <li class="lang-en"><strong>Reward Function Architecture:</strong> Custom reward shaping designed to minimize navigation time while penalizing collisions and erratic motion.</li>
+            <li class="lang-es"><strong>Arquitectura de Recompensas:</strong> Diseño de recompensas personalizadas para minimizar el tiempo de navegación y penalizar colisiones.</li>
             <li class="lang-en"><strong>Metrics & Telemetry:</strong> Real-time training metrics, entropy loss, and cumulative rewards tracked via TensorBoard.</li>
-            <li class="lang-es"><strong>Métricas y Telemetría:</strong> Rastreo de recompensas acumulativas y pérdida de entropía vía TensorBoard.</li>
+            <li class="lang-es"><strong>Métricas y Telemetría:</strong> Rastreo en tiempo real de pérdida de entropía y recompensas acumuladas vía TensorBoard.</li>
           </ul>
 
           <div style="width: 100%; border: 1px solid #30363d; border-radius: 8px; overflow: hidden; background: #000; margin-bottom: 1rem;">
             <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
           </div>
 
-          <!-- TensorBoard Section -->
-          <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// TensorBoard Training Telemetry:</p>
+          <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// TensorBoard Training Telemetry (Click to expand):</span>
+            <span class="lang-es">// Telemetría de TensorBoard (Clic para ampliar):</span>
+          </p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
             <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
-              <img src="tb-1.png" alt="TensorBoard Reward" style="width: 100%; height: auto; display: block;">
+              <img src="tb-1.png" alt="TensorBoard Reward" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
             </div>
             <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
-              <img src="tb-2.png" alt="TensorBoard Episode Length" style="width: 100%; height: auto; display: block;">
+              <img src="tb-2.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
             </div>
             <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
-              <img src="tb-3.png" alt="TensorBoard Loss" style="width: 100%; height: auto; display: block;">
+              <img src="tb-3.png" alt="TensorBoard Loss" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
             </div>
           </div>
 
           <div class="tags">
+            <span class="tag">C#</span>
             <span class="tag">Python</span>
             <span class="tag">Unity ML-Agents</span>
             <span class="tag">PyTorch</span>
@@ -345,15 +402,21 @@
           <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank">View Repository →</a>
         </div>
 
-        <!-- Project 2: Magic Heart -->
         <div class="project-card">
-          <h3>Magic Heart - Survival Defense</h3>
-          <p class="lang-en">Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and hybrid input management.</p>
-          <p class="lang-es">Juego de defensa y supervivencia arcade desarrollado en Unity (URP) para plataformas móviles. Cuenta con sistemas dinámicos de oleadas, efectos visuales personalizados y gestión de input híbrido.</p>
+          <h3>Magic Heart - Survival Defense (URP & VFX)</h3>
+          <p class="lang-en">Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and dynamic audio management.</p>
+          <p class="lang-es">Juego de defensa y supervivencia arcade desarrollado en Unity (URP) para plataformas móviles. Cuenta con sistemas dinámicos de oleadas, efectos visuales personalizados y gestión de audio dinámico.</p>
           
-          <!-- Interactive Game Cover / Vertical Wrapper -->
+          <ul style="margin: 0.8rem 0 1rem 1.2rem; color: #8b949e; font-size: 0.85rem; line-height: 1.4;">
+            <li class="lang-en"><strong>Wave System:</strong> Dynamic enemy spawning algorithms with progressive difficulty scaling over time.</li>
+            <li class="lang-es"><strong>Sistema de Oleadas:</strong> Algoritmos de generación dinámica de enemigos con escalado progresivo de dificultad.</li>
+            <li class="lang-en"><strong>Graphics & VFX:</strong> Custom Shader Graph integration (Ice slowdown, Magma DOT, hit feedback) and procedural squash/stretch game-feel.</li>
+            <li class="lang-es"><strong>Gráficos y VFX:</strong> Integración de Shader Graph personalizados (Ralentización de hielo, Daño por magma) y game-feel procedural.</li>
+            <li class="lang-en"><strong>Audio & Input Architecture:</strong> Multi-channel AudioMixer with dynamic pause controls and hybrid touch/mouse Raycast tracking.</li>
+            <li class="lang-es"><strong>Arquitectura de Audio e Input:</strong> AudioMixer multicanal con controles dinámicos y sistema de seguimiento Raycast híbrido.</li>
+          </ul>
+
           <div class="game-preview-wrapper">
-            <!-- Portada usando etiqueta <img> directa para evitar fallos de CSS -->
             <div id="interactive-cover" class="game-cover-interactive" onclick="launchGame()">
               <img src="magic-preview.png" alt="Magic Heart Cover">
               <div class="cover-overlay"></div>
@@ -375,12 +438,13 @@
             <span class="tag">C#</span>
             <span class="tag">Unity URP</span>
             <span class="tag">Shader Graph</span>
+            <span class="tag">WebGL</span>
+            <span class="tag">Game Design</span>
             <span class="tag">Mobile</span>
           </div>
           <a href="https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense" target="_blank">View Repository →</a>
         </div>
 
-        <!-- Project 3: SafeVR -->
         <div class="project-card" style="grid-column: 1 / -1;">
           <h3>SafeVR - <span class="lang-en">Industrial Safety Simulator</span><span class="lang-es">Simulador de Seguridad Industrial</span></h3>
           <p>
@@ -392,13 +456,15 @@
           <p style="margin-top: 0.8rem;" class="lang-en">A virtual reality industrial safety simulator focused on dynamic risk prevention. As Project Leader, Lead VR Developer, and Gameplay Programmer, I engineered the core VR interactions, dynamic fire propagation systems, and realistic fire extinguisher mechanics for the MVP.</p>
           <p style="margin-top: 0.8rem;" class="lang-es">Simulador de seguridad industrial en realidad virtual enfocado en la prevención de riesgos dinámicos. Como Líder de Proyecto, Lead VR Developer y Programador de Gameplay, desarrollé las interacciones VR principales, los sistemas de propagación de fuego y las mecánicas inmersivas de uso de extintores para el MVP.</p>
           
-          <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// Simulation Previews:</p>
-          <!-- Grilla interna de 4 imágenes para SafeVR -->
+          <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// Simulation Previews (Click to expand):</span>
+            <span class="lang-es">// Vistas de Simulación (Clic para ampliar):</span>
+          </p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
-            <img src="safevr-1.png" alt="SafeVR Gameplay 1" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
-            <img src="safevr-2.png" alt="SafeVR Gameplay 2" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
-            <img src="safevr-3.png" alt="SafeVR Gameplay 3" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
-            <img src="safevr-4.png" alt="SafeVR Gameplay 4" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+            <img src="safevr-1.png" alt="SafeVR Gameplay 1" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+            <img src="safevr-2.png" alt="SafeVR Gameplay 2" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+            <img src="safevr-3.png" alt="SafeVR Gameplay 3" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+            <img src="safevr-4.png" alt="SafeVR Gameplay 4" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
           </div>
 
           <div class="tags">
@@ -432,6 +498,8 @@
           <strong class="lang-es">Licenciatura de Enseñanza Media y Título Técnico Profesional en Mecánica Automotriz</strong> 
           (2017 - 2018)
         </p>
+        <p style="color: #8b949e; font-size: 0.9rem; margin-top: 0.3rem;" class="lang-en">Completed primary and high school education, obtaining a mid-level technical degree focused on automotive systems diagnostics and repair.</p>
+        <p style="color: #8b949e; font-size: 0.9rem; margin-top: 0.3rem;" class="lang-es">Educación básica y media completada, obteniendo título técnico de nivel medio centrado en diagnóstico y reparación de sistemas automotrices.</p>
       </div>
 
       <div style="margin-bottom: 1rem;">
@@ -440,6 +508,8 @@
           <span class="lang-es">Asistente Logístico y de Difusión</span>
         </h3>
         <p style="color: #c9d1d9;"><em>Automotora Inalco S.A. | Inalcar S.A. | Automotriz Forcenter S.A.</em> (Jan 2022 - Present)</p>
+        <p style="color: #8b949e; font-size: 0.9rem; margin-top: 0.3rem;" class="lang-en">Branch operational management, direct marketing support, customer service, and logistical problem-solving at the point of sale.</p>
+        <p style="color: #8b949e; font-size: 0.9rem; margin-top: 0.3rem;" class="lang-es">Gestión operativa de sucursal, soporte de marketing directo, servicio al cliente y resolución de problemas logísticos en el punto de venta.</p>
       </div>
     </section>
 
@@ -506,6 +576,20 @@
       cover.style.display = 'flex';
       
       container.innerHTML = '';
+    }
+
+    // Lógica del Lightbox para Zoom de Imágenes
+    function openLightbox(imgSrc) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = imgSrc;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.style.display = 'none';
+      document.getElementById('lightbox-img').src = '';
     }
   </script>
 </body>
