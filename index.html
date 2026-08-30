@@ -73,7 +73,8 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.8s ease;
-      max-width: 1100px;
+      max-width: 1400px; /* Aquí ampliamos el uso de la pantalla */
+      width: 95%;
       margin: 0 auto;
       padding: 2rem 1rem;
     }
@@ -132,7 +133,7 @@
       padding-left: 0.5rem;
     }
 
-    /* Grid Layout Responsivo */
+    /* Grid Layout Responsivo Fijo a 2 columnas */
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -140,13 +141,9 @@
       align-items: start;
     }
 
-    @media (min-width: 800px) {
+    @media (min-width: 1000px) {
       .projects-grid {
         grid-template-columns: 1fr 1fr;
-      }
-      /* Expande la tarjeta a todo el ancho cuando se abre */
-      .project-card.expanded {
-        grid-column: 1 / -1;
       }
     }
 
@@ -158,7 +155,6 @@
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
-      transition: all 0.3s ease;
     }
 
     .project-card h3 {
@@ -169,7 +165,7 @@
 
     .project-cover {
       width: 100%;
-      height: 200px;
+      height: 250px;
       background-color: #0d1117;
       background-size: cover;
       background-position: center;
@@ -225,8 +221,7 @@
     /* Estilos para el Preview de Itch.io */
     .game-preview-wrapper {
       width: 100%;
-      max-width: 800px;
-      margin: 1.5rem auto;
+      margin: 1.5rem 0;
       border: 2px solid #30363d;
       border-radius: 12px;
       overflow: hidden;
@@ -237,7 +232,6 @@
     .game-cover-interactive {
       width: 100%;
       height: 600px;
-      background-image: url('magic-cover.png');
       background-size: cover;
       background-position: center;
       cursor: pointer;
@@ -278,10 +272,11 @@
       background: #da3633;
       color: white;
       border: none;
-      padding: 0.6rem;
+      padding: 0.8rem;
       font-weight: bold;
       cursor: pointer;
       font-family: inherit;
+      font-size: 1rem;
     }
 
     @keyframes fadeIn {
@@ -424,7 +419,8 @@
             
             <!-- Interactive Game Cover / Iframe Wrapper -->
             <div class="game-preview-wrapper">
-              <div id="interactive-cover" class="game-cover-interactive" onclick="launchGame()">
+              <!-- AQUI CARGA LA IMAGEN ESTÁTICA DEL JUEGO -->
+              <div id="interactive-cover" class="game-cover-interactive" style="background-image: url('magic-preview.png');" onclick="launchGame()">
                 <div class="play-badge">
                   <span class="lang-en">▶ PLAY DEMO</span>
                   <span class="lang-es">▶ JUGAR DEMO</span>
@@ -555,15 +551,11 @@
       }
     });
 
-    // Expandir tarjeta y revelar detalles
+    // Expandir tarjeta y revelar detalles (Sin romper la grilla)
     function toggleDetails(element) {
-      const card = element.closest('.project-card');
       const detailsDiv = element.nextElementSibling;
-      
-      // Cerrar las demás si lo prefieres, u ocultar la portada actual
       element.style.display = 'none';
       detailsDiv.classList.add('show');
-      card.classList.add('expanded');
     }
 
     // Lógica para reemplazar Portada por Iframe del Juego
@@ -590,7 +582,6 @@
       closeBtn.style.display = 'none';
       cover.style.display = 'flex';
       
-      // Opcional: vaciar el iframe para que el juego se detenga
       container.innerHTML = '';
     }
   </script>
