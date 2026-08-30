@@ -68,12 +68,6 @@
       padding: 5px;
     }
 
-    .hint-text {
-      font-size: 0.8rem;
-      color: #8b949e;
-      margin-top: 1rem;
-    }
-
     /* Main Content */
     #main-content {
       opacity: 0;
@@ -171,6 +165,8 @@
       width: 100%;
       height: 180px;
       background-color: #0d1117;
+      background-size: cover;
+      background-position: center;
       border: 1px solid #30363d;
       border-radius: 6px;
       display: flex;
@@ -183,12 +179,27 @@
       transition: border-color 0.2s;
     }
 
+    /* Filtro oscuro sobre la imagen de portada para que se lea el texto */
+    .project-cover::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      transition: background 0.2s;
+    }
+
+    .project-cover:hover::before {
+      background: rgba(0,0,0,0.3);
+    }
+
     .project-cover:hover {
       border-color: #58a6ff;
     }
 
     .project-cover span {
-      background: rgba(0,0,0,0.7);
+      position: relative;
+      z-index: 1;
+      background: rgba(0,0,0,0.8);
       padding: 0.5rem 1rem;
       border-radius: 4px;
       border: 1px solid #3fb950;
@@ -240,6 +251,7 @@
 </head>
 <body data-lang="en">
 
+  <!-- Terminal / Hero Screen -->
   <div id="hero-terminal">
     <div class="terminal-box">
       <p class="terminal-text">> System initialized.</p>
@@ -251,6 +263,7 @@
     </div>
   </div>
 
+  <!-- Main Portfolio Content -->
   <div id="main-content">
     <header>
       <button id="lang-toggle" onclick="toggleLang()">🌐 EN / ES</button>
@@ -280,38 +293,11 @@
 
       <div class="projects-grid">
         
-        <div class="project-card">
-          <h3>SafeVR - <span class="lang-en">Industrial Safety Simulator</span><span class="lang-es">Simulador de Seguridad Industrial</span></h3>
-          
-          <div class="project-cover" onclick="toggleDetails(this)">
-            <span class="lang-en">▶ Click to Reveal Details</span>
-            <span class="lang-es">▶ Clic para Expandir Detalles</span>
-          </div>
-
-          <div class="project-details">
-            <p>
-              <strong style="color:#3fb950;">
-                <span class="lang-en">🏆 1st Place - UBO Inicia Entrepreneurship Contest</span>
-                <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
-              </strong>
-            </p>
-            <p style="margin-top: 0.8rem;" class="lang-en">A virtual reality industrial safety simulator focused on dynamic risk prevention. As Project Leader, Lead VR Developer, and Gameplay Programmer, I engineered the core VR interactions, dynamic fire propagation systems, and realistic fire extinguisher mechanics for the MVP.</p>
-            <p style="margin-top: 0.8rem;" class="lang-es">Simulador de seguridad industrial en realidad virtual enfocado en la prevención de riesgos dinámicos. Como Líder de Proyecto, Lead VR Developer y Programador de Gameplay, desarrollé las interacciones VR principales, los sistemas de propagación de fuego y las mecánicas inmersivas de uso de extintores para el MVP.</p>
-            
-            <div class="tags">
-              <span class="tag">C#</span>
-              <span class="tag">Unity 3D</span>
-              <span class="tag">OpenXR</span>
-              <span class="tag">Meta Quest</span>
-              <span class="tag">Gameplay Programming</span>
-            </div>
-          </div>
-        </div>
-
+        <!-- Project 1: ML-Agents -->
         <div class="project-card">
           <h3>Autonomous Agent (ML-Agents DRL)</h3>
           
-          <div class="project-cover" onclick="toggleDetails(this)">
+          <div class="project-cover" style="background-image: url('ml-cover.png');" onclick="toggleDetails(this)">
             <span class="lang-en">▶ Click to Reveal Details</span>
             <span class="lang-es">▶ Clic para Expandir Detalles</span>
           </div>
@@ -331,6 +317,20 @@
               <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
             </div>
 
+            <!-- TensorBoard Section Restored -->
+            <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// TensorBoard Training Telemetry:</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
+              <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
+                <img src="tb-1.png" alt="TensorBoard Reward" style="width: 100%; height: auto; display: block;">
+              </div>
+              <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
+                <img src="tb-2.png" alt="TensorBoard Episode Length" style="width: 100%; height: auto; display: block;">
+              </div>
+              <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
+                <img src="tb-3.png" alt="TensorBoard Loss" style="width: 100%; height: auto; display: block;">
+              </div>
+            </div>
+
             <div class="tags">
               <span class="tag">Python</span>
               <span class="tag">Unity ML-Agents</span>
@@ -342,10 +342,11 @@
           </div>
         </div>
 
+        <!-- Project 2: Magic Heart -->
         <div class="project-card">
           <h3>Magic Heart - Survival Defense</h3>
           
-          <div class="project-cover" onclick="toggleDetails(this)">
+          <div class="project-cover" style="background-image: url('magic-cover.png');" onclick="toggleDetails(this)">
             <span class="lang-en">▶ Click to Reveal Details</span>
             <span class="lang-es">▶ Clic para Expandir Detalles</span>
           </div>
@@ -371,6 +372,44 @@
               <span class="tag">Mobile</span>
             </div>
             <a href="https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense" target="_blank">View Repository →</a>
+          </div>
+        </div>
+
+        <!-- Project 3: SafeVR -->
+        <div class="project-card">
+          <h3>SafeVR - <span class="lang-en">Industrial Safety Simulator</span><span class="lang-es">Simulador de Seguridad Industrial</span></h3>
+          
+          <div class="project-cover" style="background-image: url('safevr-cover.png');" onclick="toggleDetails(this)">
+            <span class="lang-en">▶ Click to Reveal Details</span>
+            <span class="lang-es">▶ Clic para Expandir Detalles</span>
+          </div>
+
+          <div class="project-details">
+            <p>
+              <strong style="color:#3fb950;">
+                <span class="lang-en">🏆 1st Place - UBO Inicia Entrepreneurship Contest</span>
+                <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
+              </strong>
+            </p>
+            <p style="margin-top: 0.8rem;" class="lang-en">A virtual reality industrial safety simulator focused on dynamic risk prevention. As Project Leader, Lead VR Developer, and Gameplay Programmer, I engineered the core VR interactions, dynamic fire propagation systems, and realistic fire extinguisher mechanics for the MVP.</p>
+            <p style="margin-top: 0.8rem;" class="lang-es">Simulador de seguridad industrial en realidad virtual enfocado en la prevención de riesgos dinámicos. Como Líder de Proyecto, Lead VR Developer y Programador de Gameplay, desarrollé las interacciones VR principales, los sistemas de propagación de fuego y las mecánicas inmersivas de uso de extintores para el MVP.</p>
+            
+            <!-- SafeVR Image Gallery -->
+            <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// Simulation Previews:</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.2rem;">
+              <img src="safevr-1.png" alt="SafeVR Gameplay 1" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+              <img src="safevr-2.png" alt="SafeVR Gameplay 2" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+              <img src="safevr-3.png" alt="SafeVR Gameplay 3" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+              <img src="safevr-4.png" alt="SafeVR Gameplay 4" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+            </div>
+
+            <div class="tags">
+              <span class="tag">C#</span>
+              <span class="tag">Unity 3D</span>
+              <span class="tag">OpenXR</span>
+              <span class="tag">Meta Quest</span>
+              <span class="tag">Gameplay Programming</span>
+            </div>
           </div>
         </div>
 
