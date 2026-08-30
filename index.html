@@ -373,6 +373,7 @@
 </head>
 <body data-lang="en">
 
+  <!-- Terminal / Hero Screen -->
   <div id="hero-terminal">
     <div class="terminal-box">
       <p class="terminal-text">> System initialized.</p>
@@ -384,17 +385,21 @@
     </div>
   </div>
 
+  <!-- Modal Fullscreen del Juego -->
   <div id="game-modal">
     <button class="close-modal-btn" onclick="closeGame()">&times;</button>
     <div class="modal-game-content" id="modal-game-container">
-      </div>
+      <!-- El iframe se inyecta aquí -->
+    </div>
   </div>
 
+  <!-- Lightbox Overlay -->
   <div id="lightbox" onclick="closeLightbox()">
     <span class="lightbox-close">&times;</span>
     <img id="lightbox-img" src="" alt="Zoomed Image">
   </div>
 
+  <!-- Main Portfolio Content -->
   <div id="main-content">
     <header>
       <button id="lang-toggle" onclick="toggleLang()">🌐 EN / ES</button>
@@ -424,6 +429,7 @@
 
       <div class="projects-grid">
         
+        <!-- Project 1: ML-Agents -->
         <div class="project-card">
           <h3>Autonomous Agent (ML-Agents DRL)</h3>
           <p class="lang-en">Reinforcement learning proof of concept implemented in Unity and Python using the Unity ML-Agents Toolkit. Designed and trained an autonomous agent to navigate dynamic obstacle courses through policy optimization.</p>
@@ -442,6 +448,7 @@
             <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
           </div>
 
+          <!-- TensorBoard Section con Zoom -->
           <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
             <span class="lang-en">// TensorBoard Training Telemetry (Click to expand):</span>
             <span class="lang-es">// Telemetría de Entrenamiento TensorBoard (Clic para ampliar):</span>
@@ -469,6 +476,7 @@
           <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank">View Repository →</a>
         </div>
 
+        <!-- Project 2: Magic Heart -->
         <div class="project-card">
           <h3>Magic Heart - Survival Defense (URP & VFX)</h3>
           <p class="lang-en">Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and dynamic audio management.</p>
@@ -483,6 +491,7 @@
             <li class="lang-es"><strong>Arquitectura de audio e input:</strong> Audiomixer multicanal con controles de pausa dinámicos y sistema de seguimiento por raycast híbrido (táctil y mouse).</li>
           </ul>
 
+          <!-- Portada Compacta -->
           <div class="game-preview-wrapper">
             <div id="interactive-cover" class="game-cover-interactive" onclick="launchGame()">
               <img src="magic-preview.png" alt="Magic Heart Cover">
@@ -505,6 +514,7 @@
           <a href="https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense" target="_blank">View Repository →</a>
         </div>
 
+        <!-- Project 3: SafeVR -->
         <div class="project-card" style="grid-column: 1 / -1;">
           <h3>SafeVR - <span class="lang-en">Industrial Safety Simulator</span><span class="lang-es">Simulador de Seguridad Industrial</span></h3>
           <p>
@@ -594,6 +604,7 @@
       <p><strong><span class="lang-en">Tools & Engines</span><span class="lang-es">Herramientas y Motores</span>:</strong> Unity, Unreal Engine, OpenXR, Git, Visual Studio</p>
     </section>
 
+    <!-- Footer con Contador Global en Tiempo Real -->
     <div class="visitor-counter-footer">
       <p>
         <span class="lang-en">> You are visitor number <span id="visit-count-en">...</span> to this portfolio.</span>
@@ -662,24 +673,24 @@
       document.getElementById('lightbox-img').src = '';
     }
 
-    // Lógica del Contador Global en Tiempo Real (vía API Segura HTTPS)
+    // Lógica del Contador Global en Tiempo Real (CountAPI Open Source)
     window.addEventListener('DOMContentLoaded', () => {
       const countEn = document.getElementById('visit-count-en');
       const countEs = document.getElementById('visit-count-es');
 
-      fetch('https://api.counterapi.dev/v1/marketableplushiee/portfolio-real/up')
+      fetch('https://countapi.mileshilliard.com/api/v1/hit/marketableplushiee_portfolio')
         .then(response => {
-          if (!response.ok) throw new Error('Network error');
+          if (!response.ok) throw new Error('Error al conectar con la API');
           return response.json();
         })
         .then(data => {
-          countEn.textContent = data.count;
-          countEs.textContent = data.count;
+          const totalVisits = data.value;
+          countEn.textContent = totalVisits;
+          countEs.textContent = totalVisits;
         })
         .catch(error => {
-          // Fallback seguro si la red o el navegador bloquean el fetch externo
-          countEn.textContent = "1";
-          countEs.textContent = "1";
+          countEn.textContent = "Error";
+          countEs.textContent = "Error";
         });
     });
   </script>
