@@ -662,15 +662,14 @@
       document.getElementById('lightbox-img').src = '';
     }
 
-    // Lógica del Contador Global en Tiempo Real
+    // Lógica del Contador Global en Tiempo Real (vía API Segura HTTPS)
     window.addEventListener('DOMContentLoaded', () => {
       const countEn = document.getElementById('visit-count-en');
       const countEs = document.getElementById('visit-count-es');
 
-      // Llamada a la API global real (se actualiza para todos)
-      fetch('https://api.counterapi.dev/v1/marketableplushiee/portfolio/up')
+      fetch('https://api.counterapi.dev/v1/marketableplushiee/portfolio-real/up')
         .then(response => {
-          if (!response.ok) throw new Error('API falló');
+          if (!response.ok) throw new Error('Network error');
           return response.json();
         })
         .then(data => {
@@ -678,9 +677,9 @@
           countEs.textContent = data.count;
         })
         .catch(error => {
-          // Si por alguna razón de red falla, llenamos el número al instante para que nunca quede vacío
-          countEn.textContent = "1248";
-          countEs.textContent = "1248";
+          // Fallback seguro si la red o el navegador bloquean el fetch externo
+          countEn.textContent = "1";
+          countEs.textContent = "1";
         });
     });
   </script>
