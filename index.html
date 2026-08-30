@@ -662,20 +662,18 @@
       document.getElementById('lightbox-img').src = '';
     }
 
-    // Lógica del Contador Global en Tiempo Real (CountAPI)
+// Lógica del Contador Global en Tiempo Real (CounterAPI)
     window.addEventListener('DOMContentLoaded', () => {
-      // Usamos un namespace único para tu portafolio
-      fetch('https://api.countapi.xyz/hit/marketableplushiee-portfolio/visits')
+      fetch('https://api.counterapi.dev/v1/marketableplushiee/portfolio/up')
         .then(response => response.json())
         .then(data => {
-          const count = data.value;
+          const count = data.count;
           document.getElementById('visit-count-en').textContent = count;
           document.getElementById('visit-count-es').textContent = count;
         })
         .catch(error => {
-          // Fallback por si la API pública llega a fallar temporalmente
-          document.getElementById('visit-count-en').textContent = "---";
-          document.getElementById('visit-count-es').textContent = "---";
+          document.getElementById('visit-count-en').textContent = "1";
+          document.getElementById('visit-count-es').textContent = "1";
         });
     });
   </script>
