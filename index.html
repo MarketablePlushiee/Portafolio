@@ -73,8 +73,8 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.8s ease;
-      max-width: 1400px;
-      width: 95%;
+      max-width: 1600px; /* Aumentado para usar todo el monitor */
+      width: 98%; /* Márgenes laterales mínimos */
       margin: 0 auto;
       padding: 2rem 1rem;
     }
@@ -138,7 +138,6 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
-      /* Eliminado align-items: start para que las tarjetas ocupen toda la altura */
     }
 
     @media (min-width: 1000px) {
@@ -169,16 +168,18 @@
       margin-top: auto;
     }
 
-    /* Estilos interactivos de la demo de Magic Heart */
+    /* Estilos interactivos de la demo de Magic Heart (Más Vertical) */
     .game-preview-wrapper {
       width: 100%;
-      max-width: 610px; /* Tamaño original de tu código */
-      height: 870px;    /* Tamaño original de tu código */
+      max-width: 520px; /* Formato celular */
+      height: 900px; /* Altura incrementada */
       margin: 1.5rem auto;
       border: 2px solid #30363d;
       border-radius: 12px;
       overflow: hidden;
       background: #000;
+      display: flex;
+      flex-direction: column; /* Evita que el botón pise el iframe */
       position: relative;
     }
 
@@ -195,7 +196,7 @@
     .game-cover-interactive img {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      object-fit: contain; /* Evita que se corte la imagen */
+      object-fit: contain; 
       background-color: #000;
       z-index: 1;
     }
@@ -226,8 +227,6 @@
     }
 
     .close-demo-btn {
-      position: absolute;
-      bottom: 0; left: 0;
       width: 100%;
       height: 50px;
       background: #da3633;
@@ -237,7 +236,6 @@
       cursor: pointer;
       font-family: inherit;
       font-size: 1rem;
-      z-index: 15;
       display: none;
     }
 
@@ -312,6 +310,7 @@
 </head>
 <body data-lang="en">
 
+  <!-- Terminal / Hero Screen -->
   <div id="hero-terminal">
     <div class="terminal-box">
       <p class="terminal-text">> System initialized.</p>
@@ -323,11 +322,13 @@
     </div>
   </div>
 
+  <!-- Lightbox Overlay -->
   <div id="lightbox" onclick="closeLightbox()">
     <span class="lightbox-close">&times;</span>
     <img id="lightbox-img" src="" alt="Zoomed Image">
   </div>
 
+  <!-- Main Portfolio Content -->
   <div id="main-content">
     <header>
       <button id="lang-toggle" onclick="toggleLang()">🌐 EN / ES</button>
@@ -357,6 +358,7 @@
 
       <div class="projects-grid">
         
+        <!-- Project 1: ML-Agents -->
         <div class="project-card">
           <h3>Autonomous Agent (ML-Agents DRL)</h3>
           <p class="lang-en">Reinforcement Learning proof of concept implemented in Unity and Python using the Unity ML-Agents Toolkit. Designed and trained an autonomous agent to navigate dynamic obstacle courses through policy optimization.</p>
@@ -375,6 +377,7 @@
             <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
           </div>
 
+          <!-- TensorBoard Section con Zoom -->
           <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
             <span class="lang-en">// TensorBoard Training Telemetry (Click to expand):</span>
             <span class="lang-es">// Telemetría de TensorBoard (Clic para ampliar):</span>
@@ -402,6 +405,7 @@
           <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank">View Repository →</a>
         </div>
 
+        <!-- Project 2: Magic Heart -->
         <div class="project-card">
           <h3>Magic Heart - Survival Defense (URP & VFX)</h3>
           <p class="lang-en">Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and dynamic audio management.</p>
@@ -416,6 +420,7 @@
             <li class="lang-es"><strong>Arquitectura de Audio e Input:</strong> AudioMixer multicanal con controles dinámicos y sistema de seguimiento Raycast híbrido.</li>
           </ul>
 
+          <!-- Interactive Game Cover -->
           <div class="game-preview-wrapper">
             <div id="interactive-cover" class="game-cover-interactive" onclick="launchGame()">
               <img src="magic-preview.png" alt="Magic Heart Cover">
@@ -426,7 +431,8 @@
               </div>
             </div>
             
-            <div id="game-container" style="display: none; width: 100%; height: calc(100% - 50px);"></div>
+            <!-- Flex-grow se asegura de que el iframe tome todo el espacio que no usa el botón rojo -->
+            <div id="game-container" style="display: none; width: 100%; flex-grow: 1;"></div>
             
             <button id="close-demo-btn" class="close-demo-btn" onclick="closeGame()">
               <span class="lang-en">✕ Close Web Demo</span>
@@ -445,6 +451,7 @@
           <a href="https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense" target="_blank">View Repository →</a>
         </div>
 
+        <!-- Project 3: SafeVR -->
         <div class="project-card" style="grid-column: 1 / -1;">
           <h3>SafeVR - <span class="lang-en">Industrial Safety Simulator</span><span class="lang-es">Simulador de Seguridad Industrial</span></h3>
           <p>
@@ -460,6 +467,7 @@
             <span class="lang-en">// Simulation Previews (Click to expand):</span>
             <span class="lang-es">// Vistas de Simulación (Clic para ampliar):</span>
           </p>
+          <!-- Grilla interna de imágenes para SafeVR con Zoom -->
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
             <img src="safevr-1.png" alt="SafeVR Gameplay 1" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
             <img src="safevr-2.png" alt="SafeVR Gameplay 2" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
@@ -558,7 +566,7 @@
       const closeBtn = document.getElementById('close-demo-btn');
       
       cover.style.display = 'none';
-      container.style.display = 'block';
+      container.style.display = 'block'; // Usar block porque flex-grow ya hace el trabajo
       closeBtn.style.display = 'block';
       
       if (!container.innerHTML.trim()) {
