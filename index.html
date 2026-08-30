@@ -167,11 +167,11 @@
       margin-top: auto;
     }
 
-    /* Estilos de la Portada de Magic Heart (Alineada en altura) */
+    /* Estilos de la Portada de Magic Heart (Alineada en simetría) */
     .game-preview-wrapper {
       width: 100%;
       max-width: 400px;
-      height: 520px;
+      height: 480px;
       margin: 1.5rem auto;
       border: 2px solid #30363d;
       border-radius: 12px;
@@ -223,7 +223,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
 
-    /* Modal Fullscreen más horizontal para la Demo */
+    /* Modal Fullscreen limpio (Sin bordes extraños) */
     #game-modal {
       display: none;
       position: fixed;
@@ -237,13 +237,13 @@
 
     .modal-game-content {
       width: 100%;
-      max-width: 650px; /* Más horizontal como pediste */
+      max-width: 650px;
       height: 85vh;
       background: #000;
       border-radius: 8px;
       overflow: hidden;
-      border: 1px solid #30363d;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      border: none; /* Eliminado cualquier borde estilo marco */
+      box-shadow: none;
       position: relative;
     }
 
@@ -251,6 +251,7 @@
       width: 100%;
       height: calc(100% + 40px);
       border: none;
+      background: #000;
     }
 
     .close-modal-btn {
@@ -490,8 +491,8 @@
               <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
             </strong>
           </p>
-          <p style="margin-top: 0.8rem;" class="lang-en">A virtual reality industrial safety simulator focused on dynamic risk prevention. Developed in a collaborative team environment, where I took full ownership of the technical core and architecture as Project Leader and Lead VR Developer.</p>
-          <p style="margin-top: 0.8rem;" class="lang-es">Simulador de seguridad industrial en realidad virtual enfocado en la prevención de riesgos dinámicos. Desarrollado en un entorno de trabajo colaborativo, donde asumí la responsabilidad total del núcleo técnico y la arquitectura como Líder de Proyecto y Lead VR Developer.</p>
+          <p style="margin-top: 0.8rem;" class="lang-en">Industrial safety training often relies on passive presentations or outdated manuals that fail to prepare workers for high-stress, high-risk emergency scenarios. Developing SafeVR started as a mission to change that—creating an immersive environment where risk prevention is experienced firsthand. Working collaboratively in a team, I took absolute ownership of the technical core and architecture as Project Leader and Lead VR Developer. I built the simulation from the ground up in Unity using OpenXR, engineered real-time dynamic fire propagation systems that respond to variables, and crafted intuitive fire extinguisher mechanics that translate physical user action into precise simulation feedback. Winning 1st place at UBO Inicia was an incredible validation of how strong teamwork combined with robust, hands-on engineering can solve real-world problems.</p>
+          <p style="margin-top: 0.8rem;" class="lang-es">La capacitación en seguridad industrial suele depender de presentaciones pasivas o manuales obsoletos que no logran preparar a los trabajadores para escenarios de emergencia reales y de alta presión. Desarrollar SafeVR nació con la misión de cambiar eso: crear un entorno inmersivo donde la prevención de riesgos se experimenta de verdad. Trabajando en equipo, asumí la propiedad absoluta del núcleo técnico y la arquitectura como Líder de Proyecto y Lead VR Developer. Construí la simulación desde cero en Unity usando OpenXR, programé sistemas de propagación de fuego dinámicos en tiempo real que reaccionan al entorno y diseñé mecánicas de extintores intuitivas que traducen la acción física del usuario en una respuesta precisa. Ganar el 1er lugar en UBO Inicia fue una validación increíble de cómo un fuerte trabajo en equipo, respaldado por ingeniería sólida, puede resolver problemas reales.</p>
           
           <ul style="margin: 0.8rem 0 1rem 1.2rem; color: #8b949e; font-size: 0.85rem; line-height: 1.4;">
             <li class="lang-en"><strong>VR Architecture & Core Mechanics:</strong> Engineered the simulation from the ground up in Unity using OpenXR, implementing intuitive interactions for Meta Quest hardware.</li>
@@ -599,12 +600,12 @@
       }
     });
 
-    // Lógica del Modal Fullscreen más horizontal para el Juego
+    // Lógica del Modal Fullscreen limpio para la Demo
     function launchGame() {
       const modal = document.getElementById('game-modal');
       const container = document.getElementById('modal-game-container');
       modal.style.display = 'flex';
-      container.innerHTML = '<iframe src="https://itch.io/embed-upload/18917167?color=333333" allowfullscreen></iframe>';
+      container.innerHTML = '<iframe src="https://itch.io/embed-upload/18917167?color=000000" allowfullscreen></iframe>';
     }
 
     function closeGame() {
