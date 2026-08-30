@@ -232,7 +232,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
 
-    /* Modal Fullscreen limpio (Recorta la barra inferior de Itch.io) */
+    /* Modal Fullscreen limpio (Oculta por completo la barra inferior de Itch.io) */
     #game-modal {
       display: none;
       position: fixed;
@@ -257,10 +257,10 @@
 
     .modal-game-content iframe {
       width: 100%;
-      height: calc(100% + 50px);
+      height: calc(100% + 75px); /* Aumentado para empujar y ocultar cualquier rastro de la barra azul/logo */
       border: none;
       background: #000;
-      margin-bottom: -50px; /* Oculta totalmente la interfaz inferior de Itch.io */
+      margin-bottom: -75px; 
     }
 
     .close-modal-btn {
@@ -602,7 +602,7 @@
       }
     });
 
-    // Lógica del Modal Fullscreen con recorte limpio de la barra inferior
+    // Lógica del Modal Fullscreen con recorte profundo para eliminar el borde azul/logo inferior de Itch.io
     function launchGame() {
       const modal = document.getElementById('game-modal');
       const container = document.getElementById('modal-game-container');
