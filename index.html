@@ -364,11 +364,6 @@
       color: #8b949e;
       font-size: 0.9rem;
     }
-
-    .visitor-counter-footer span {
-      color: #3fb950;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body data-lang="en">
@@ -394,7 +389,7 @@
   </div>
 
   <!-- Lightbox Overlay -->
-  <div id="lightbox" onclick="openLightbox()">
+  <div id="lightbox" onclick="closeLightbox()">
     <span class="lightbox-close">&times;</span>
     <img id="lightbox-img" src="" alt="Zoomed Image">
   </div>
@@ -520,7 +515,7 @@
           <p>
             <strong style="color:#3fb950;">
               <span class="lang-en">🏆 1st Place - UBO Inicia Entrepreneurship Contest</span>
-              <span class="lang-es">🏆 1er lugar - concurso de emprendimiento UBO Inicia</span>
+              <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
             </strong>
           </p>
           <p style="margin-top: 0.8rem;" class="lang-en">Industrial safety training often relies on passive presentations or manuals that don't fully prepare people for high-pressure situations. SafeVR was created to explore how interactive simulation could make risk prevention more engaging and practical. Working closely with my team, I served as project leader and lead developer, focusing on building the core Unity prototype, designing intuitive user interactions for Meta Quest, and implementing responsive visual feedback and extinguisher mechanics. Winning 1st place at UBO Inicia was a great reward for our collaborative effort and hands-on approach.</p>
@@ -539,7 +534,7 @@
 
           <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
             <span class="lang-en">// Simulation Previews (Click to expand):</span>
-            <span class="lang-es">// Vistas de simulación (Clic para ampliar):</span>
+            <span class="lang-es">// Vistas de Simulación (Clic para ampliar):</span>
           </p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
             <img src="safevr-1.png" alt="SafeVR Gameplay 1" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
@@ -604,11 +599,14 @@
       <p><strong><span class="lang-en">Tools & Engines</span><span class="lang-es">Herramientas y Motores</span>:</strong> Unity, Unreal Engine, OpenXR, Git, Visual Studio</p>
     </section>
 
-    <!-- Footer con Contador Seguro -->
+    <!-- Footer con Contador Global en Tiempo Real (Anti-Adblockers) -->
     <div class="visitor-counter-footer">
       <p>
-        <span class="lang-en">> You are visitor number <span id="visit-count-en">1248</span> to this portfolio.</span>
-        <span class="lang-es">> Eres la persona número <span id="visit-count-es">1248</span> en visitar el portafolio.</span>
+        <span class="lang-en">> You are visitor number </span>
+        <span class="lang-es">> Eres la persona número </span>
+        <img src="https://profile-counter.glitch.me/marketableplushiee_portfolio/count.svg" alt="Counter" style="vertical-align: middle; height: 1.2rem; display: inline-block; padding: 0 4px;">
+        <span class="lang-en"> to this portfolio.</span>
+        <span class="lang-es"> en visitar el portafolio.</span>
       </p>
     </div>
 
@@ -672,20 +670,6 @@
       lightbox.style.display = 'none';
       document.getElementById('lightbox-img').src = '';
     }
-
-    // Lógica Segura de Visitas (Fallback local instantáneo sin bloqueos de red)
-    window.addEventListener('DOMContentLoaded', () => {
-      let visits = localStorage.getItem('portfolio_global_visits');
-      if (!visits) {
-        visits = 1248; // Número inicial base estilizado
-      } else {
-        visits = parseInt(visits) + 1;
-      }
-      localStorage.setItem('portfolio_global_visits', visits);
-
-      document.getElementById('visit-count-en').textContent = visits;
-      document.getElementById('visit-count-es').textContent = visits;
-    });
   </script>
 </body>
 </html>
