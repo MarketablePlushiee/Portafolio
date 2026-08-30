@@ -167,11 +167,11 @@
       margin-top: auto;
     }
 
-    /* Estilos de la Portada Compacta (Magic Heart) */
+    /* Estilos de la Portada de Magic Heart (Alineada en altura) */
     .game-preview-wrapper {
       width: 100%;
-      max-width: 350px;
-      height: 450px;
+      max-width: 400px;
+      height: 520px;
       margin: 1.5rem auto;
       border: 2px solid #30363d;
       border-radius: 12px;
@@ -223,7 +223,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
 
-    /* Modal Fullscreen para el Juego (Truco para ocultar barra de Itch.io abajo) */
+    /* Modal Fullscreen más horizontal para la Demo */
     #game-modal {
       display: none;
       position: fixed;
@@ -237,11 +237,11 @@
 
     .modal-game-content {
       width: 100%;
-      max-width: 500px;
+      max-width: 650px; /* Más horizontal como pediste */
       height: 85vh;
       background: #000;
       border-radius: 8px;
-      overflow: hidden; /* Esto oculta la franja gris inferior de itch.io */
+      overflow: hidden;
       border: 1px solid #30363d;
       box-shadow: 0 10px 40px rgba(0,0,0,0.8);
       position: relative;
@@ -249,7 +249,7 @@
 
     .modal-game-content iframe {
       width: 100%;
-      height: calc(100% + 40px); /* Expande el iframe para empujar la barra fuera del contenedor visible */
+      height: calc(100% + 40px);
       border: none;
     }
 
@@ -490,9 +490,20 @@
               <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
             </strong>
           </p>
-          <p style="margin-top: 0.8rem;" class="lang-en">Developing SafeVR was an intense and rewarding journey. Working alongside my teammates, we set out to completely rethink how industrial risk prevention training is approached. While we operated as a team, I took full ownership of the technical core and architecture as Project Leader and Lead VR Developer. I built the simulation from the ground up in Unity, coding custom real-time fire propagation systems and designing intuitive, immersive mechanics for handling fire extinguishers. Bringing this technical vision to life and securing 1st place at UBO Inicia proved how effective collaborative effort can be when paired with solid, hands-on software execution.</p>
-          <p style="margin-top: 0.8rem;" class="lang-es">Desarrollar SafeVR fue una experiencia intensa y sumamente gratificante. Junto a mis compañeros de equipo, nos propusimos replantear por completo cómo se aborda la capacitación en prevención de riesgos industriales. Aunque trabajamos en equipo, asumí la responsabilidad total de la ejecución técnica y la arquitectura como Líder de Proyecto y Lead VR Developer. Construí la simulación desde cero en Unity, programando sistemas de propagación de fuego dinámicos en tiempo real y diseñando mecánicas inmersivas e intuitivas para el uso de extintores. Llevar esta visión técnica a la realidad y asegurar el 1er lugar en UBO Inicia demostró el enorme valor del trabajo en equipo respaldado por un desarrollo de software sólido y directo.</p>
+          <p style="margin-top: 0.8rem;" class="lang-en">A virtual reality industrial safety simulator focused on dynamic risk prevention. Developed in a collaborative team environment, where I took full ownership of the technical core and architecture as Project Leader and Lead VR Developer.</p>
+          <p style="margin-top: 0.8rem;" class="lang-es">Simulador de seguridad industrial en realidad virtual enfocado en la prevención de riesgos dinámicos. Desarrollado en un entorno de trabajo colaborativo, donde asumí la responsabilidad total del núcleo técnico y la arquitectura como Líder de Proyecto y Lead VR Developer.</p>
           
+          <ul style="margin: 0.8rem 0 1rem 1.2rem; color: #8b949e; font-size: 0.85rem; line-height: 1.4;">
+            <li class="lang-en"><strong>VR Architecture & Core Mechanics:</strong> Engineered the simulation from the ground up in Unity using OpenXR, implementing intuitive interactions for Meta Quest hardware.</li>
+            <li class="lang-es"><strong>Arquitectura VR y Mecánicas:</strong> Construcción de la simulación desde cero en Unity usando OpenXR, implementando interacciones intuitivas para hardware Meta Quest.</li>
+            
+            <li class="lang-en"><strong>Dynamic Fire Propagation:</strong> Programmed real-time fire spread systems that react dynamically to environmental variables and user actions.</li>
+            <li class="lang-es"><strong>Propagación de Fuego Dinámica:</strong> Programación de sistemas de expansión de fuego en tiempo real que reaccionan dinámicamente a variables del entorno.</li>
+            
+            <li class="lang-en"><strong>Extinguisher Physics & Feedback:</strong> Designed realistic and immersive fire extinguisher mechanics, translating physical usage into precise gameplay feedback.</li>
+            <li class="lang-es"><strong>Físicas de Extintor y Feedback:</strong> Diseño de mecánicas de extintor realistas e inmersivas, traduciendo el uso físico en una respuesta precisa dentro del juego.</li>
+          </ul>
+
           <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
             <span class="lang-en">// Simulation Previews (Click to expand):</span>
             <span class="lang-es">// Vistas de Simulación (Clic para ampliar):</span>
@@ -588,7 +599,7 @@
       }
     });
 
-    // Lógica del Modal Fullscreen para el Juego (Con allowfullscreen activo)
+    // Lógica del Modal Fullscreen más horizontal para el Juego
     function launchGame() {
       const modal = document.getElementById('game-modal');
       const container = document.getElementById('modal-game-container');
