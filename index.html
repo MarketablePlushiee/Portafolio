@@ -170,7 +170,7 @@
     /* Estilos de la Portada Compacta (Magic Heart) */
     .game-preview-wrapper {
       width: 100%;
-      max-width: 350px; /* Mucho más compacta y simétrica con el resto */
+      max-width: 350px;
       height: 450px;
       margin: 1.5rem auto;
       border: 2px solid #30363d;
@@ -223,7 +223,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
 
-    /* Modal Fullscreen para el Juego */
+    /* Modal Fullscreen para el Juego (Truco para ocultar barra de Itch.io abajo) */
     #game-modal {
       display: none;
       position: fixed;
@@ -237,13 +237,20 @@
 
     .modal-game-content {
       width: 100%;
-      max-width: 520px; /* Proporción ideal de celular grande */
-      height: 90vh; /* Ocupa casi toda la pantalla en alto */
+      max-width: 500px;
+      height: 85vh;
       background: #000;
       border-radius: 8px;
-      overflow: hidden;
+      overflow: hidden; /* Esto oculta la franja gris inferior de itch.io */
       border: 1px solid #30363d;
       box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      position: relative;
+    }
+
+    .modal-game-content iframe {
+      width: 100%;
+      height: calc(100% + 40px); /* Expande el iframe para empujar la barra fuera del contenedor visible */
+      border: none;
     }
 
     .close-modal-btn {
@@ -483,8 +490,8 @@
               <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
             </strong>
           </p>
-          <p style="margin-top: 0.8rem;" class="lang-en">Developing SafeVR was a turning point for me. What started as a concept for rethinking workplace hazard training became an award-winning MVP. As Project Leader and Lead VR Developer, I took charge of the entire technical execution. I built the core VR architecture from the ground up, focusing heavily on immersion. I programmed dynamic fire propagation systems that react in real-time and engineered the fire extinguisher mechanics to feel as realistic and intuitive as possible. Taking this from an empty Unity project to a fully functional simulator that won 1st place at UBO Inicia was incredibly rewarding.</p>
-          <p style="margin-top: 0.8rem;" class="lang-es">Desarrollar SafeVR marcó un antes y un después para mí. Lo que empezó como una idea para modernizar la capacitación en riesgos laborales se terminó convirtiendo en un MVP premiado. Como Líder de Proyecto y Lead VR Developer, me hice cargo de toda la ejecución técnica. Construí la arquitectura VR desde cero, enfocándome en lograr la mayor inmersión posible. Programé sistemas de propagación de fuego dinámicos y desarrollé las mecánicas del extintor para que se sintieran realistas e intuitivas. Llevar esto desde un proyecto vacío en Unity hasta un simulador funcional que ganó el 1er lugar en UBO Inicia fue una experiencia increíble.</p>
+          <p style="margin-top: 0.8rem;" class="lang-en">Developing SafeVR was an intense and rewarding journey. Working alongside my teammates, we set out to completely rethink how industrial risk prevention training is approached. While we operated as a team, I took full ownership of the technical core and architecture as Project Leader and Lead VR Developer. I built the simulation from the ground up in Unity, coding custom real-time fire propagation systems and designing intuitive, immersive mechanics for handling fire extinguishers. Bringing this technical vision to life and securing 1st place at UBO Inicia proved how effective collaborative effort can be when paired with solid, hands-on software execution.</p>
+          <p style="margin-top: 0.8rem;" class="lang-es">Desarrollar SafeVR fue una experiencia intensa y sumamente gratificante. Junto a mis compañeros de equipo, nos propusimos replantear por completo cómo se aborda la capacitación en prevención de riesgos industriales. Aunque trabajamos en equipo, asumí la responsabilidad total de la ejecución técnica y la arquitectura como Líder de Proyecto y Lead VR Developer. Construí la simulación desde cero en Unity, programando sistemas de propagación de fuego dinámicos en tiempo real y diseñando mecánicas inmersivas e intuitivas para el uso de extintores. Llevar esta visión técnica a la realidad y asegurar el 1er lugar en UBO Inicia demostró el enorme valor del trabajo en equipo respaldado por un desarrollo de software sólido y directo.</p>
           
           <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
             <span class="lang-en">// Simulation Previews (Click to expand):</span>
@@ -581,12 +588,12 @@
       }
     });
 
-    // Lógica del Modal Fullscreen para el Juego
+    // Lógica del Modal Fullscreen para el Juego (Con allowfullscreen activo)
     function launchGame() {
       const modal = document.getElementById('game-modal');
       const container = document.getElementById('modal-game-container');
       modal.style.display = 'flex';
-      container.innerHTML = '<iframe src="https://itch.io/embed-upload/18917167?color=333333" style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>';
+      container.innerHTML = '<iframe src="https://itch.io/embed-upload/18917167?color=333333" allowfullscreen></iframe>';
     }
 
     function closeGame() {
