@@ -146,7 +146,7 @@
       }
     }
 
-    /* Project Cards */
+    /* Project Cards - Forzando alineación simétrica en la base */
     .project-card {
       background: #161b22;
       border: 1px solid #30363d;
@@ -163,11 +163,20 @@
       font-size: 1.2rem;
     }
 
-    .project-card > a {
-      margin-top: auto;
+    /* Empuja las etiquetas y el enlace al fondo exacto de cada tarjeta */
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      margin: 1rem 0 1rem 0;
+      flex-wrap: wrap;
+      margin-top: auto; 
     }
 
-    /* Estilos de la Portada de Magic Heart (Alineada en simetría) */
+    .project-card > a {
+      margin-top: 0;
+    }
+
+    /* Estilos de la Portada de Magic Heart */
     .game-preview-wrapper {
       width: 100%;
       max-width: 400px;
@@ -223,7 +232,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
 
-    /* Modal Fullscreen limpio (Sin bordes extraños) */
+    /* Modal Fullscreen limpio (Recorta la barra inferior de Itch.io) */
     #game-modal {
       display: none;
       position: fixed;
@@ -242,16 +251,16 @@
       background: #000;
       border-radius: 8px;
       overflow: hidden;
-      border: none; /* Eliminado cualquier borde estilo marco */
-      box-shadow: none;
+      border: none;
       position: relative;
     }
 
     .modal-game-content iframe {
       width: 100%;
-      height: calc(100% + 40px);
+      height: calc(100% + 50px);
       border: none;
       background: #000;
+      margin-bottom: -50px; /* Oculta totalmente la interfaz inferior de Itch.io */
     }
 
     .close-modal-btn {
@@ -311,13 +320,6 @@
 
     .zoomable:hover {
       transform: scale(1.03);
-    }
-
-    .tags {
-      display: flex;
-      gap: 0.5rem;
-      margin: 1rem 0;
-      flex-wrap: wrap;
     }
 
     .tag {
@@ -491,18 +493,18 @@
               <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
             </strong>
           </p>
-          <p style="margin-top: 0.8rem;" class="lang-en">Industrial safety training often relies on passive presentations or outdated manuals that fail to prepare workers for high-stress, high-risk emergency scenarios. Developing SafeVR started as a mission to change that—creating an immersive environment where risk prevention is experienced firsthand. Working collaboratively in a team, I took absolute ownership of the technical core and architecture as Project Leader and Lead VR Developer. I built the simulation from the ground up in Unity using OpenXR, engineered real-time dynamic fire propagation systems that respond to variables, and crafted intuitive fire extinguisher mechanics that translate physical user action into precise simulation feedback. Winning 1st place at UBO Inicia was an incredible validation of how strong teamwork combined with robust, hands-on engineering can solve real-world problems.</p>
-          <p style="margin-top: 0.8rem;" class="lang-es">La capacitación en seguridad industrial suele depender de presentaciones pasivas o manuales obsoletos que no logran preparar a los trabajadores para escenarios de emergencia reales y de alta presión. Desarrollar SafeVR nació con la misión de cambiar eso: crear un entorno inmersivo donde la prevención de riesgos se experimenta de verdad. Trabajando en equipo, asumí la propiedad absoluta del núcleo técnico y la arquitectura como Líder de Proyecto y Lead VR Developer. Construí la simulación desde cero en Unity usando OpenXR, programé sistemas de propagación de fuego dinámicos en tiempo real que reaccionan al entorno y diseñé mecánicas de extintores intuitivas que traducen la acción física del usuario en una respuesta precisa. Ganar el 1er lugar en UBO Inicia fue una validación increíble de cómo un fuerte trabajo en equipo, respaldado por ingeniería sólida, puede resolver problemas reales.</p>
+          <p style="margin-top: 0.8rem;" class="lang-en">Industrial safety training often relies on passive presentations or manuals that don't fully prepare people for high-pressure situations. SafeVR was created to explore how interactive simulation could make risk prevention more engaging and practical. Working closely with my team, I served as Project Leader and Lead Developer, focusing on building the core Unity prototype, designing intuitive user interactions for Meta Quest, and implementing responsive visual feedback and extinguisher mechanics. Winning 1st place at UBO Inicia was a great reward for our collaborative effort and hands-on approach.</p>
+          <p style="margin-top: 0.8rem;" class="lang-es">La capacitación en seguridad industrial suele depender de presentaciones pasivas o manuales que no siempre preparan bien para situaciones de alta presión. SafeVR nació para explorar cómo una simulación interactiva podía hacer que la prevención de riesgos fuera más práctica y directa. Trabajando codo a codo en equipo, me desempeñé como Líder de Proyecto y Lead Developer, encargándome de desarrollar el prototipo principal en Unity, diseñar interacciones intuitivas para Meta Quest y programar el feedback visual y las mecánicas de los extintores. Ganar el 1er lugar en UBO Inicia reflejó el buen trabajo en equipo y el esfuerzo puesto en el desarrollo.</p>
           
           <ul style="margin: 0.8rem 0 1rem 1.2rem; color: #8b949e; font-size: 0.85rem; line-height: 1.4;">
-            <li class="lang-en"><strong>VR Architecture & Core Mechanics:</strong> Engineered the simulation from the ground up in Unity using OpenXR, implementing intuitive interactions for Meta Quest hardware.</li>
-            <li class="lang-es"><strong>Arquitectura VR y Mecánicas:</strong> Construcción de la simulación desde cero en Unity usando OpenXR, implementando interacciones intuitivas para hardware Meta Quest.</li>
+            <li class="lang-en"><strong>Core Architecture & Interaction:</strong> Developed the simulation prototype in Unity using OpenXR, tailoring smooth and accessible interactions for Meta Quest hardware.</li>
+            <li class="lang-es"><strong>Arquitectura y Mecánicas Base:</strong> Desarrollo del prototipo de simulación en Unity usando OpenXR, implementando interacciones fluidas para hardware Meta Quest.</li>
             
-            <li class="lang-en"><strong>Dynamic Fire Propagation:</strong> Programmed real-time fire spread systems that react dynamically to environmental variables and user actions.</li>
-            <li class="lang-es"><strong>Propagación de Fuego Dinámica:</strong> Programación de sistemas de expansión de fuego en tiempo real que reaccionan dinámicamente a variables del entorno.</li>
+            <li class="lang-en"><strong>Emergency Scenario Flow:</strong> Designed structured emergency response sequences and interactive training loops for hazard handling.</li>
+            <li class="lang-es"><strong>Flujo de Escenarios de Emergencia:</strong> Diseño de secuencias estructuradas de respuesta a emergencias y bucles de capacitación interactivos.</li>
             
-            <li class="lang-en"><strong>Extinguisher Physics & Feedback:</strong> Designed realistic and immersive fire extinguisher mechanics, translating physical usage into precise gameplay feedback.</li>
-            <li class="lang-es"><strong>Físicas de Extintor y Feedback:</strong> Diseño de mecánicas de extintor realistas e inmersivas, traduciendo el uso físico en una respuesta precisa dentro del juego.</li>
+            <li class="lang-en"><strong>Extinguisher Feedback & Mechanics:</strong> Implemented interactive visual feedback and mechanics for simulated fire suppression tools.</li>
+            <li class="lang-es"><strong>Mecánicas de Extintor y Feedback:</strong> Implementación de retroalimentación visual y mecánicas interactivas para herramientas de supresión de incendios simuladas.</li>
           </ul>
 
           <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
@@ -600,7 +602,7 @@
       }
     });
 
-    // Lógica del Modal Fullscreen limpio para la Demo
+    // Lógica del Modal Fullscreen con recorte limpio de la barra inferior
     function launchGame() {
       const modal = document.getElementById('game-modal');
       const container = document.getElementById('modal-game-container');
