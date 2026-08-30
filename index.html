@@ -73,7 +73,7 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.8s ease;
-      max-width: 1400px; /* Aquí ampliamos el uso de la pantalla */
+      max-width: 1400px;
       width: 95%;
       margin: 0 auto;
       padding: 2rem 1rem;
@@ -133,7 +133,7 @@
       padding-left: 0.5rem;
     }
 
-    /* Grid Layout Responsivo Fijo a 2 columnas */
+    /* Grid Layout Responsivo */
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -147,7 +147,7 @@
       }
     }
 
-    /* Project Cards & Interactions */
+    /* Project Cards */
     .project-card {
       background: #161b22;
       border: 1px solid #30363d;
@@ -163,65 +163,12 @@
       font-size: 1.2rem;
     }
 
-    .project-cover {
-      width: 100%;
-      height: 250px;
-      background-color: #0d1117;
-      background-size: cover;
-      background-position: center;
-      border: 1px solid #30363d;
-      border-radius: 6px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 1rem;
-      transition: border-color 0.2s;
-    }
-
-    .project-cover::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
-      transition: background 0.2s;
-    }
-
-    .project-cover:hover::before {
-      background: rgba(0,0,0,0.3);
-    }
-
-    .project-cover:hover {
-      border-color: #58a6ff;
-    }
-
-    .project-cover span {
-      position: relative;
-      z-index: 1;
-      background: rgba(0,0,0,0.8);
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      border: 1px solid #3fb950;
-      color: #3fb950;
-      font-size: 0.9rem;
-      font-weight: bold;
-    }
-
-    .project-details {
-      display: none;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .project-details.show {
-      display: block;
-    }
-
-    /* Estilos para el Preview de Itch.io */
+    /* Estilos interactivos de la demo de Magic Heart */
     .game-preview-wrapper {
       width: 100%;
-      margin: 1.5rem 0;
+      max-width: 450px; /* Formato vertical tipo celular */
+      height: 750px;
+      margin: 1.5rem auto;
       border: 2px solid #30363d;
       border-radius: 12px;
       overflow: hidden;
@@ -230,32 +177,37 @@
     }
 
     .game-cover-interactive {
-      width: 100%;
-      height: 600px;
-      background-size: cover;
-      background-position: center;
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
       cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
+      z-index: 10;
     }
 
-    .game-cover-interactive::before {
-      content: "";
+    .game-cover-interactive img {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .cover-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 2;
       transition: background 0.2s;
     }
 
-    .game-cover-interactive:hover::before {
-      background: rgba(0,0,0,0.2);
+    .game-cover-interactive:hover .cover-overlay {
+      background: rgba(0,0,0,0.3);
     }
 
     .play-badge {
       position: relative;
-      z-index: 1;
+      z-index: 3;
       background: #238636;
       color: white;
       padding: 1rem 2rem;
@@ -267,21 +219,19 @@
     }
 
     .close-demo-btn {
-      display: none;
+      position: absolute;
+      bottom: 0; left: 0;
       width: 100%;
+      height: 50px;
       background: #da3633;
       color: white;
       border: none;
-      padding: 0.8rem;
       font-weight: bold;
       cursor: pointer;
       font-family: inherit;
       font-size: 1rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
+      z-index: 15;
+      display: none;
     }
 
     .tags {
@@ -308,7 +258,6 @@
     a:hover {
       text-decoration: underline;
     }
-
   </style>
 </head>
 <body data-lang="en">
@@ -358,125 +307,106 @@
         <!-- Project 1: ML-Agents -->
         <div class="project-card">
           <h3>Autonomous Agent (ML-Agents DRL)</h3>
+          <p class="lang-en">Reinforcement Learning proof of concept implemented in Unity and Python using the Unity ML-Agents Toolkit. Designed and trained an autonomous agent to navigate dynamic obstacle courses through policy optimization.</p>
+          <p class="lang-es">Prueba de concepto de Aprendizaje por Refuerzo implementada en Unity y Python. Diseñé y entrené un agente autónomo para navegar circuitos de obstáculos dinámicos mediante optimización de políticas.</p>
           
-          <div class="project-cover" style="background-image: url('ml-cover.png');" onclick="toggleDetails(this)">
-            <span class="lang-en">▶ Click to Reveal Details</span>
-            <span class="lang-es">▶ Clic para Expandir Detalles</span>
+          <ul style="margin: 0.8rem 0 1rem 1.2rem; color: #8b949e; font-size: 0.85rem; line-height: 1.4;">
+            <li class="lang-en"><strong>Algorithm & Training:</strong> Proximal Policy Optimization (PPO) using vector observations.</li>
+            <li class="lang-es"><strong>Algoritmo y Entrenamiento:</strong> Proximal Policy Optimization (PPO) usando observaciones vectoriales.</li>
+            <li class="lang-en"><strong>Metrics & Telemetry:</strong> Real-time training metrics, entropy loss, and cumulative rewards tracked via TensorBoard.</li>
+            <li class="lang-es"><strong>Métricas y Telemetría:</strong> Rastreo de recompensas acumulativas y pérdida de entropía vía TensorBoard.</li>
+          </ul>
+
+          <div style="width: 100%; border: 1px solid #30363d; border-radius: 8px; overflow: hidden; background: #000; margin-bottom: 1rem;">
+            <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
           </div>
 
-          <div class="project-details">
-            <p class="lang-en">Reinforcement Learning proof of concept implemented in Unity and Python using the Unity ML-Agents Toolkit. Designed and trained an autonomous agent to navigate dynamic obstacle courses through policy optimization.</p>
-            <p class="lang-es">Prueba de concepto de Aprendizaje por Refuerzo implementada en Unity y Python. Diseñé y entrené un agente autónomo para navegar circuitos de obstáculos dinámicos mediante optimización de políticas.</p>
-            
-            <ul style="margin: 0.8rem 0 1rem 1.2rem; color: #8b949e; font-size: 0.85rem; line-height: 1.4;">
-              <li class="lang-en"><strong>Algorithm & Training:</strong> Proximal Policy Optimization (PPO) using vector observations.</li>
-              <li class="lang-es"><strong>Algoritmo y Entrenamiento:</strong> Proximal Policy Optimization (PPO) usando observaciones vectoriales.</li>
-              <li class="lang-en"><strong>Metrics & Telemetry:</strong> Real-time training metrics, entropy loss, and cumulative rewards tracked via TensorBoard.</li>
-              <li class="lang-es"><strong>Métricas y Telemetría:</strong> Rastreo de recompensas acumulativas y pérdida de entropía vía TensorBoard.</li>
-            </ul>
-
-            <div style="width: 100%; border: 1px solid #30363d; border-radius: 8px; overflow: hidden; background: #000; margin-bottom: 1rem;">
-              <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
+          <!-- TensorBoard Section -->
+          <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// TensorBoard Training Telemetry:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
+            <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
+              <img src="tb-1.png" alt="TensorBoard Reward" style="width: 100%; height: auto; display: block;">
             </div>
-
-            <!-- TensorBoard Section -->
-            <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// TensorBoard Training Telemetry:</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
-              <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
-                <img src="tb-1.png" alt="TensorBoard Reward" style="width: 100%; height: auto; display: block;">
-              </div>
-              <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
-                <img src="tb-2.png" alt="TensorBoard Episode Length" style="width: 100%; height: auto; display: block;">
-              </div>
-              <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
-                <img src="tb-3.png" alt="TensorBoard Loss" style="width: 100%; height: auto; display: block;">
-              </div>
+            <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
+              <img src="tb-2.png" alt="TensorBoard Episode Length" style="width: 100%; height: auto; display: block;">
             </div>
-
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">Unity ML-Agents</span>
-              <span class="tag">PyTorch</span>
-              <span class="tag">Reinforcement Learning</span>
-              <span class="tag">TensorBoard</span>
+            <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
+              <img src="tb-3.png" alt="TensorBoard Loss" style="width: 100%; height: auto; display: block;">
             </div>
-            <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank">View Repository →</a>
           </div>
+
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Unity ML-Agents</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">Reinforcement Learning</span>
+            <span class="tag">TensorBoard</span>
+          </div>
+          <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank">View Repository →</a>
         </div>
 
         <!-- Project 2: Magic Heart -->
         <div class="project-card">
           <h3>Magic Heart - Survival Defense</h3>
+          <p class="lang-en">Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and hybrid input management.</p>
+          <p class="lang-es">Juego de defensa y supervivencia arcade desarrollado en Unity (URP) para plataformas móviles. Cuenta con sistemas dinámicos de oleadas, efectos visuales personalizados y gestión de input híbrido.</p>
           
-          <div class="project-cover" style="background-image: url('magic-cover.png');" onclick="toggleDetails(this)">
-            <span class="lang-en">▶ Click to Reveal Details</span>
-            <span class="lang-es">▶ Clic para Expandir Detalles</span>
-          </div>
-
-          <div class="project-details">
-            <p class="lang-en">Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and hybrid input management.</p>
-            <p class="lang-es">Juego de defensa y supervivencia arcade desarrollado en Unity (URP) para plataformas móviles. Cuenta con sistemas dinámicos de oleadas, efectos visuales personalizados y gestión de input híbrido.</p>
-            
-            <!-- Interactive Game Cover / Iframe Wrapper -->
-            <div class="game-preview-wrapper">
-              <!-- AQUI CARGA LA IMAGEN ESTÁTICA DEL JUEGO -->
-              <div id="interactive-cover" class="game-cover-interactive" style="background-image: url('magic-preview.png');" onclick="launchGame()">
-                <div class="play-badge">
-                  <span class="lang-en">▶ PLAY DEMO</span>
-                  <span class="lang-es">▶ JUGAR DEMO</span>
-                </div>
+          <!-- Interactive Game Cover / Vertical Wrapper -->
+          <div class="game-preview-wrapper">
+            <!-- Portada usando etiqueta <img> directa para evitar fallos de CSS -->
+            <div id="interactive-cover" class="game-cover-interactive" onclick="launchGame()">
+              <img src="magic-preview.png" alt="Magic Heart Cover">
+              <div class="cover-overlay"></div>
+              <div class="play-badge">
+                <span class="lang-en">▶ PLAY DEMO</span>
+                <span class="lang-es">▶ JUGAR DEMO</span>
               </div>
-              <div id="game-container" style="display: none; width: 100%; height: 600px;"></div>
-              <button id="close-demo-btn" class="close-demo-btn" onclick="closeGame()">
-                <span class="lang-en">✕ Close Web Demo</span>
-                <span class="lang-es">✕ Cerrar Demo Web</span>
-              </button>
             </div>
-
-            <div class="tags">
-              <span class="tag">C#</span>
-              <span class="tag">Unity URP</span>
-              <span class="tag">Shader Graph</span>
-              <span class="tag">Mobile</span>
-            </div>
-            <a href="https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense" target="_blank">View Repository →</a>
+            
+            <div id="game-container" style="display: none; width: 100%; height: calc(100% - 50px);"></div>
+            
+            <button id="close-demo-btn" class="close-demo-btn" onclick="closeGame()">
+              <span class="lang-en">✕ Close Web Demo</span>
+              <span class="lang-es">✕ Cerrar Demo Web</span>
+            </button>
           </div>
+
+          <div class="tags">
+            <span class="tag">C#</span>
+            <span class="tag">Unity URP</span>
+            <span class="tag">Shader Graph</span>
+            <span class="tag">Mobile</span>
+          </div>
+          <a href="https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense" target="_blank">View Repository →</a>
         </div>
 
         <!-- Project 3: SafeVR -->
-        <div class="project-card">
+        <div class="project-card" style="grid-column: 1 / -1;">
           <h3>SafeVR - <span class="lang-en">Industrial Safety Simulator</span><span class="lang-es">Simulador de Seguridad Industrial</span></h3>
+          <p>
+            <strong style="color:#3fb950;">
+              <span class="lang-en">🏆 1st Place - UBO Inicia Entrepreneurship Contest</span>
+              <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
+            </strong>
+          </p>
+          <p style="margin-top: 0.8rem;" class="lang-en">A virtual reality industrial safety simulator focused on dynamic risk prevention. As Project Leader, Lead VR Developer, and Gameplay Programmer, I engineered the core VR interactions, dynamic fire propagation systems, and realistic fire extinguisher mechanics for the MVP.</p>
+          <p style="margin-top: 0.8rem;" class="lang-es">Simulador de seguridad industrial en realidad virtual enfocado en la prevención de riesgos dinámicos. Como Líder de Proyecto, Lead VR Developer y Programador de Gameplay, desarrollé las interacciones VR principales, los sistemas de propagación de fuego y las mecánicas inmersivas de uso de extintores para el MVP.</p>
           
-          <div class="project-cover" style="background-image: url('safevr-cover.png');" onclick="toggleDetails(this)">
-            <span class="lang-en">▶ Click to Reveal Details</span>
-            <span class="lang-es">▶ Clic para Expandir Detalles</span>
+          <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// Simulation Previews:</p>
+          <!-- Grilla interna de 4 imágenes para SafeVR -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
+            <img src="safevr-1.png" alt="SafeVR Gameplay 1" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+            <img src="safevr-2.png" alt="SafeVR Gameplay 2" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+            <img src="safevr-3.png" alt="SafeVR Gameplay 3" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
+            <img src="safevr-4.png" alt="SafeVR Gameplay 4" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
           </div>
 
-          <div class="project-details">
-            <p>
-              <strong style="color:#3fb950;">
-                <span class="lang-en">🏆 1st Place - UBO Inicia Entrepreneurship Contest</span>
-                <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
-              </strong>
-            </p>
-            <p style="margin-top: 0.8rem;" class="lang-en">A virtual reality industrial safety simulator focused on dynamic risk prevention. As Project Leader, Lead VR Developer, and Gameplay Programmer, I engineered the core VR interactions, dynamic fire propagation systems, and realistic fire extinguisher mechanics for the MVP.</p>
-            <p style="margin-top: 0.8rem;" class="lang-es">Simulador de seguridad industrial en realidad virtual enfocado en la prevención de riesgos dinámicos. Como Líder de Proyecto, Lead VR Developer y Programador de Gameplay, desarrollé las interacciones VR principales, los sistemas de propagación de fuego y las mecánicas inmersivas de uso de extintores para el MVP.</p>
-            
-            <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// Simulation Previews:</p>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.2rem;">
-              <img src="safevr-1.png" alt="SafeVR Gameplay 1" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
-              <img src="safevr-2.png" alt="SafeVR Gameplay 2" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
-              <img src="safevr-3.png" alt="SafeVR Gameplay 3" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
-              <img src="safevr-4.png" alt="SafeVR Gameplay 4" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
-            </div>
-
-            <div class="tags">
-              <span class="tag">C#</span>
-              <span class="tag">Unity 3D</span>
-              <span class="tag">OpenXR</span>
-              <span class="tag">Meta Quest</span>
-              <span class="tag">Gameplay Programming</span>
-            </div>
+          <div class="tags">
+            <span class="tag">C#</span>
+            <span class="tag">Unity 3D</span>
+            <span class="tag">OpenXR</span>
+            <span class="tag">Meta Quest</span>
+            <span class="tag">Gameplay Programming</span>
           </div>
         </div>
 
@@ -550,13 +480,6 @@
         openPortfolio();
       }
     });
-
-    // Expandir tarjeta y revelar detalles (Sin romper la grilla)
-    function toggleDetails(element) {
-      const detailsDiv = element.nextElementSibling;
-      element.style.display = 'none';
-      detailsDiv.classList.add('show');
-    }
 
     // Lógica para reemplazar Portada por Iframe del Juego
     function launchGame() {
