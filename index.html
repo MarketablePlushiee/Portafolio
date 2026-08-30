@@ -73,7 +73,7 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.8s ease;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 2rem 1rem;
     }
@@ -137,11 +137,16 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
+      align-items: start;
     }
 
     @media (min-width: 800px) {
       .projects-grid {
         grid-template-columns: 1fr 1fr;
+      }
+      /* Expande la tarjeta a todo el ancho cuando se abre */
+      .project-card.expanded {
+        grid-column: 1 / -1;
       }
     }
 
@@ -153,6 +158,7 @@
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
+      transition: all 0.3s ease;
     }
 
     .project-card h3 {
@@ -163,7 +169,7 @@
 
     .project-cover {
       width: 100%;
-      height: 180px;
+      height: 200px;
       background-color: #0d1117;
       background-size: cover;
       background-position: center;
@@ -179,7 +185,6 @@
       transition: border-color 0.2s;
     }
 
-    /* Filtro oscuro sobre la imagen de portada para que se lea el texto */
     .project-cover::before {
       content: "";
       position: absolute;
@@ -215,6 +220,68 @@
 
     .project-details.show {
       display: block;
+    }
+
+    /* Estilos para el Preview de Itch.io */
+    .game-preview-wrapper {
+      width: 100%;
+      max-width: 800px;
+      margin: 1.5rem auto;
+      border: 2px solid #30363d;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+
+    .game-cover-interactive {
+      width: 100%;
+      height: 600px;
+      background-image: url('magic-cover.png');
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .game-cover-interactive::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      transition: background 0.2s;
+    }
+
+    .game-cover-interactive:hover::before {
+      background: rgba(0,0,0,0.2);
+    }
+
+    .play-badge {
+      position: relative;
+      z-index: 1;
+      background: #238636;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: 2px solid #2ea043;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .close-demo-btn {
+      display: none;
+      width: 100%;
+      background: #da3633;
+      color: white;
+      border: none;
+      padding: 0.6rem;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
     }
 
     @keyframes fadeIn {
@@ -317,7 +384,7 @@
               <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
             </div>
 
-            <!-- TensorBoard Section Restored -->
+            <!-- TensorBoard Section -->
             <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// TensorBoard Training Telemetry:</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
               <div style="border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background: #161b22;">
@@ -355,14 +422,19 @@
             <p class="lang-en">Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and hybrid input management.</p>
             <p class="lang-es">Juego de defensa y supervivencia arcade desarrollado en Unity (URP) para plataformas móviles. Cuenta con sistemas dinámicos de oleadas, efectos visuales personalizados y gestión de input híbrido.</p>
             
-            <div style="margin: 1.2rem 0;">
-              <button onclick="toggleGameDemo()" id="demo-btn" style="background-color: #238636; color: #ffffff; border: 1px solid #2ea043; padding: 0.6rem 1.2rem; font-family: inherit; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
-                <span class="lang-en">▶ Launch Web Demo</span>
-                <span class="lang-es">▶ Iniciar Demo Web</span>
+            <!-- Interactive Game Cover / Iframe Wrapper -->
+            <div class="game-preview-wrapper">
+              <div id="interactive-cover" class="game-cover-interactive" onclick="launchGame()">
+                <div class="play-badge">
+                  <span class="lang-en">▶ PLAY DEMO</span>
+                  <span class="lang-es">▶ JUGAR DEMO</span>
+                </div>
+              </div>
+              <div id="game-container" style="display: none; width: 100%; height: 600px;"></div>
+              <button id="close-demo-btn" class="close-demo-btn" onclick="closeGame()">
+                <span class="lang-en">✕ Close Web Demo</span>
+                <span class="lang-es">✕ Cerrar Demo Web</span>
               </button>
-            </div>
-
-            <div id="game-container" style="display: none; width: 100%; height: 500px; margin: 1.5rem 0; border: 2px solid #30363d; border-radius: 12px; overflow: hidden; background: #000;">
             </div>
 
             <div class="tags">
@@ -394,7 +466,6 @@
             <p style="margin-top: 0.8rem;" class="lang-en">A virtual reality industrial safety simulator focused on dynamic risk prevention. As Project Leader, Lead VR Developer, and Gameplay Programmer, I engineered the core VR interactions, dynamic fire propagation systems, and realistic fire extinguisher mechanics for the MVP.</p>
             <p style="margin-top: 0.8rem;" class="lang-es">Simulador de seguridad industrial en realidad virtual enfocado en la prevención de riesgos dinámicos. Como Líder de Proyecto, Lead VR Developer y Programador de Gameplay, desarrollé las interacciones VR principales, los sistemas de propagación de fuego y las mecánicas inmersivas de uso de extintores para el MVP.</p>
             
-            <!-- SafeVR Image Gallery -->
             <p style="font-size: 0.8rem; color: #3fb950; margin: 1.2rem 0 0.5rem 0; font-weight: bold;">// Simulation Previews:</p>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.2rem;">
               <img src="safevr-1.png" alt="SafeVR Gameplay 1" style="width: 100%; border-radius: 6px; border: 1px solid #30363d;">
@@ -484,34 +555,43 @@
       }
     });
 
-    // Toggle Project Details (Grid Cards)
+    // Expandir tarjeta y revelar detalles
     function toggleDetails(element) {
+      const card = element.closest('.project-card');
       const detailsDiv = element.nextElementSibling;
+      
+      // Cerrar las demás si lo prefieres, u ocultar la portada actual
       element.style.display = 'none';
       detailsDiv.classList.add('show');
+      card.classList.add('expanded');
     }
 
-    // Game Demo Logic
-    function toggleGameDemo() {
+    // Lógica para reemplazar Portada por Iframe del Juego
+    function launchGame() {
+      const cover = document.getElementById('interactive-cover');
       const container = document.getElementById('game-container');
-      const btn = document.getElementById('demo-btn');
-      const isEnglish = document.body.getAttribute('data-lang') === 'en';
+      const closeBtn = document.getElementById('close-demo-btn');
       
-      if (container.style.display === 'none') {
-        container.style.display = 'block';
-        btn.innerText = isEnglish ? '✕ Close Demo' : '✕ Cerrar Demo';
-        btn.style.backgroundColor = '#da3633';
-        btn.style.borderColor = '#f85149';
-        
-        if (!container.innerHTML.trim()) {
-          container.innerHTML = '<iframe src="https://itch.io/embed-upload/18917167?color=333333" style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>';
-        }
-      } else {
-        container.style.display = 'none';
-        btn.innerText = isEnglish ? '▶ Launch Web Demo' : '▶ Iniciar Demo Web';
-        btn.style.backgroundColor = '#238636';
-        btn.style.borderColor = '#2ea043';
+      cover.style.display = 'none';
+      container.style.display = 'block';
+      closeBtn.style.display = 'block';
+      
+      if (!container.innerHTML.trim()) {
+        container.innerHTML = '<iframe src="https://itch.io/embed-upload/18917167?color=333333" style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>';
       }
+    }
+
+    function closeGame() {
+      const cover = document.getElementById('interactive-cover');
+      const container = document.getElementById('game-container');
+      const closeBtn = document.getElementById('close-demo-btn');
+
+      container.style.display = 'none';
+      closeBtn.style.display = 'none';
+      cover.style.display = 'flex';
+      
+      // Opcional: vaciar el iframe para que el juego se detenga
+      container.innerHTML = '';
     }
   </script>
 </body>
