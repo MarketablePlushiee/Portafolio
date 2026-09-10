@@ -1002,7 +1002,7 @@
         langChanged: '[System] Language changed to English (EN).',
         langUsage: '[System] Usage: "lang es" (Spanish) or "lang en" (English)',
         creditsText: 'Portfolio Created, Designed & Developed by Ivan Latrille.',
-        secMsg: 'W1NFQ1JFVF0gV0FIISBZb3Ugc2hvdWxkbid0IGJlIGhlcmUuLi4gU2VuZGluZyBUYWtvIGZvciByZS1lZHVjYXRpb24uLi4=',
+        secMsg: 'aHR0cHM6Ly95b3V0dS5iZS82c0FRMXd1WXp4az9zaT1OSGY0YlZwb0UwdHR3ZnVw',
         accessDenied: 'Access denied. Command "{val}" not recognized. Type "hello world" to enter.'
       },
       es: {
@@ -1017,7 +1017,7 @@
         langChanged: '[System] Idioma cambiado a Español (ES).',
         langUsage: '[System] Uso: "lang es" (Español) o "lang en" (Inglés)',
         creditsText: 'Portafolio Creado, Diseñado y Desarrollado por Ivan Latrille.',
-        secMsg: 'W1NFQ1JFVE9dIFdBSCEgTm8gZGViZXJpYXMgZXN0YXIgYXF1aS4uLiBFbnZpYW5kbyBUYWtvIGEgcmVlZHVjYWNpw7NuLi4u',
+        secMsg: 'aHR0cHM6Ly95b3V0dS5iZS82c0FRMXd1WXp4az9zaT1OSGY0YlZwb0UwdHR3ZnVw',
         accessDenied: 'Acceso denegado. Comando "{val}" no reconocido. Escribe "hello world" para ingresar.'
       }
     };
@@ -1209,7 +1209,7 @@
         } else if (item.type === 'credits') {
           terminalLog.innerHTML += `<p style="color:var(--accent-green);">${t.creditsText}</p>`;
         } else if (item.type === 'alt') {
-          terminalLog.innerHTML += `<p style="color:#a278ff; font-weight:bold; font-size:1.15rem; text-shadow: 0 0 10px rgba(162,120,255,0.6);">${decodeUtf8Base64(t.secMsg)}</p>`;
+          terminalLog.innerHTML += `<p style="color:#a278ff; font-weight:bold; font-size:1.15rem; text-shadow: 0 0 10px rgba(162,120,255,0.6);">[SECRET] WAH! You shouldn't be here... Sending Tako to re-education...</p>`;
         } else if (item.type === 'denied') {
           const deniedMsg = t.accessDenied.replace('{val}', item.val);
           terminalLog.innerHTML += `<p style="color:#f85149;">${deniedMsg}</p>`;
@@ -1276,13 +1276,13 @@
           commandHistory.push({ type: 'alt' });
           renderLogHistory();
           setTimeout(() => {
-            window.open(decodeUtf8Base64('aHR0cHM6Ly95b3V0dS5iZS82c0FRMXd1WXp4az9zaT1OSGY0YlZwb0UwdHR3ZnVw'), '_blank');
+            window.open(decodeUtf8Base64(terminali18n[currentLang].secMsg), '_blank');
           }, 850);
         } else if (val === 'help') {
           commandHistory.push({ type: 'help' });
           renderLogHistory();
         } else if (val === 'lang es') {
-          commandHistory.push({ type: 'langChanged' });
+          commandHistory.push({ type: 'langChanged'>>);
           setLanguage('es');
         } else if (val === 'lang en') {
           commandHistory.push({ type: 'langChanged' });
