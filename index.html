@@ -206,8 +206,9 @@
     }
 
     .subtitle {
-      color: var(--text-muted);
+      color: var(--accent-green);
       margin-top: 0.5rem;
+      font-weight: bold;
     }
 
     section {
@@ -568,18 +569,22 @@
       border-color: var(--accent-green);
     }
 
-    .visitor-counter-footer {
-      border-top: 1px solid var(--border-color);
-      margin-top: 4rem;
-      padding: 2rem 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
+    .btn-cv {
+      background: #238636;
+      border: 1px solid #2ea043;
+      color: white;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
-    .visitor-counter-footer span {
-      color: var(--accent-green);
-      font-weight: bold;
+    .btn-cv:hover {
+      background: #2ea043;
+      text-decoration: none;
     }
 
     body.alt-mode {
@@ -598,14 +603,14 @@
     body.alt-mode .prompt-symbol,
     body.alt-mode .command-input,
     body.alt-mode .btn-action,
-    body.alt-mode .credits-box strong,
-    body.alt-mode .visitor-counter-footer span {
+    body.alt-mode .credits-box strong {
       color: #a278ff !important;
       border-color: #a278ff !important;
     }
 
     body.alt-mode .btn-header,
-    body.alt-mode .play-badge {
+    body.alt-mode .play-badge,
+    body.alt-mode .btn-cv {
       background: #5b3191 !important;
       border-color: #7c44c5 !important;
     }
@@ -707,10 +712,11 @@
 
       <h1>[ Ivan Ignacio Latrille Brito ]</h1>
       <p class="subtitle">
-        <span class="lang-en">Software Engineer | VR & AI Developer</span>
-        <span class="lang-es">Ingeniero de Software y Desarrollador de Realidad Virtual e IA</span>
+        <span class="lang-en">VR & Game Engineering Student · Applied AI & Reinforcement Learning</span>
+        <span class="lang-es">Estudiante de Ingeniería en RV y Videojuegos · IA Aplicada y Aprendizaje por Refuerzo</span>
       </p>
-      <p style="margin-top: 0.6rem; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+      <p style="margin-top: 0.8rem; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+        <a href="Ivan_Latrille_CV.pdf" target="_blank" class="btn-cv">📄 <span class="lang-en">Download CV (PDF)</span><span class="lang-es">Descargar CV (PDF)</span></a>
         <a href="https://github.com/MarketablePlushiee" target="_blank">GitHub</a> | 
         <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank">LinkedIn</a> | 
         <a href="mailto:ivan.latrille1@gmail.com">ivan.latrille1@gmail.com</a>
@@ -723,8 +729,58 @@
 
     <section id="about">
       <h2>// <span class="lang-en">About Me</span><span class="lang-es">Sobre Mí</span></h2>
-      <p class="lang-en">Software engineer and virtual reality developer focused on interactive systems, gameplay programming, and applied artificial intelligence. Passionate about leveraging machine learning (reinforcement learning and ML-agents) to build dynamic, adaptive environments and intelligent agent behaviors. Constantly exploring emerging technologies, system optimization, and advanced software architectures.</p>
-      <p class="lang-es">Ingeniero de software y desarrollador de realidad virtual enfocado en sistemas interactivos, programación de gameplay e inteligencia artificial aplicada. Apasionado por el uso de machine learning (reinforcement learning y ML-agents) para construir entornos dinámicos y comportamientos de IA adaptativos. Constantemente explorando nuevas tecnologías, optimización de sistemas y arquitecturas de software robustas para el sector industrial y de entretenimiento.</p>
+      <p class="lang-en">Virtual Reality and Game Design Engineering student at Universidad Bernardo O'Higgins, focused on applied artificial intelligence for interactive systems. Experienced in training reinforcement learning agents (PPO) in simulated environments and leading the development of an industrial-safety VR simulator that won 1st place at the UBO Inicia competition. Looking for an AI internship where I can contribute with Python, model training and evaluation, and learn from a team shipping AI to production.</p>
+      <p class="lang-es">Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo O'Higgins, enfocado en inteligencia artificial aplicada a sistemas interactivos. Con experiencia entrenando agentes mediante aprendizaje por refuerzo (PPO) en entornos simulados y liderando el desarrollo de un simulador de seguridad industrial en RV ganador del 1er lugar en el concurso UBO Inicia. Busco una práctica profesional en IA donde aportar con Python, entrenamiento y evaluación de modelos.</p>
+    </section>
+
+    <section id="skills">
+      <h2>// <span class="lang-en">Technical Skills Matrix</span><span class="lang-es">Matriz de Habilidades Técnicas</span></h2>
+      
+      <div class="skills-grid">
+        <div class="skill-category-card">
+          <h4>// AI & Applied Machine Learning</h4>
+          <div class="skill-badges">
+            <span class="badge-skill">Unity ML-Agents</span>
+            <span class="badge-skill">Reinforcement Learning</span>
+            <span class="badge-skill">PPO Algorithm</span>
+            <span class="badge-skill">PyTorch</span>
+            <span class="badge-skill">TensorBoard</span>
+          </div>
+        </div>
+
+        <div class="skill-category-card">
+          <h4>// Core Game Engine & XR</h4>
+          <div class="skill-badges">
+            <span class="badge-skill">Unity 3D (URP)</span>
+            <span class="badge-skill">Unreal Engine</span>
+            <span class="badge-skill">OpenXR</span>
+            <span class="badge-skill">Meta Quest SDK</span>
+            <span class="badge-skill">Shader Graph</span>
+          </div>
+        </div>
+
+        <div class="skill-category-card">
+          <h4>// Programming Languages</h4>
+          <div class="skill-badges">
+            <span class="badge-skill">C#</span>
+            <span class="badge-skill">Python</span>
+            <span class="badge-skill">C++ (Basic)</span>
+            <span class="badge-skill">JavaScript</span>
+            <span class="badge-skill">HTML5 / CSS3</span>
+          </div>
+        </div>
+
+        <div class="skill-category-card">
+          <h4>// Tools & Environments</h4>
+          <div class="skill-badges">
+            <span class="badge-skill">Git & GitHub</span>
+            <span class="badge-skill">Visual Studio</span>
+            <span class="badge-skill">VS Code</span>
+            <span class="badge-skill">WebGL</span>
+            <span class="badge-skill">AudioMixer</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="projects">
@@ -878,7 +934,7 @@
         <p style="color: var(--text-main);">
           <strong class="lang-en">Bachelor's Degree in Virtual Reality and Digital Game Design Engineering</strong>
           <strong class="lang-es">Ingeniería en Realidad Virtual y Diseño de Juegos Digitales</strong>
-          <span class="lang-en">(In progress)</span><span class="lang-es">(En curso)</span>
+          <span class="lang-en">(Expected graduation: 2028)</span><span class="lang-es">(Egreso estimado: 2028)</span>
         </p>
       </div>
 
@@ -887,83 +943,24 @@
         <p style="color: var(--text-main);">
           <strong class="lang-en">High School Diploma & Technical-Professional Degree in Automotive Mechanics</strong>
           <strong class="lang-es">Licenciatura de Enseñanza Media y Título Técnico Profesional en Mecánica Automotriz</strong> 
-          (2008 - 2020)
+          (2017 - 2018)
         </p>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;" class="lang-en">Completed primary and high school education, obtaining a mid-level technical degree focused on automotive systems diagnostics and repair.</p>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;" class="lang-es">Educación básica y media completada, obteniendo un título técnico de nivel medio enfocado en diagnóstico y reparación de sistemas automotrices.</p>
       </div>
 
       <div style="margin-bottom: 1rem;">
         <h3 style="color: var(--accent-blue); font-size: 1.1rem;">
-          <span class="lang-en">Logistics & Outreach Assistant</span>
-          <span class="lang-es">Asistente Logístico y de Difusión</span>
+          <span class="lang-en">Logistics & Operational Assistant</span>
+          <span class="lang-es">Asistente Logístico y Operativo</span>
         </h3>
         <p style="color: var(--text-main);">
           <em>Automotora Inalco S.A. | Inalcar S.A. | Automotriz Forcenter S.A.</em> 
           <span class="lang-en">(Jan 2022 - Present)</span>
           <span class="lang-es">(Enero 2022 - Presente)</span>
         </p>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;" class="lang-en">Branch operational management, direct marketing support, customer service, and logistical problem-solving at the point of sale.</p>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;" class="lang-es">Gestión operativa de sucursal, soporte de marketing directo, atención al cliente y resolución de problemas logísticos en el punto de venta.</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;" class="lang-en">Branch operational management, customer service, and technical problem-solving at the point of sale.</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;" class="lang-es">Gestión operativa de sucursal, atención al cliente y resolución de problemas técnicos en el punto de atención.</p>
       </div>
     </section>
-
-    <section id="skills">
-      <h2>// <span class="lang-en">Technical Skills Matrix</span><span class="lang-es">Matriz de Habilidades Técnicas</span></h2>
-      
-      <div class="skills-grid">
-        <div class="skill-category-card">
-          <h4>// Core Game Engine & XR</h4>
-          <div class="skill-badges">
-            <span class="badge-skill">Unity 3D (URP)</span>
-            <span class="badge-skill">Unreal Engine</span>
-            <span class="badge-skill">OpenXR</span>
-            <span class="badge-skill">Meta Quest SDK</span>
-            <span class="badge-skill">Shader Graph</span>
-          </div>
-        </div>
-
-        <div class="skill-category-card">
-          <h4>// AI & Applied Machine Learning</h4>
-          <div class="skill-badges">
-            <span class="badge-skill">Unity ML-Agents</span>
-            <span class="badge-skill">Reinforcement Learning</span>
-            <span class="badge-skill">PPO Algorithm</span>
-            <span class="badge-skill">PyTorch</span>
-            <span class="badge-skill">TensorBoard</span>
-          </div>
-        </div>
-
-        <div class="skill-category-card">
-          <h4>// Programming Languages</h4>
-          <div class="skill-badges">
-            <span class="badge-skill">C#</span>
-            <span class="badge-skill">C++</span>
-            <span class="badge-skill">Python</span>
-            <span class="badge-skill">JavaScript</span>
-            <span class="badge-skill">HTML5 / CSS3</span>
-          </div>
-        </div>
-
-        <div class="skill-category-card">
-          <h4>// Tools & Environments</h4>
-          <div class="skill-badges">
-            <span class="badge-skill">Git & GitHub</span>
-            <span class="badge-skill">Visual Studio</span>
-            <span class="badge-skill">VS Code</span>
-            <span class="badge-skill">WebGL</span>
-            <span class="badge-skill">AudioMixer</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="visitor-counter-footer">
-      <p>
-        <span class="lang-en">> You are visitor number <span id="visit-count-en">13</span> to this portfolio.</span>
-        <span class="lang-es">> Eres la persona número <span id="visit-count-es">13</span> en visitar el portafolio.</span>
-      </p>
-    </div>
 
   </div>
 
@@ -1003,7 +1000,7 @@
         langUsage: '[System] Uso: "lang es" (Español) o "lang en" (Inglés)',
         creditsText: 'Portafolio Creado, Diseñado y Desarrollado por Ivan Latrille.',
         secMsg: 'aHR0cHM6Ly95b3V0dS5iZS82c0FRMXd1WXp4az9zaT1OSGY0YlZwb0UwdHR3ZnVw',
-        accessDenied: 'Acceso denegado. Comando "{val}" not reconocido. Escribe "hello world" para ingresar.'
+        accessDenied: 'Acceso denegado. Comando "{val}" no reconocido. Escribe "hello world" para ingresar.'
       }
     };
 
@@ -1344,29 +1341,6 @@
       lightbox.style.display = 'none';
       document.getElementById('lightbox-img').src = '';
     }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const countEn = document.getElementById('visit-count-en');
-      const countEs = document.getElementById('visit-count-es');
-
-      const uniqueKey = 'ivan_latrille_portfolio_visits_v4';
-      const hasVisited = sessionStorage.getItem('visited_session_v4');
-      const endpoint = hasVisited ? 'get' : 'hit';
-
-      fetch(`https://countapi.mileshilliard.com/api/v1/${endpoint}/${uniqueKey}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data && typeof data.value !== 'undefined') {
-            countEn.textContent = data.value;
-            countEs.textContent = data.value;
-            sessionStorage.setItem('visited_session_v4', 'true');
-          }
-        })
-        .catch(() => {
-          countEn.textContent = "13";
-          countEs.textContent = "13";
-        });
-    });
   </script>
 </body>
 </html>
