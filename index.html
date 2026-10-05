@@ -1049,7 +1049,7 @@
         ambientDroneNode2.type = 'triangle';
         ambientDroneNode2.frequency.setValueAtTime(110, audioCtx.currentTime);
 
-        ambientGainNode.gain.setValueAtTime(0.005, audioCtx.currentTime);
+        ambientGainNode.gain.setValueAtTime(0.002, audioCtx.currentTime);
 
         ambientDroneNode1.connect(ambientGainNode);
         ambientDroneNode2.connect(ambientGainNode);
@@ -1078,7 +1078,7 @@
         osc.type = 'sine';
         osc.frequency.setValueAtTime(900, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(450, audioCtx.currentTime + 0.04);
-        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
@@ -1095,7 +1095,7 @@
         osc.type = 'sawtooth';
         osc.frequency.setValueAtTime(180, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(950, audioCtx.currentTime + 0.35);
-        gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
@@ -1112,7 +1112,7 @@
         osc.type = 'square';
         osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.05);
-        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
@@ -1130,7 +1130,7 @@
         osc.type = 'sine';
         osc.frequency.setValueAtTime(950, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(1400, audioCtx.currentTime + 0.025);
-        gain.gain.setValueAtTime(0.005, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.002, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.025);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
