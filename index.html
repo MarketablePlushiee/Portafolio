@@ -667,6 +667,12 @@
         display: none !important;
       }
     }
+  
+    @media (max-width: 900px) {
+      .charts-row-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
   </style>
 </head>
 <body data-lang="en">
@@ -797,16 +803,16 @@
         
         <div class="project-card" data-category="ai" style="grid-column: 1 / -1;">
           <h3>PPE Audit & Monitoring System (YOLOv8 + SAHI)</h3>
-          <p class="lang-en">Enterprise-grade industrial safety inspection web application designed to automatically detect Personal Protective Equipment (PPE) using state-of-the-art computer vision models.</p>
-          <p class="lang-es">Aplicación web de inspección de seguridad industrial de nivel profesional diseñada para detectar automáticamente Equipos de Protección Personal (EPP) usando modelos avanzados de visión por computadora.</p>
+          <p class="lang-en">Industrial safety inspection web application designed to automatically detect Personal Protective Equipment (PPE) in workplace imagery using custom computer vision models and slicing inference.</p>
+          <p class="lang-es">Aplicación web de inspección de seguridad industrial diseñada para detectar automáticamente Equipos de Protección Personal (EPP) en imágenes de trabajo mediante modelos personalizados de visión por computadora e inferencia por fragmentación.</p>
           
           <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
-            <li class="lang-en"><strong>Multiclass AI Model:</strong> Fine-tuned YOLOv8 Medium detecting Helmets, Vests, Boots, Gloves, and Goggles with high precision.</li>
-            <li class="lang-es"><strong>Modelo de IA Multiclase:</strong> YOLOv8 Medium optimizado para detectar Cascos, Chalecos, Botas, Guantes y Gafas con alta precisión.</li>
-            <li class="lang-en"><strong>Gigapixel SAHI Mode:</strong> Integrates Slicing Aided Hyper Inference to slice high-res photos and accurately detect small accessories or distant workers.</li>
-            <li class="lang-es"><strong>Modo SAHI Gigapixel:</strong> Integra Slicing Aided Hyper Inference para fragmentar fotos de alta resolución y detectar con precisión accesorios pequeños o trabajadores lejanos.</li>
-            <li class="lang-en"><strong>OHS Compliance & CSV Export:</strong> Spatial relationship rules for safety gear compliance plus real-time downloadable audit reports.</li>
-            <li class="lang-es"><strong>Cumplimiento SST y Exportación CSV:</strong> Reglas de relación espacial para verificación de EPP más reportes de auditoría descargables en tiempo real.</li>
+            <li class="lang-en"><strong>Multiclass Fine-Tuning:</strong> Trained and fine-tuned a YOLOv8 Medium model on custom datasets to detect 5 key safety classes: Helmets, Vests, Boots, Gloves, and Goggles.</li>
+            <li class="lang-es"><strong>Entrenamiento Multiclase:</strong> Entrenamiento y ajuste fino de un modelo YOLOv8 Medium con datasets personalizados para detectar 5 clases clave de seguridad: Cascos, Chalecos, Botas, Guantes y Gafas.</li>
+            <li class="lang-en"><strong>Gigapixel SAHI Integration:</strong> Implements Slicing Aided Hyper Inference to partition high-resolution site photos, overcoming scaling bottlenecks for small accessories and distant workers.</li>
+            <li class="lang-es"><strong>Integración SAHI Gigapixel:</strong> Implementación de Slicing Aided Hyper Inference para particionar fotos de alta resolución en terreno, superando cuellos de botella en accesorios pequeños y trabajadores lejanos.</li>
+            <li class="lang-en"><strong>OHS Compliance Rules:</strong> Automated spatial logic verifying mandatory gear combinations per worker, complete with real-time audit logs and CSV export.</li>
+            <li class="lang-es"><strong>Reglas de Cumplimiento SST:</strong> Lógica espacial automatizada que verifica combinaciones obligatorias de EPP por trabajador, con registros de auditoría en tiempo real y exportación CSV.</li>
           </ul>
 
           <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
@@ -814,23 +820,52 @@
             <span class="lang-es">// Vistas de la App y Panel de Auditoría SST (Clic para ampliar):</span>
           </p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
-            <img src="ppe-preview-1.jpg" alt="PPE Detection Preview 1" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid var(--border-color);">
-            <img src="ppe-preview-2.jpg" alt="PPE Detection Preview 2" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid var(--border-color);">
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: #000;">
+              <img src="ppe-preview-1.jpg" alt="PPE Detection Preview 1" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: #000;">
+              <img src="ppe-preview-2.jpg" alt="PPE Detection Preview 2" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
+            </div>
           </div>
 
           <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
             <span class="lang-en">// Model Training Performance & Metrics (Click to expand):</span>
             <span class="lang-es">// Rendimiento y Métricas de Entrenamiento (Clic para ampliar):</span>
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
-            <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-              <img src="results.png" alt="Training Results Loss" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;" title="Training Loss & Metrics">
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem; line-height: 1.4;">
+            <span class="lang-en">Rigorous evaluation of the fine-tuned YOLOv8 model showing steady loss convergence, high class precision across all safety gear, and robust confusion matrix classification.</span>
+            <span class="lang-es">Evaluación rigurosa del modelo YOLOv8 ajustado, mostrando una convergencia estable de pérdida, alta precisión por clase en todo el equipo de seguridad y una matriz de confusión robusta.</span>
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 1.2rem;" class="charts-row-grid">
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="height: 200px; background: #000; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+                <img src="results.png" alt="Training Results Loss" class="zoomable" onclick="openLightbox(this.src)" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">
+                <span class="lang-en"><strong>Training & Validation Loss:</strong> Tracks box, class, and distribution focal loss over epochs, confirming stable convergence.</span>
+                <span class="lang-es"><strong>Pérdida de Entrenamiento y Validación:</strong> Rastrea las pérdidas de caja, clase y focal loss por época, confirmando una convergencia estable.</span>
+              </p>
             </div>
-            <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-              <img src="BoxPR_curve.png" alt="Precision-Recall Curve" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;" title="Precision-Recall Curve">
+
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="height: 200px; background: #000; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+                <img src="BoxPR_curve.png" alt="Precision-Recall Curve" class="zoomable" onclick="openLightbox(this.src)" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">
+                <span class="lang-en"><strong>Precision-Recall Curve:</strong> Evaluates trade-offs per class, achieving high overall mAP@0.5 across safety equipment.</span>
+                <span class="lang-es"><strong>Curva Precisión-Exhaustividad:</strong> Evalúa el balance por clase, alcanzando un mAP@0.5 general elevado en todo el equipamiento.</span>
+              </p>
             </div>
-            <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-              <img src="confusion_matrix.png" alt="Confusion Matrix" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;" title="Confusion Matrix">
+
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="height: 200px; background: #000; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+                <img src="confusion_matrix.png" alt="Confusion Matrix" class="zoomable" onclick="openLightbox(this.src)" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">
+                <span class="lang-en"><strong>Confusion Matrix:</strong> Highlights high true-positive diagonal values and minimal background misclassifications.</span>
+                <span class="lang-es"><strong>Matriz de Confusión:</strong> Destaca altos valores en la diagonal de verdaderos positivos y mínimas confusiones con el fondo.</span>
+              </p>
             </div>
           </div>
 
@@ -838,6 +873,7 @@
             <span class="tag">Python</span>
             <span class="tag">Streamlit</span>
             <span class="tag">YOLOv8</span>
+            <span class="tag">Ultralytics</span>
             <span class="tag">SAHI</span>
             <span class="tag">Computer Vision</span>
             <span class="tag">OpenCV</span>
@@ -1067,7 +1103,7 @@
         langUsage: '[System] Uso: "lang es" (Español) o "lang en" (Inglés)',
         creditsText: 'Portafolio Creado, Diseñado y Desarrollado por Ivan Latrille.',
         secMsg: 'aHR0cHM6Ly95b3V0dS5iZS82c0FRMXd1WXp4az9zaT1OSGY0YlZwb0UwdHR3ZnVw',
-        accessDenied: 'Acceso denegado. Comando "{val}" no reconocido. Escribe "hello world" para ingresar.'
+        accessDenied: 'Access denied. Comando "{val}" no reconocido. Escribe "hello world" para ingresar.'
       }
     };
 
