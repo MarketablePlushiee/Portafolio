@@ -27,7 +27,7 @@ Welcome to my professional portfolio repository! Here you will find web projects
 * **Email:** ivan.latrille1@gmail.com
 * **LinkedIn:** Ivan Ignacio Latrille Brito
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 # 🌐 Iván Latrille - Portafolio y Proyectos Interactivos
 
