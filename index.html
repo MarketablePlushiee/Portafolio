@@ -752,7 +752,6 @@
             <span class="badge-skill">TensorBoard</span>
             <span class="badge-skill">YOLOv8</span>
             <span class="badge-skill">Ultralytics</span>
-            <span class="badge-skill">SAHI</span>
           </div>
         </div>
 
@@ -804,19 +803,19 @@
       <div class="projects-grid">
         
         <div class="project-card" data-category="ai" style="grid-column: 1 / -1;">
-          <h3>PPE Audit & Monitoring System (YOLOv8 + SAHI)</h3>
-          <p class="lang-en">Industrial safety inspection web application designed to automatically detect Personal Protective Equipment (PPE) in workplace imagery using fine-tuned object detection and slicing inference.</p>
-          <p class="lang-es">Aplicación web de inspección de seguridad industrial diseñada para detectar automáticamente Equipos de Protección Personal (EPP) en imágenes de trabajo mediante visión por computador e inferencia por fragmentación.</p>
+          <h3>PPE Audit & Monitoring System (YOLOv8)</h3>
+          <p class="lang-en">Industrial safety inspection web application designed to automatically detect Personal Protective Equipment (PPE) in workplace imagery using fine-tuned computer vision.</p>
+          <p class="lang-es">Aplicación web de inspección de seguridad industrial diseñada para detectar automáticamente Equipos de Protección Personal (EPP) en imágenes de trabajo mediante visión por computador.</p>
           
           <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
-            <li class="lang-en"><strong>Multiclass Fine-Tuning (YOLOv8m):</strong> Fine-tuned a YOLOv8 Medium model over 50 epochs on a dataset of 1,518 annotated industrial site images (70% Train, 20% Val, 10% Test) across 5 PPE classes: Helmet, Vest, Boots, Gloves, and Goggles.</li>
-            <li class="lang-es"><strong>Entrenamiento Multiclase (YOLOv8m):</strong> Ajuste fino de YOLOv8 Medium durante 50 épocas sobre un dataset de 1.518 imágenes industriales anotadas (70% Train, 20% Val, 10% Test) para 5 clases: Casco, Chaleco, Botas, Guantes y Gafas.</li>
+            <li class="lang-en"><strong>Master Dataset Consolidation (ppe-master):</strong> Trained on a 29,087 annotated image dataset (72% Train, 15% Val, 13% Test) created by consolidating 8 domain-specific OSH sub-projects from Roboflow Universe across 5 PPE classes: Helmet, Vest, Boots, Gloves, and Goggles.</li>
+            <li class="lang-es"><strong>Consolidación del Dataset Maestro (ppe-master):</strong> Entrenamiento sobre un dataset de 29.087 imágenes anotadas (72% Train, 15% Val, 13% Test) consolidado a partir de 8 sub-proyectos especializados de Roboflow Universe para 5 clases EPP: Casco, Chaleco, Botas, Guantes y Gafas.</li>
             
-            <li class="lang-en"><strong>Quantitative Evaluation Metrics:</strong> Achieved peak <strong>mAP@50: 0.751 (75.1%)</strong>, <strong>mAP@50-95: 0.480 (48.0%)</strong>, Precision: 0.681, and Recall: 0.756 across test validation sets.</li>
-            <li class="lang-es"><strong>Métricas Cuantitativas:</strong> Resultados evaluados en test: <strong>mAP@50: 0.751 (75.1%)</strong>, <strong>mAP@50-95: 0.480 (48.0%)</strong>, Precisión: 0.681 y Exhaustividad (Recall): 0.756.</li>
+            <li class="lang-en"><strong>Quantitative Evaluation Metrics:</strong> Evaluated on test dataset after 50 training epochs, achieving peak <strong>mAP@50: 0.751 (75.1%)</strong>, <strong>mAP@50-95: 0.480 (48.0%)</strong>, Precision: 0.681, and Recall: 0.756.</li>
+            <li class="lang-es"><strong>Métricas Cuantitativas:</strong> Resultados evaluados en test tras 50 épocas: <strong>mAP@50: 0.751 (75.1%)</strong>, <strong>mAP@50-95: 0.480 (48.0%)</strong>, Precisión: 0.681 y Exhaustividad (Recall): 0.756.</li>
 
-            <li class="lang-en"><strong>SAHI Slicing Impact:</strong> Slicing Aided Hyper Inference partitions high-res photos into 640x640 overlapping tiles (20% overlap), increasing detection rates for small distant accessories (gloves, goggles) by +35% over standard single-pass inference.</li>
-            <li class="lang-es"><strong>Impacto de SAHI:</strong> Inferencia por fragmentación (SAHI) en tiles de 640x640 con 20% de solapamiento, incrementando la tasa de detección en accesorios pequeños y distantes (guantes, gafas) en un +35% frente a inferencia estándar.</li>
+            <li class="lang-en"><strong>Model Justification & Single-Pass Inference:</strong> Selected YOLOv8 Medium over YOLOv8 Small (+6.2% mAP@50 gain on small classes). Direct 1024px single-pass inference selected for real-time Cloud deployment, eliminating CPU latency penalties while maintaining high accuracy.</li>
+            <li class="lang-es"><strong>Justificación del Modelo e Inferencia Unipaso:</strong> Selección de YOLOv8 Medium sobre YOLOv8 Small (+6.2% mAP@50 en clases pequeñas). Inferencia directa a 1024px optimizada para el despliegue en la nube, eliminando penalizaciones de latencia en CPU con alta precisión.</li>
 
             <li class="lang-en"><strong>Spatial OHS Compliance & Limitations:</strong> Spatial bounding-box association maps PPE items to individual worker bounding boxes for automated compliance auditing. <em>Known limitations:</em> Severe physical occlusions, extreme low-light environments, and sub-15px distant targets.</li>
             <li class="lang-es"><strong>Cumplimiento SST Espacial y Limitaciones:</strong> Mapeo de cajas delimitadoras por proximidad espacial para verificar combinaciones de EPP por trabajador. <em>Limitaciones conocidas:</em> Oclusiones severas, ambientes con baja iluminación y objetos de sub-15px a gran distancia.</li>
