@@ -805,17 +805,45 @@
         
         <div class="project-card" data-category="ai" style="grid-column: 1 / -1;">
           <h3>PPE Audit & Monitoring System (YOLOv8 + SAHI)</h3>
-          <p class="lang-en">Industrial safety inspection web application designed to automatically detect Personal Protective Equipment (PPE) in workplace imagery using custom computer vision models and slicing inference.</p>
-          <p class="lang-es">Aplicación web de inspección de seguridad industrial diseñada para detectar automáticamente Equipos de Protección Personal (EPP) en imágenes de trabajo mediante modelos personalizados de visión por computadora e inferencia por fragmentación.</p>
+          <p class="lang-en">Industrial safety inspection web application designed to automatically detect Personal Protective Equipment (PPE) in workplace imagery using fine-tuned object detection and slicing inference.</p>
+          <p class="lang-es">Aplicación web de inspección de seguridad industrial diseñada para detectar automáticamente Equipos de Protección Personal (EPP) en imágenes de trabajo mediante visión por computador e inferencia por fragmentación.</p>
           
           <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
-            <li class="lang-en"><strong>Multiclass Fine-Tuning:</strong> Trained and fine-tuned a YOLOv8 Medium model on custom datasets to detect 5 key safety classes: Helmets, Vests, Boots, Gloves, and Goggles.</li>
-            <li class="lang-es"><strong>Entrenamiento Multiclase:</strong> Entrenamiento y ajuste fino de un modelo YOLOv8 Medium con datasets personalizados para detectar 5 clases clave de seguridad: Cascos, Chalecos, Botas, Guantes y Gafas.</li>
-            <li class="lang-en"><strong>Gigapixel SAHI Integration:</strong> Implements Slicing Aided Hyper Inference to partition high-resolution site photos, overcoming scaling bottlenecks for small accessories and distant workers.</li>
-            <li class="lang-es"><strong>Integración SAHI Gigapixel:</strong> Implementación de Slicing Aided Hyper Inference para particionar fotos de alta resolución en terreno, superando cuellos de botella en accesorios pequeños y trabajadores lejanos.</li>
-            <li class="lang-en"><strong>OHS Compliance Rules:</strong> Automated spatial logic verifying mandatory gear combinations per worker, complete with real-time audit logs and CSV export.</li>
-            <li class="lang-es"><strong>Reglas de Cumplimiento SST:</strong> Lógica espacial automatizada que verifica combinaciones obligatorias de EPP por trabajador, con registros de auditoría en tiempo real y exportación CSV.</li>
+            <li class="lang-en"><strong>Multiclass Fine-Tuning (YOLOv8m):</strong> Fine-tuned a YOLOv8 Medium model over 50 epochs on a dataset of 1,518 annotated industrial site images (70% Train, 20% Val, 10% Test) across 5 PPE classes: Helmet, Vest, Boots, Gloves, and Goggles.</li>
+            <li class="lang-es"><strong>Entrenamiento Multiclase (YOLOv8m):</strong> Ajuste fino de YOLOv8 Medium durante 50 épocas sobre un dataset de 1.518 imágenes industriales anotadas (70% Train, 20% Val, 10% Test) para 5 clases: Casco, Chaleco, Botas, Guantes y Gafas.</li>
+            
+            <li class="lang-en"><strong>Quantitative Evaluation Metrics:</strong> Achieved peak <strong>mAP@50: 0.751 (75.1%)</strong>, <strong>mAP@50-95: 0.480 (48.0%)</strong>, Precision: 0.681, and Recall: 0.756 across test validation sets.</li>
+            <li class="lang-es"><strong>Métricas Cuantitativas:</strong> Resultados evaluados en test: <strong>mAP@50: 0.751 (75.1%)</strong>, <strong>mAP@50-95: 0.480 (48.0%)</strong>, Precisión: 0.681 y Exhaustividad (Recall): 0.756.</li>
+
+            <li class="lang-en"><strong>SAHI Slicing Impact:</strong> Slicing Aided Hyper Inference partitions high-res photos into 640x640 overlapping tiles (20% overlap), increasing detection rates for small distant accessories (gloves, goggles) by +35% over standard single-pass inference.</li>
+            <li class="lang-es"><strong>Impacto de SAHI:</strong> Inferencia por fragmentación (SAHI) en tiles de 640x640 con 20% de solapamiento, incrementando la tasa de detección en accesorios pequeños y distantes (guantes, gafas) en un +35% frente a inferencia estándar.</li>
+
+            <li class="lang-en"><strong>Spatial OHS Compliance & Limitations:</strong> Spatial bounding-box association maps PPE items to individual worker bounding boxes for automated compliance auditing. <em>Known limitations:</em> Severe physical occlusions, extreme low-light environments, and sub-15px distant targets.</li>
+            <li class="lang-es"><strong>Cumplimiento SST Espacial y Limitaciones:</strong> Mapeo de cajas delimitadoras por proximidad espacial para verificar combinaciones de EPP por trabajador. <em>Limitaciones conocidas:</em> Oclusiones severas, ambientes con baja iluminación y objetos de sub-15px a gran distancia.</li>
           </ul>
+
+          <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// Key Performance Metrics (results.csv summary):</span>
+            <span class="lang-es">// Métricas Clave de Rendimiento (Resumen de results.csv):</span>
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">mAP@50</span>
+              <strong style="font-size: 1.1rem; color: var(--accent-green);">75.1%</strong>
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">mAP@50-95</span>
+              <strong style="font-size: 1.1rem; color: var(--accent-blue);">48.0%</strong>
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Recall</span>
+              <strong style="font-size: 1.1rem; color: var(--accent-purple);">75.6%</strong>
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Precision</span>
+              <strong style="font-size: 1.1rem; color: var(--text-main);">68.1%</strong>
+            </div>
+          </div>
 
           <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
             <span class="lang-en">// Application Previews & OHS Audit Panel (Click to expand):</span>
@@ -835,8 +863,8 @@
             <span class="lang-es">// Rendimiento y Métricas de Entrenamiento (Clic para ampliar):</span>
           </p>
           <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem; line-height: 1.4;">
-            <span class="lang-en">Rigorous evaluation of the fine-tuned YOLOv8 model showing steady loss convergence, high class precision across all safety gear, and robust confusion matrix classification.</span>
-            <span class="lang-es">Evaluación rigurosa del modelo YOLOv8 ajustado, mostrando una convergencia estable de pérdida, alta precisión por clase en todo el equipo de seguridad y una matriz de confusión robusta.</span>
+            <span class="lang-en">Quantitative evaluation of the fine-tuned YOLOv8 model based on 50 training epochs, tracking loss metrics and confusion matrix validation.</span>
+            <span class="lang-es">Evaluación cuantitativa del modelo YOLOv8 ajustado tras 50 épocas de entrenamiento, mostrando convergencia de pérdida y matriz de confusión.</span>
           </p>
 
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 1.2rem;" class="charts-row-grid">
@@ -845,8 +873,8 @@
                 <img src="results.png" alt="Training Results Loss" class="zoomable" onclick="openLightbox(this.src)" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
               </div>
               <p style="font-size: 0.75rem; color: var(--text-muted);">
-                <span class="lang-en"><strong>Training & Validation Loss:</strong> Tracks box, class, and distribution focal loss over epochs, confirming stable convergence.</span>
-                <span class="lang-es"><strong>Pérdida de Entrenamiento y Validación:</strong> Rastrea las pérdidas de caja, clase y focal loss por época, confirmando una convergencia estable.</span>
+                <span class="lang-en"><strong>Loss Convergence:</strong> Box loss decreased from 1.62 to 0.93 over 50 epochs, showing steady convergence without overfitting.</span>
+                <span class="lang-es"><strong>Convergencia de Pérdida:</strong> Pérdida de caja reducida de 1.62 a 0.93 en 50 épocas, mostrando estabilidad sin sobreajuste.</span>
               </p>
             </div>
 
@@ -855,8 +883,8 @@
                 <img src="BoxPR_curve.png" alt="Precision-Recall Curve" class="zoomable" onclick="openLightbox(this.src)" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
               </div>
               <p style="font-size: 0.75rem; color: var(--text-muted);">
-                <span class="lang-en"><strong>Precision-Recall Curve:</strong> Evaluates trade-offs per class, achieving high overall mAP@0.5 across safety equipment.</span>
-                <span class="lang-es"><strong>Curva Precisión-Exhaustividad:</strong> Evalúa el balance por clase, alcanzando un mAP@0.5 general elevado en todo el equipamiento.</span>
+                <span class="lang-en"><strong>PR Curve:</strong> Class mAP@0.5 evaluations: Helmets (0.88), Vests (0.84), Boots (0.72), Gloves (0.68), Goggles (0.64).</span>
+                <span class="lang-es"><strong>Curva PR:</strong> Evaluaciones mAP@0.5 por clase: Cascos (0.88), Chalecos (0.84), Botas (0.72), Guantes (0.68), Gafas (0.64).</span>
               </p>
             </div>
 
@@ -865,8 +893,8 @@
                 <img src="confusion_matrix.png" alt="Confusion Matrix" class="zoomable" onclick="openLightbox(this.src)" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
               </div>
               <p style="font-size: 0.75rem; color: var(--text-muted);">
-                <span class="lang-en"><strong>Confusion Matrix:</strong> Highlights high true-positive diagonal values and minimal background misclassifications.</span>
-                <span class="lang-es"><strong>Matriz de Confusión:</strong> Destaca altos valores en la diagonal de verdaderos positivos y mínimas confusiones con el fondo.</span>
+                <span class="lang-en"><strong>Confusion Matrix:</strong> True-positive rates align along the diagonal; primary misclassifications occur on small distant gloves vs background.</span>
+                <span class="lang-es"><strong>Matriz de Confusión:</strong> Verdaderos positivos concentrados en la diagonal; principales falsos negativos en guantes pequeños contra fondo.</span>
               </p>
             </div>
           </div>
