@@ -215,12 +215,12 @@
       margin-bottom: 3rem;
       opacity: 0;
       transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
 
     section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
 
     h2 {
@@ -279,11 +279,14 @@
       }
       h1 {
         max-width: 100%;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
       }
       .modal-game-content {
         width: 95vw !important;
         height: 75vh !important;
+      }
+      .terminal-box {
+        padding: 1.2rem;
       }
     }
 
@@ -336,7 +339,7 @@
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.5rem;
     }
 
@@ -387,7 +390,7 @@
     .game-preview-wrapper {
       width: 100%;
       max-width: 400px;
-      height: 480px;
+      height: 440px;
       margin: 1.5rem auto;
       border: 2px solid var(--border-color);
       border-radius: 12px;
@@ -667,7 +670,7 @@
         display: none !important;
       }
     }
-      @media (max-width: 900px) {
+    @media (max-width: 900px) {
       .charts-row-grid {
         grid-template-columns: 1fr !important;
       }
@@ -829,7 +832,7 @@
             <span class="lang-en">// Key Performance Metrics (results.csv summary):</span>
             <span class="lang-es">// Métricas Clave de Rendimiento (Resumen de results.csv):</span>
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
             <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
               <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">mAP@50</span>
               <strong style="font-size: 1.1rem; color: var(--accent-green);">75.1%</strong>
@@ -852,7 +855,7 @@
             <span class="lang-en">// Application Previews & OHS Audit Panel (Click to expand):</span>
             <span class="lang-es">// Vistas de la App y Panel de Auditoría SST (Clic para ampliar):</span>
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
             <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: #000;">
               <img src="ppe-preview-1.jpg" alt="PPE Detection Preview 1" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
             </div>
@@ -935,7 +938,7 @@
             <span class="lang-en">// System Architecture & RAG Pipeline Features:</span>
             <span class="lang-es">// Arquitectura del Sistema y Características del Pipeline RAG:</span>
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
             <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
               <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Framework</span>
               <strong style="font-size: 0.95rem; color: var(--accent-green);">LangChain</strong>
@@ -959,7 +962,7 @@
             <span class="lang-es">// Demostraciones de Interfaz y Validación (Clic para ampliar):</span>
           </p>
 
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
             <!-- FOTO 1: PRECISIÓN Y CITAS (.png) -->
             <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
               <div style="border-radius: 4px; overflow: hidden; background: #000; margin-bottom: 8px;">
@@ -1022,7 +1025,7 @@
             <span class="lang-en">// TensorBoard Training Telemetry (Click to expand):</span>
             <span class="lang-es">// Telemetría de Entrenamiento TensorBoard (Clic para ampliar):</span>
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
             <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
               <img src="tb-1.png" alt="TensorBoard Reward" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
             </div>
@@ -1128,7 +1131,7 @@
             <span class="lang-en">// Simulation Previews (Click to expand):</span>
             <span class="lang-es">// Vistas de Simulación (Clic para ampliar):</span>
           </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
             <img src="safevr-1.png" alt="SafeVR Gameplay 1" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid var(--border-color);">
             <img src="safevr-2.png" alt="SafeVR Gameplay 2" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid var(--border-color);">
             <img src="safevr-3.png" alt="SafeVR Gameplay 3" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid var(--border-color);">
@@ -1512,7 +1515,9 @@
       const filterBtns = document.querySelectorAll('.btn-filter');
 
       filterBtns.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+      if (event && event.target) {
+        event.target.classList.add('active');
+      }
 
       cards.forEach(card => {
         const cat = card.getAttribute('data-category');
@@ -1531,9 +1536,12 @@
             entry.target.classList.add('is-visible');
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.01, rootMargin: "0px 0px 50px 0px" });
 
-      document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+      document.querySelectorAll('section').forEach(sec => {
+        observer.observe(sec);
+        sec.classList.add('is-visible');
+      });
     }
 
     function launchGame() {
