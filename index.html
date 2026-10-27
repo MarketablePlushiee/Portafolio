@@ -753,6 +753,8 @@
             <span class="badge-skill">YOLOv8</span>
             <span class="badge-skill">Ultralytics</span>
             <span class="badge-skill">SAHI</span>
+            <span class="badge-skill">RAG / LangChain</span>
+            <span class="badge-skill">ChromaDB</span>
           </div>
         </div>
 
@@ -803,6 +805,7 @@
 
       <div class="projects-grid">
         
+        <!-- PROYECTO 1: PPE AUDIT (YOLOv8) -->
         <div class="project-card" data-category="ai" style="grid-column: 1 / -1;">
           <h3>PPE Audit & Monitoring System (YOLOv8 + SAHI)</h3>
           <p class="lang-en">Industrial safety inspection web application designed to automatically detect Personal Protective Equipment (PPE) in workplace imagery using fine-tuned object detection and slicing inference.</p>
@@ -911,6 +914,92 @@
           </div>
         </div>
 
+        <!-- PROYECTO 2: INTEGRASST / SAFETYLEX (RAG LEGAL) -->
+        <div class="project-card" data-category="ai" style="grid-column: 1 / -1;">
+          <h3>IntegraSST / SafetyLex Chile — Legal & OHS RAG Assistant</h3>
+          <p class="lang-en">Production-ready Retrieval-Augmented Generation (RAG) assistant designed to query Chilean Labor Safety Legislation (Ley 16.744, DS 594, DS 44, and Labor Code) with zero hallucinations and strict source citations.</p>
+          <p class="lang-es">Asistente RAG (Retrieval-Augmented Generation) listo para producción diseñado para consultar la legislación chilena de seguridad laboral (Ley 16.744, DS 594, DS 44 y Código del Trabajo) sin alucinaciones y con citas normativas strictly vinculantes.</p>
+          
+          <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+            <li class="lang-en"><strong>Vector Database & Chunking Pipeline:</strong> Automated ingestion of legal PDFs into ChromaDB using <code>RecursiveCharacterTextSplitter</code> (1000 chunk size, 200 overlap) and <code>paraphrase-multilingual-MiniLM-L12-v2</code> embeddings for accurate semantic retrieval.</li>
+            <li class="lang-es"><strong>Pipeline Vectorial y Segmentación:</strong> Ingesta automatizada de PDFs legales en ChromaDB usando <code>RecursiveCharacterTextSplitter</code> (bloques de 1000 caracteres, solapamiento 200) y embeddings <code>paraphrase-multilingual-MiniLM-L12-v2</code> para búsqueda semántica precisa.</li>
+            
+            <li class="lang-en"><strong>Hallucination-Proof Groundedness ($K=6$):</strong> Configured retriever ($k=6$) with strict system prompts forcing the LLM (Gemini 3.5 Flash / Groq) to cite exact legal articles or explicitly decline out-of-scope questions.</li>
+            <li class="lang-es"><strong>Fidelidad y Mitigación de Alucinaciones ($K=6$):</strong> Recuperador optimizado ($k=6$) con prompts de sistema estrictos que obligan al LLM (Gemini 3.5 Flash / Groq) a citar artículos legales exactos o declarar si la información no está en la base de datos.</li>
+
+            <li class="lang-en"><strong>Secure Architecture & UX:</strong> Secure backend API key management (secrets handling), interactive evidence inspector, knowledge scope panel, and direct PDF source downloads for auditability.</li>
+            <li class="lang-es"><strong>Arquitectura Segura y UX:</strong> Manejo seguro de API Keys en segundo plano, inspector interactivo de evidencias recuperadas, panel de alcance normativo y descarga directa de PDFs oficiales.</li>
+          </ul>
+
+          <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// System Architecture & RAG Pipeline Features:</span>
+            <span class="lang-es">// Arquitectura del Sistema y Características del Pipeline RAG:</span>
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Framework</span>
+              <strong style="font-size: 0.95rem; color: var(--accent-green);">LangChain</strong>
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Vector Store</span>
+              <strong style="font-size: 0.95rem; color: var(--accent-blue);">ChromaDB</strong>
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Embeddings</span>
+              <strong style="font-size: 0.95rem; color: var(--accent-purple);">MiniLM-L12</strong>
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Retrieval Top-K</span>
+              <strong style="font-size: 0.95rem; color: var(--text-main);">k = 6</strong>
+            </div>
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// Interface & Validation Previews (Click to expand):</span>
+            <span class="lang-es">// Demostraciones de Interfaz y Validación (Clic para ampliar):</span>
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
+            <!-- FOTO 1: PRECISIÓN Y CITAS -->
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="border-radius: 4px; overflow: hidden; background: #000; margin-bottom: 8px;">
+                <img src="rag-preview-1.jpg" alt="RAG Legal Accuracy & Source Citation" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.3;">
+                <span class="lang-en"><strong>Citation & Retrieval Accuracy:</strong> Demonstrates exact legal article retrieval (Ley 16.744 Art. 5°) with verbatim source trace and chunk inspection.</span>
+                <span class="lang-es"><strong>Precisión de Recuperación y Citas:</strong> Extrae con exactitud el artículo normativo (Ley 16.744 Art. 5°) con trazabilidad directa de la fuente y visualización de fragmentos.</span>
+              </p>
+            </div>
+
+            <!-- FOTO 2: CONTROL DE ALUCINACIONES Y SCOPE -->
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="border-radius: 4px; overflow: hidden; background: #000; margin-bottom: 8px;">
+                <img src="rag-preview-2.png" alt="Anti-Hallucination Guardrails & Scope Control" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.3;">
+                <span class="lang-en"><strong>Anti-Hallucination & Scope Control:</strong> System strictly declines out-of-scope labor queries (severance pay) alongside sidebar knowledge scope and downloadable source PDFs.</span>
+                <span class="lang-es"><strong>Control de Alucinaciones y Scope:</strong> El asistente rechaza objetivamente consultas fuera del marco cargado (indemnización por despido), integrando el Scope y la descarga directa de PDFs.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">ChromaDB</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">Google Gemini API</span>
+            <span class="tag">Groq API</span>
+            <span class="tag">RAG</span>
+          </div>
+
+          <div style="display: flex; gap: 15px; margin-top: 1rem;">
+            <a href="https://rag-seguridad-laboral-chile.streamlit.app/" target="_blank">🚀 <span class="lang-en">Live App</span><span class="lang-es">Ver App en Vivo</span> →</a>
+            <a href="https://github.com/MarketablePlushiee/rag-seguridad-laboral-chile" target="_blank">📦 <span class="lang-en">Repository</span><span class="lang-es">Repositorio</span> →</a>
+          </div>
+        </div>
+
+        <!-- PROYECTO 3: AUTONOMOUS AGENT -->
         <div class="project-card" data-category="ai">
           <h3>Autonomous Agent (ML-Agents DRL)</h3>
           <p class="lang-en">Reinforcement learning proof of concept implemented in Unity and Python using the Unity ML-Agents Toolkit. Designed and trained an autonomous agent to navigate dynamic obstacle courses through policy optimization.</p>
@@ -956,6 +1045,7 @@
           <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank">View Repository →</a>
         </div>
 
+        <!-- PROYECTO 4: MAGIC HEART -->
         <div class="project-card" data-category="gamedev">
           <h3>Magic Heart - Survival Defense (URP & VFX)</h3>
           <p class="lang-en">Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and dynamic audio management.</p>
@@ -992,6 +1082,7 @@
           <a href="https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense" target="_blank">View Repository →</a>
         </div>
 
+        <!-- PROYECTO 5: SAFEVR -->
         <div class="project-card" data-category="vr gamedev" style="grid-column: 1 / -1;">
           <h3>SafeVR - <span class="lang-en">Industrial Safety Simulator</span><span class="lang-es">Simulador de Seguridad Industrial</span></h3>
           <p>

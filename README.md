@@ -1,59 +1,1475 @@
-# 🌐 Ivan Latrille - Portfolio & Interactive Projects
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ivan Latrille | Developer Portfolio</title>
+  <style>
+    :root {
+      --bg-color: #0d1117;
+      --card-bg: #161b22;
+      --border-color: #30363d;
+      --text-main: #c9d1d9;
+      --text-muted: #8b949e;
+      --accent-green: #3fb950;
+      --accent-blue: #58a6ff;
+      --accent-purple: #a278ff;
+      --crt-glow: rgba(63, 185, 80, 0.15);
+    }
 
-Welcome to my professional portfolio repository! Here you will find web projects, interactive simulations, and applications developed with a focus on Applied Artificial Intelligence, Extended Reality (XR), and Digital Game Design.
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: hidden;
+      position: relative;
+    }
 
----
+    body::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                  linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      z-index: 2000;
+      background-size: 100% 3px, 6px 100%;
+      pointer-events: none;
+      animation: crtFlicker 0.15s infinite;
+    }
 
-### 🚀 Featured Projects
+    body::after {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.75);
+      z-index: 2001;
+      pointer-events: none;
+    }
 
-1. **[🛡️ PPE Audit System](https://github.com/MarketablePlushiee/yolov8-safety-equipment-detection)**: Automated Personal Protective Equipment detection system using YOLOv8, SAHI for high-res gigapixel images, and Streamlit.
-2. **[🧠 Unity ML-Agents PPO](https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO)**: Deep Reinforcement Learning proof of concept training autonomous agents using PPO in Unity 3D.
-3. **[💖 Magic Heart - Survival Defense](https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense)**: Action-arcade survival defense game built in Unity (URP) featuring custom shaders and dynamic wave algorithms.
+    @keyframes crtFlicker {
+      0% { opacity: 0.97; }
+      50% { opacity: 1; }
+      100% { opacity: 0.98; }
+    }
 
----
+    body[data-lang="en"] .lang-es { display: none !important; }
+    body[data-lang="es"] .lang-en { display: none !important; }
 
-### 🛠️ Tech Stack & Tools
+    #hero-terminal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #050505;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      transition: opacity 0.5s ease, visibility 0.5s;
+    }
 
-* **Game Engines & XR:** Unity 3D (URP), Unreal Engine (Basic), OpenXR, Meta Quest 3S.
-* **AI & Machine Learning:** PyTorch, Unity ML-Agents, YOLOv8, Computer Vision, Reinforcement Learning (PPO).
-* **Languages:** C#, Python, C++ (Basic), JavaScript, HTML/CSS.
-* **Tools:** Git, GitHub, Visual Studio, VS Code, Streamlit.
+    .terminal-box {
+      border: 1px solid var(--border-color);
+      padding: 2rem;
+      border-radius: 8px;
+      background-color: var(--card-bg);
+      box-shadow: 0 0 20px var(--crt-glow);
+      text-align: left;
+      max-width: 650px;
+      width: 90%;
+      position: relative;
+      z-index: 101;
+      transition: all 0.4s ease;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
----
+    .terminal-text {
+      color: var(--accent-blue);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      min-height: 1.2rem;
+    }
 
-### 👨‍💻 Contact
+    .terminal-log {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      max-height: 280px;
+      overflow-y: hidden;
+    }
 
-* **Portfolio Website:** marketableplushiee.github.io/Portafolio
-* **Email:** ivan.latrille1@gmail.com
-* **LinkedIn:** Ivan Ignacio Latrille Brito
+    .input-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+    }
 
----
+    .prompt-symbol {
+      color: var(--accent-green);
+      font-weight: bold;
+    }
 
-# 🌐 Iván Latrille - Portafolio y Proyectos Interactivos
+    .command-input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--accent-green);
+      color: var(--accent-green);
+      font-family: inherit;
+      font-size: 1.1rem;
+      outline: none;
+      flex: 1;
+      padding: 5px;
+    }
 
-¡Bienvenido a mi repositorio de portafolio profesional! Aquí encontrarás proyectos web, simulaciones interactivas y aplicaciones desarrolladas con foco en Inteligencia Artificial Aplicada, Realidad Extendida (XR) y Diseño de Juegos Digitales.
+    #main-content {
+      position: relative;
+      z-index: 10;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease;
+      max-width: 1600px;
+      width: 98%;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
 
----
+    #main-content.visible {
+      opacity: 1;
+      visibility: visible;
+    }
 
-### 🚀 Proyectos Destacados
+    header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-top: 0.5rem;
+    }
 
-1. **[🛡️ Sistema de Auditoría EPP](https://github.com/MarketablePlushiee/yolov8-safety-equipment-detection)**: Sistema automatizado de detección de EPP utilizando YOLOv8, SAHI para imágenes de alta resolución y Streamlit.
-2. **[🧠 Unity ML-Agents PPO](https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO)**: Prueba de concepto de Aprendizaje por Refuerzo Profundo entrenando agentes autónomos con PPO en Unity 3D.
-3. **[💖 Magic Heart - Survival Defense](https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense)**: Juego de defensa arcade desarrollado en Unity (URP) con shaders personalizados y algoritmos de generación de oleadas.
+    .header-controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
----
+    .btn-header {
+      background: #238636;
+      color: white;
+      border: 1px solid #2ea043;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    
+    .btn-header:hover {
+      background: #2ea043;
+    }
 
-### 🛠️ Tecnologías y Herramientas
+    .btn-reboot {
+      background: #21262d;
+      color: var(--accent-blue);
+      border: 1px solid var(--border-color);
+    }
 
-* **Motores y XR:** Unity 3D (URP), Unreal Engine (Básico), OpenXR, Meta Quest 3S.
-* **IA y Machine Learning:** PyTorch, Unity ML-Agents, YOLOv8, Visión por Computadora, Aprendizaje por Refuerzo (PPO).
-* **Lenguajes:** C#, Python, C++ (Básico), JavaScript, HTML/CSS.
-* **Herramientas:** Git, GitHub, Visual Studio, VS Code, Streamlit.
+    .btn-reboot:hover {
+      background: #30363d;
+      border-color: var(--accent-blue);
+    }
 
----
+    h1 {
+      color: var(--accent-blue);
+      font-size: 2rem;
+      max-width: 70%;
+      text-shadow: 0 0 8px rgba(88, 166, 255, 0.3);
+    }
 
-### 👨‍💻 Contacto
+    .subtitle {
+      color: var(--accent-green);
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
 
-* **Sitio Web:** marketableplushiee.github.io/Portafolio
-* **Correo:** ivan.latrille1@gmail.com
-* **LinkedIn:** Ivan Ignacio Latrille Brito
+    section {
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      color: var(--accent-green);
+      margin-bottom: 1.5rem;
+      border-left: 3px solid var(--accent-green);
+      padding-left: 0.5rem;
+      text-shadow: 0 0 5px var(--crt-glow);
+    }
+
+    .filter-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-filter {
+      background: #161b22;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .btn-filter.active, .btn-filter:hover {
+      color: var(--accent-green);
+      border-color: var(--accent-green);
+      box-shadow: 0 0 8px var(--crt-glow);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 1000px) {
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding-top: 4.5rem;
+      }
+      .header-controls {
+        top: 0;
+        left: 0;
+        right: auto;
+      }
+      h1 {
+        max-width: 100%;
+        font-size: 1.5rem;
+      }
+      .modal-game-content {
+        width: 95vw !important;
+        height: 75vh !important;
+      }
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .project-card.hidden-card {
+      display: none !important;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
+    }
+
+    .project-card h3 {
+      color: var(--accent-blue);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .credits-box {
+      margin-top: 0.8rem;
+      padding: 0.8rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-left: 2px solid var(--accent-blue);
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    .credits-box strong {
+      color: var(--accent-green);
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      margin: 1rem 0 1rem 0;
+      flex-wrap: wrap;
+      margin-top: auto; 
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 1.2rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .skill-category-card:hover {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
+    }
+
+    .skill-category-card h4 {
+      color: var(--accent-green);
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 0.4rem;
+    }
+
+    .skill-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .badge-skill {
+      background: #0d1117;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, transform 0.1s;
+    }
+
+    .badge-skill:hover {
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+      transform: translateY(-2px);
+    }
+
+    .game-preview-wrapper {
+      width: 100%;
+      max-width: 400px;
+      height: 480px;
+      margin: 1.5rem auto;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+
+    .game-cover-interactive {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .game-cover-interactive img {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: contain; 
+      background-color: #000;
+      z-index: 1;
+    }
+
+    .cover-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 2;
+      transition: background 0.2s;
+    }
+
+    .game-cover-interactive:hover .cover-overlay {
+      background: rgba(0,0,0,0.2);
+    }
+
+    .play-badge {
+      position: relative;
+      z-index: 3;
+      background: #238636;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: 2px solid #2ea043;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    #game-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .modal-game-content {
+      width: 100%;
+      max-width: 650px;
+      height: 85vh;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+      border: none;
+      position: relative;
+    }
+
+    .modal-game-content iframe {
+      width: 100%;
+      height: calc(100% + 90px);
+      border: none;
+      background: #000;
+      margin-bottom: -90px; 
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 20px; right: 30px;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      z-index: 1001;
+      transition: color 0.2s;
+    }
+
+    .close-modal-btn:hover {
+      color: #f85149;
+    }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px; right: 30px;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover {
+      color: #f85149;
+    }
+
+    .zoomable {
+      cursor: zoom-in;
+      transition: transform 0.2s;
+    }
+
+    .zoomable:hover {
+      transform: scale(1.03);
+    }
+
+    .tag {
+      background: #21262d;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .tag:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-action {
+      background: #21262d;
+      border: 1px solid var(--border-color);
+      color: var(--accent-green);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .btn-action:hover {
+      background: #30363d;
+      border-color: var(--accent-green);
+    }
+
+    .btn-cv {
+      background: #238636;
+      border: 1px solid #2ea043;
+      color: white;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-cv:hover {
+      background: #2ea043;
+      text-decoration: none;
+    }
+
+    body.alt-mode {
+      --accent-green: #a278ff !important;
+      --accent-blue: #a278ff !important;
+      --border-color: #5b3191 !important;
+      --crt-glow: rgba(162, 120, 255, 0.4) !important;
+    }
+
+    body.alt-mode h1,
+    body.alt-mode h2,
+    body.alt-mode h3,
+    body.alt-mode h4,
+    body.alt-mode a,
+    body.alt-mode .terminal-text,
+    body.alt-mode .prompt-symbol,
+    body.alt-mode .command-input,
+    body.alt-mode .btn-action,
+    body.alt-mode .credits-box strong {
+      color: #a278ff !important;
+      border-color: #a278ff !important;
+    }
+
+    body.alt-mode .btn-header,
+    body.alt-mode .play-badge,
+    body.alt-mode .btn-cv {
+      background: #5b3191 !important;
+      border-color: #7c44c5 !important;
+    }
+
+    body.alt-mode .btn-filter.active,
+    body.alt-mode .btn-filter:hover {
+      color: #a278ff !important;
+      border-color: #a278ff !important;
+      box-shadow: 0 0 12px rgba(162, 120, 255, 0.4) !important;
+    }
+
+    body.alt-mode .terminal-box {
+      border-color: #a278ff !important;
+      box-shadow: 0 0 35px rgba(162, 120, 255, 0.6) !important;
+      background-image: linear-gradient(rgba(22, 27, 34, 0.85), rgba(22, 27, 34, 0.85)), url('https://i.imgur.com/oc6O3Iw.png') !important;
+      min-height: 520px !important;
+    }
+
+    body.alt-mode .terminal-log {
+      margin-top: auto !important;
+      padding-top: 290px !important;
+    }
+
+    .secret-side-gif {
+      display: none;
+      position: fixed;
+      z-index: 15;
+      pointer-events: none;
+      width: 120px;
+      height: auto;
+      filter: drop-shadow(0 0 10px rgba(162, 120, 255, 0.5));
+    }
+
+    .secret-side-gif.left-1 { top: 10%; left: 1.5%; }
+    .secret-side-gif.left-2 { top: 45%; left: 1.5%; }
+    .secret-side-gif.left-3 { top: 80%; left: 1.5%; }
+
+    .secret-side-gif.right-1 { top: 10%; right: 1.5%; }
+    .secret-side-gif.right-2 { top: 45%; right: 1.5%; }
+    .secret-side-gif.right-3 { top: 80%; right: 1.5%; }
+
+    body.alt-mode .secret-side-gif {
+      display: block !important;
+    }
+
+    @media (max-width: 1400px) {
+      .secret-side-gif {
+        width: 85px;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .secret-side-gif {
+        display: none !important;
+      }
+    }
+      @media (max-width: 900px) {
+      .charts-row-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+</head>
+<body data-lang="en">
+
+  <img src="https://i.imgur.com/uCUYkuT.gif" class="secret-side-gif left-1" alt="asset-01">
+  <img src="https://i.imgur.com/8vbbnyq.gif" class="secret-side-gif left-2" alt="asset-02">
+  <img src="https://i.imgur.com/dF7nGqQ.gif" class="secret-side-gif left-3" alt="asset-03">
+
+  <img src="https://i.imgur.com/dF7nGqQ.gif" class="secret-side-gif right-1" alt="asset-03">
+  <img src="https://i.imgur.com/uCUYkuT.gif" class="secret-side-gif right-2" alt="asset-01">
+  <img src="https://i.imgur.com/8vbbnyq.gif" class="secret-side-gif right-3" alt="asset-02">
+
+  <div id="hero-terminal">
+    <div class="terminal-box" id="term-box">
+      <div>
+        <div id="typewriter" class="terminal-text"></div>
+        <div id="terminal-log" class="terminal-log"></div>
+      </div>
+      <div class="input-line">
+        <span class="prompt-symbol">></span>
+        <input type="text" id="cmd" class="command-input" placeholder="Type &quot;hello world&quot; and press ENTER" autofocus autocomplete="off">
+      </div>
+    </div>
+  </div>
+
+  <div id="game-modal">
+    <button class="close-modal-btn" onclick="closeGame()">&times;</button>
+    <div class="modal-game-content" id="modal-game-container"></div>
+  </div>
+
+  <div id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Zoomed Image">
+  </div>
+
+  <div id="main-content">
+    <header>
+      <div class="header-controls">
+        <button id="audio-toggle" class="btn-header btn-reboot" onclick="toggleAudio()">🔊 Sound</button>
+        <button class="btn-header btn-reboot" onclick="rebootTerminal()">⚡ RE-BOOT TERMINAL</button>
+        <button id="lang-toggle" class="btn-header" onclick="toggleLang()">🌐 EN / ES</button>
+      </div>
+
+      <h1>[ Ivan Ignacio Latrille Brito ]</h1>
+      <p class="subtitle">
+        <span class="lang-en">VR & Game Engineering Student · Applied AI & Reinforcement Learning</span>
+        <span class="lang-es">Estudiante de Ingeniería en RV y Videojuegos · IA Aplicada y Aprendizaje por Refuerzo</span>
+      </p>
+      <p style="margin-top: 0.8rem; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+        <a href="Ivan_Latrille_CV.pdf" target="_blank" class="btn-cv">📄 <span class="lang-en">Download CV (PDF)</span><span class="lang-es">Descargar CV (PDF)</span></a>
+        <a href="https://github.com/MarketablePlushiee" target="_blank">GitHub</a> | 
+        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank">LinkedIn</a> | 
+        <a href="mailto:ivan.latrille1@gmail.com">ivan.latrille1@gmail.com</a>
+        <button class="btn-action" onclick="copyEmail()">📋 <span class="lang-en">Copy Email</span><span class="lang-es">Copiar Correo</span></button>
+      </p>
+      <p style="margin-top: 0.4rem; color: var(--text-muted); font-size: 0.9rem;">
+        📍 Quilicura, Región Metropolitana, Chile
+      </p>
+    </header>
+
+    <section id="about">
+      <h2>// <span class="lang-en">About Me</span><span class="lang-es">Sobre Mí</span></h2>
+      <p class="lang-en">Virtual Reality and Game Design Engineering student at Universidad Bernardo O'Higgins, focused on applied artificial intelligence for interactive systems. Experienced in training reinforcement learning agents (PPO) in simulated environments and leading the development of an industrial-safety VR simulator that won 1st place at the UBO Inicia competition. Looking for an AI internship where I can contribute with Python, model training and evaluation, and learn from a team shipping AI to production.</p>
+      <p class="lang-es">Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo O'Higgins, enfocado en inteligencia artificial aplicada a sistemas interactivos. Con experiencia entrenando agentes mediante aprendizaje por refuerzo (PPO) en entornos simulados y liderando el desarrollo de un simulador de seguridad industrial en RV ganador del 1er lugar en el concurso UBO Inicia. Busco una práctica profesional en IA donde aportar con Python, entrenamiento y evaluación de modelos.</p>
+    </section>
+
+    <section id="skills">
+      <h2>// <span class="lang-en">Technical Skills Matrix</span><span class="lang-es">Matriz de Habilidades Técnicas</span></h2>
+      
+      <div class="skills-grid">
+        <div class="skill-category-card">
+          <h4>// AI & Applied Machine Learning</h4>
+          <div class="skill-badges">
+            <span class="badge-skill">Unity ML-Agents</span>
+            <span class="badge-skill">Reinforcement Learning</span>
+            <span class="badge-skill">PPO Algorithm</span>
+            <span class="badge-skill">PyTorch</span>
+            <span class="badge-skill">TensorBoard</span>
+            <span class="badge-skill">YOLOv8</span>
+            <span class="badge-skill">Ultralytics</span>
+          </div>
+        </div>
+
+        <div class="skill-category-card">
+          <h4>// Core Game Engine & XR</h4>
+          <div class="skill-badges">
+            <span class="badge-skill">Unity 3D (URP)</span>
+            <span class="badge-skill">Unreal Engine</span>
+            <span class="badge-skill">OpenXR</span>
+            <span class="badge-skill">Meta Quest SDK</span>
+            <span class="badge-skill">Shader Graph</span>
+          </div>
+        </div>
+
+        <div class="skill-category-card">
+          <h4>// Programming Languages</h4>
+          <div class="skill-badges">
+            <span class="badge-skill">C#</span>
+            <span class="badge-skill">Python</span>
+            <span class="badge-skill">C++ (Basic)</span>
+            <span class="badge-skill">JavaScript</span>
+            <span class="badge-skill">HTML5 / CSS3</span>
+          </div>
+        </div>
+
+        <div class="skill-category-card">
+          <h4>// Tools & Environments</h4>
+          <div class="skill-badges">
+            <span class="badge-skill">Git & GitHub</span>
+            <span class="badge-skill">Visual Studio</span>
+            <span class="badge-skill">VS Code</span>
+            <span class="badge-skill">WebGL</span>
+            <span class="badge-skill">AudioMixer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>// <span class="lang-en">Featured Projects</span><span class="lang-es">Proyectos Destacados</span></h2>
+
+      <div class="filter-container">
+        <button class="btn-filter active" onclick="filterProjects('all')">[ ALL ]</button>
+        <button class="btn-filter" onclick="filterProjects('ai')">[ AI / MACHINE LEARNING ]</button>
+        <button class="btn-filter" onclick="filterProjects('vr')">[ VR / XR ]</button>
+        <button class="btn-filter" onclick="filterProjects('gamedev')">[ GAME DEV ]</button>
+      </div>
+
+      <div class="projects-grid">
+        
+        <div class="project-card" data-category="ai" style="grid-column: 1 / -1;">
+          <h3>PPE Audit & Monitoring System (YOLOv8)</h3>
+          <p class="lang-en">Industrial safety inspection web application designed to automatically detect Personal Protective Equipment (PPE) in workplace imagery using fine-tuned computer vision.</p>
+          <p class="lang-es">Aplicación web de inspección de seguridad industrial diseñada para detectar automáticamente Equipos de Protección Personal (EPP) en imágenes de trabajo mediante visión por computador.</p>
+          
+          <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+            <li class="lang-en"><strong>Master Dataset Consolidation (ppe-master):</strong> Trained on a 29,087 annotated image dataset (72% Train, 15% Val, 13% Test) created by consolidating 8 domain-specific OSH sub-projects from Roboflow Universe across 5 PPE classes: Helmet, Vest, Boots, Gloves, and Goggles.</li>
+            <li class="lang-es"><strong>Consolidación del Dataset Maestro (ppe-master):</strong> Entrenamiento sobre un dataset de 29.087 imágenes anotadas (72% Train, 15% Val, 13% Test) consolidado a partir de 8 sub-proyectos especializados de Roboflow Universe para 5 clases EPP: Casco, Chaleco, Botas, Guantes y Gafas.</li>
+            
+            <li class="lang-en"><strong>Quantitative Evaluation Metrics:</strong> Evaluated on test dataset after 50 training epochs, achieving peak <strong>mAP@50: 0.751 (75.1%)</strong>, <strong>mAP@50-95: 0.480 (48.0%)</strong>, Precision: 0.681, and Recall: 0.756.</li>
+            <li class="lang-es"><strong>Métricas Cuantitativas:</strong> Resultados evaluados en test tras 50 épocas: <strong>mAP@50: 0.751 (75.1%)</strong>, <strong>mAP@50-95: 0.480 (48.0%)</strong>, Precisión: 0.681 y Exhaustividad (Recall): 0.756.</li>
+
+            <li class="lang-en"><strong>Model Justification & Single-Pass Inference:</strong> Selected YOLOv8 Medium over YOLOv8 Small (+6.2% mAP@50 gain on small classes). Direct 1024px single-pass inference selected for real-time Cloud deployment, eliminating CPU latency penalties while maintaining high accuracy.</li>
+            <li class="lang-es"><strong>Justificación del Modelo e Inferencia Unipaso:</strong> Selección de YOLOv8 Medium sobre YOLOv8 Small (+6.2% mAP@50 en clases pequeñas). Inferencia directa a 1024px optimizada para el despliegue en la nube, eliminando penalizaciones de latencia en CPU con alta precisión.</li>
+
+            <li class="lang-en"><strong>Spatial OHS Compliance & Limitations:</strong> Spatial bounding-box association maps PPE items to individual worker bounding boxes for automated compliance auditing. <em>Known limitations:</em> Severe physical occlusions, extreme low-light environments, and sub-15px distant targets.</li>
+            <li class="lang-es"><strong>Cumplimiento SST Espacial y Limitaciones:</strong> Mapeo de cajas delimitadoras por proximidad espacial para verificar combinaciones de EPP por trabajador. <em>Limitaciones conocidas:</em> Oclusiones severas, ambientes con baja iluminación y objetos de sub-15px a gran distancia.</li>
+          </ul>
+
+          <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// Key Performance Metrics (results.csv summary):</span>
+            <span class="lang-es">// Métricas Clave de Rendimiento (Resumen de results.csv):</span>
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">mAP@50</span>
+              <strong style="font-size: 1.1rem; color: var(--accent-green);">75.1%</strong>
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">mAP@50-95</span>
+              <strong style="font-size: 1.1rem; color: var(--accent-blue);">48.0%</strong>
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Recall</span>
+              <strong style="font-size: 1.1rem; color: var(--accent-purple);">75.6%</strong>
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; background: rgba(0,0,0,0.3); text-align: center;">
+              <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Precision</span>
+              <strong style="font-size: 1.1rem; color: var(--text-main);">68.1%</strong>
+            </div>
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// Application Previews & OHS Audit Panel (Click to expand):</span>
+            <span class="lang-es">// Vistas de la App y Panel de Auditoría SST (Clic para ampliar):</span>
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: #000;">
+              <img src="ppe-preview-1.jpg" alt="PPE Detection Preview 1" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: #000;">
+              <img src="ppe-preview-2.jpg" alt="PPE Detection Preview 2" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
+            </div>
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// Model Training Performance & Metrics (Click to expand):</span>
+            <span class="lang-es">// Rendimiento y Métricas de Entrenamiento (Clic para ampliar):</span>
+          </p>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem; line-height: 1.4;">
+            <span class="lang-en">Quantitative evaluation of the fine-tuned YOLOv8 model based on 50 training epochs, tracking loss metrics and confusion matrix validation.</span>
+            <span class="lang-es">Evaluación cuantitativa del modelo YOLOv8 ajustado tras 50 épocas de entrenamiento, mostrando convergencia de pérdida y matriz de confusión.</span>
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 1.2rem;" class="charts-row-grid">
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="height: 200px; background: #000; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+                <img src="results.png" alt="Training Results Loss" class="zoomable" onclick="openLightbox(this.src)" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">
+                <span class="lang-en"><strong>Loss Convergence:</strong> Box loss decreased from 1.62 to 0.93 over 50 epochs, showing steady convergence without overfitting.</span>
+                <span class="lang-es"><strong>Convergencia de Pérdida:</strong> Pérdida de caja reducida de 1.62 a 0.93 en 50 épocas, mostrando estabilidad sin sobreajuste.</span>
+              </p>
+            </div>
+
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="height: 200px; background: #000; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+                <img src="BoxPR_curve.png" alt="Precision-Recall Curve" class="zoomable" onclick="openLightbox(this.src)" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">
+                <span class="lang-en"><strong>PR Curve:</strong> Class mAP@0.5 evaluations: Helmets (0.88), Vests (0.84), Boots (0.72), Gloves (0.68), Goggles (0.64).</span>
+                <span class="lang-es"><strong>Curva PR:</strong> Evaluaciones mAP@0.5 por clase: Cascos (0.88), Chalecos (0.84), Botas (0.72), Guantes (0.68), Gafas (0.64).</span>
+              </p>
+            </div>
+
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="height: 200px; background: #000; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 8px;">
+                <img src="confusion_matrix.png" alt="Confusion Matrix" class="zoomable" onclick="openLightbox(this.src)" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">
+                <span class="lang-en"><strong>Confusion Matrix:</strong> True-positive rates align along the diagonal; primary misclassifications occur on small distant gloves vs background.</span>
+                <span class="lang-es"><strong>Matriz de Confusión:</strong> Verdaderos positivos concentrados en la diagonal; principales falsos negativos en guantes pequeños contra fondo.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">OpenCV</span>
+          </div>
+          <div style="display: flex; gap: 15px; margin-top: 1rem;">
+            <a href="https://yolov8-safety-equipment-detection-qsj9ufsc4gezwsv7v3t9ms.streamlit.app/" target="_blank">🚀 <span class="lang-en">Live App</span><span class="lang-es">Ver App en Vivo</span> →</a>
+            <a href="https://github.com/MarketablePlushiee/yolov8-safety-equipment-detection" target="_blank">📦 <span class="lang-en">Repository</span><span class="lang-es">Repositorio</span> →</a>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="ai">
+          <h3>Autonomous Agent (ML-Agents DRL)</h3>
+          <p class="lang-en">Reinforcement learning proof of concept implemented in Unity and Python using the Unity ML-Agents Toolkit. Designed and trained an autonomous agent to navigate dynamic obstacle courses through policy optimization.</p>
+          <p class="lang-es">Prueba de concepto de aprendizaje por refuerzo implementada en Unity y Python utilizando el Unity ML-Agents Toolkit. Diseñé y entrené un agente autónomo para navegar circuitos de obstáculos dinámicos mediante optimización de políticas.</p>
+          
+          <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+            <li class="lang-en"><strong>Algorithm & training:</strong> Proximal policy optimization (PPO) using vector observations and continuous action spaces.</li>
+            <li class="lang-es"><strong>Algoritmo y entrenamiento:</strong> Proximal Policy Optimization (PPO) usando observaciones vectoriales y espacios de acción continua.</li>
+            <li class="lang-en"><strong>Reward function architecture:</strong> Custom reward shaping designed to minimize navigation time while penalizing collisions and erratic motion.</li>
+            <li class="lang-es"><strong>Arquitectura de recompensas:</strong> Diseño de recompensas personalizadas para minimizar el tiempo de navegación y penalizar colisiones y movimientos erráticos.</li>
+            <li class="lang-en"><strong>Metrics & telemetry:</strong> Real-time training metrics, entropy loss, and cumulative rewards tracked via TensorBoard.</li>
+            <li class="lang-es"><strong>Métricas y telemetría:</strong> Seguimiento en tiempo real de métricas de entrenamiento, pérdida de entropía y recompensas acumuladas vía TensorBoard.</li>
+          </ul>
+
+          <div style="width: 100%; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: #000; margin-bottom: 1rem;">
+            <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// TensorBoard Training Telemetry (Click to expand):</span>
+            <span class="lang-es">// Telemetría de Entrenamiento TensorBoard (Clic para ampliar):</span>
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
+              <img src="tb-1.png" alt="TensorBoard Reward" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
+              <img src="tb-2.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
+              <img src="tb-3.png" alt="TensorBoard Loss" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
+            </div>
+          </div>
+
+          <div class="tags">
+            <span class="tag">C#</span>
+            <span class="tag">Python</span>
+            <span class="tag">Unity ML-Agents</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">Reinforcement Learning</span>
+            <span class="tag">TensorBoard</span>
+          </div>
+          <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank">View Repository →</a>
+        </div>
+
+        <div class="project-card" data-category="gamedev">
+          <h3>Magic Heart - Survival Defense (URP & VFX)</h3>
+          <p class="lang-en">Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and dynamic audio management.</p>
+          <p class="lang-es">Juego de defensa y supervivencia arcade desarrollado en Unity (URP) para plataformas móviles y táctiles. Cuenta con sistemas de juego dinámicos, efectos visuales personalizados y gestión de audio dinámico.</p>
+          
+          <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+            <li class="lang-en"><strong>Wave system:</strong> Dynamic enemy spawning algorithms with progressive difficulty scaling over time.</li>
+            <li class="lang-es"><strong>Sistema de oleadas:</strong> Algoritmos de generación dinámica de enemigos con escalado progresivo de dificultad.</li>
+            <li class="lang-en"><strong>Graphics & VFX:</strong> Custom Shader Graph integration (Ice slowdown, Magma DOT, hit feedback) and procedural squash/stretch game-feel.</li>
+            <li class="lang-es"><strong>Gráficos y VFX:</strong> Integración de Shader Graphs personalizados (ralentización de hielo, daño por magma, feedback de impacto) y game-feel procedimental de deformación.</li>
+            <li class="lang-en"><strong>Audio & input architecture:</strong> Multi-channel AudioMixer with dynamic pause controls and hybrid touch/mouse Raycast tracking.</li>
+            <li class="lang-es"><strong>Arquitectura de audio e input:</strong> AudioMixer multicanal con controles de pausa dinámicos y sistema de seguimiento por raycast híbrido (táctil y mouse).</li>
+          </ul>
+
+          <div class="game-preview-wrapper">
+            <div id="interactive-cover" class="game-cover-interactive" onclick="launchGame()">
+              <img src="magic-preview.png" alt="Magic Heart Cover">
+              <div class="cover-overlay"></div>
+              <div class="play-badge">
+                <span class="lang-en">▶ PLAY DEMO</span>
+                <span class="lang-es">▶ JUGAR DEMO</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tags">
+            <span class="tag">C#</span>
+            <span class="tag">Unity URP</span>
+            <span class="tag">Shader Graph</span>
+            <span class="tag">WebGL</span>
+            <span class="tag">Game Design</span>
+            <span class="tag">Mobile</span>
+          </div>
+          <a href="https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense" target="_blank">View Repository →</a>
+        </div>
+
+        <div class="project-card" data-category="vr gamedev" style="grid-column: 1 / -1;">
+          <h3>SafeVR - <span class="lang-en">Industrial Safety Simulator</span><span class="lang-es">Simulador de Seguridad Industrial</span></h3>
+          <p>
+            <strong style="color: var(--accent-green);">
+              <span class="lang-en">🏆 1st Place - UBO Inicia Entrepreneurship Contest</span>
+              <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
+            </strong>
+          </p>
+          <p style="margin-top: 0.8rem;" class="lang-en">Industrial safety training often relies on passive presentations or manuals that don't fully prepare people for high-pressure situations. SafeVR was created to explore how interactive simulation could make risk prevention more engaging and practical. Working closely with my team, I served as project leader and lead developer, focusing on building the core Unity prototype, designing intuitive user interactions for Meta Quest, and implementing responsive visual feedback and extinguisher mechanics.</p>
+          <p style="margin-top: 0.8rem;" class="lang-es">La capacitación en seguridad industrial suele depender de presentaciones pasivas que no preparan para situaciones de alta presión. SafeVR nació para explorar cómo una simulación interactiva podía hacer que la prevención fuera más práctica. Trabajando codo a codo en equipo, me desempeñé como líder de proyecto y lead developer, encargándome de desarrollar el prototipo principal en Unity, diseñar interacciones intuitivas para Meta Quest y programar el feedback visual y las mecánicas de los extintores.</p>
+          
+          <div class="credits-box">
+            <p class="lang-en"><strong>Role & Leadership:</strong> Project Manager & Lead Developer (Ivan Latrille).</p>
+            <p class="lang-es"><strong>Rol y Liderazgo:</strong> Líder de Proyecto y Desarrollador Principal (Ivan Latrille).</p>
+            <p style="margin-top: 0.3rem;" class="lang-en"><strong>Team Credits & Collaboration:</strong> Felipe Acuña, Ricardo Olea, Julian Maldonado.</p>
+            <p style="margin-top: 0.3rem;" class="lang-es"><strong>Créditos del Equipo y Colaboración:</strong> Felipe Acuña, Ricardo Olea, Julian Maldonado.</p>
+          </div>
+
+          <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+            <li class="lang-en"><strong>Core architecture & interaction:</strong> Developed the simulation prototype in Unity using OpenXR, tailoring smooth interactions for Meta Quest hardware.</li>
+            <li class="lang-es"><strong>Arquitectura y mecánicas base:</strong> Desarrollo del prototipo de simulación en Unity utilizando OpenXR, implementando interacciones fluidas para hardware Meta Quest.</li>
+            <li class="lang-en"><strong>Emergency scenario flow:</strong> Designed structured emergency response sequences and interactive training loops for hazard handling.</li>
+            <li class="lang-es"><strong>Flujo de escenarios de emergencia:</strong> Diseño de secuencias estructuradas de respuesta a emergencias y bucles de capacitación interactivos.</li>
+            <li class="lang-en"><strong>Extinguisher feedback & mechanics:</strong> Implemented interactive visual feedback and mechanics for simulated fire suppression tools.</li>
+            <li class="lang-es"><strong>Mecánicas de extintor y feedback:</strong> Implementación de retroalimentación visual interactiva y mecánicas para herramientas de supresión de incendios.</li>
+          </ul>
+
+          <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// EtMday 2025 Video Demonstration:</span>
+            <span class="lang-es">// Demostración en Video EtMday 2025:</span>
+          </p>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 1.2rem; background: #000;">
+            <iframe 
+              src="https://www.youtube.com/embed/rJ_wUe6Tru4" 
+              title="SafeVR Demonstration Video EtMday 2025" 
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
+            <span class="lang-en">// Simulation Previews (Click to expand):</span>
+            <span class="lang-es">// Vistas de Simulación (Clic para ampliar):</span>
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
+            <img src="safevr-1.png" alt="SafeVR Gameplay 1" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid var(--border-color);">
+            <img src="safevr-2.png" alt="SafeVR Gameplay 2" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid var(--border-color);">
+            <img src="safevr-3.png" alt="SafeVR Gameplay 3" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid var(--border-color);">
+            <img src="safevr-4.png" alt="SafeVR Gameplay 4" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 6px; border: 1px solid var(--border-color);">
+          </div>
+
+          <div class="tags">
+            <span class="tag">C#</span>
+            <span class="tag">Unity 3D</span>
+            <span class="tag">OpenXR</span>
+            <span class="tag">Meta Quest</span>
+            <span class="tag">Gameplay Programming</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>// <span class="lang-en">Experience & Education</span><span class="lang-es">Experiencia y Educación</span></h2>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="color: var(--accent-blue); font-size: 1.1rem;">Universidad Bernardo O'Higgins</h3>
+        <p style="color: var(--text-main);">
+          <strong class="lang-en">Bachelor's Degree in Virtual Reality and Digital Game Design Engineering</strong>
+          <strong class="lang-es">Ingeniería en Realidad Virtual y Diseño de Juegos Digitales</strong>
+          <span class="lang-en">(Expected graduation: 2027)</span><span class="lang-es">(Egreso estimado: 2027)</span>
+        </p>
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="color: var(--accent-blue); font-size: 1.1rem;">Colegio Padre Pedro Arrupe</h3>
+        <p style="color: var(--text-main);">
+          <strong class="lang-en">High School Diploma & Technical-Professional Degree in Automotive Mechanics</strong>
+          <strong class="lang-es">Licenciatura de Enseñanza Media y Título Técnico Profesional en Mecánica Automotriz</strong> 
+          (2019 - 2020)
+        </p>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <h3 style="color: var(--accent-blue); font-size: 1.1rem;">
+          <span class="lang-en">Logistics & Operational Assistant</span>
+          <span class="lang-es">Asistente Logístico y Operativo</span>
+        </h3>
+        <p style="color: var(--text-main);">
+          <em>Automotora Inalco S.A. | Inalcar S.A. | Automotriz Forcenter S.A.</em> 
+          <span class="lang-en">(Jan 2022 - Present)</span>
+          <span class="lang-es">(Enero 2022 - Presente)</span>
+        </p>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;" class="lang-en">Branch operational management, customer service, and technical problem-solving at the point of sale.</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;" class="lang-es">Gestión operativa de sucursal, atención al cliente y resolución de problemas técnicos en el punto de atención.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const cmdInput = document.getElementById('cmd');
+    const heroTerminal = document.getElementById('hero-terminal');
+    const mainContent = document.getElementById('main-content');
+    const terminalLog = document.getElementById('terminal-log');
+    const typewriterEl = document.getElementById('typewriter');
+
+    const terminali18n = {
+      en: {
+        welcomeText: '> System initialized. Type "hello world" and press ENTER to access (or type "help" for commands):',
+        placeholder: 'Type "hello world" and press ENTER',
+        helpTitle: 'Available system commands:',
+        cmdHello: '"hello world" — Access portfolio',
+        cmdLang: '"lang es" / "lang en" — Change system language',
+        cmdHelp: '"help" — Display command list',
+        cmdCredits: '"credits" — Display portfolio developer credits',
+        cmdClear: '"clear" — Clear terminal screen',
+        langChanged: '[System] Language changed to English (EN).',
+        langUsage: '[System] Usage: "lang es" (Spanish) or "lang en" (English)',
+        creditsText: 'Portfolio Created, Designed & Developed by Ivan Latrille.',
+        secMsg: 'aHR0cHM6Ly95b3V0dS5iZS82c0FRMXd1WXp4az9zaT1OSGY0YlZwb0UwdHR3ZnVw',
+        accessDenied: 'Access denied. Command "{val}" not recognized. Type "hello world" to enter.'
+      },
+      es: {
+        welcomeText: '> Sistema inicializado. Escribe "hello world" y presiona ENTER para acceder (o escribe "help" para ver comandos):',
+        placeholder: 'Escribe "hello world" y presiona ENTER',
+        helpTitle: 'Comandos de sistema disponibles:',
+        cmdHello: '"hello world" — Acceder al portafolio',
+        cmdLang: '"lang es" / "lang en" — Cambiar idioma del sistema',
+        cmdHelp: '"help" — Mostrar lista de comandos',
+        cmdCredits: '"credits" — Mostrar créditos del desarrollador',
+        cmdClear: '"clear" — Limpiar pantalla de terminal',
+        langChanged: '[System] Idioma cambiado a Español (ES).',
+        langUsage: '[System] Uso: "lang es" (Español) o "lang en" (Inglés)',
+        creditsText: 'Portafolio Creado, Diseñado y Desarrollado por Ivan Latrille.',
+        secMsg: 'aHR0cHM6Ly95b3V0dS5iZS82c0FRMXd1WXp4az9zaT1OSGY0YlZwb0UwdHR3ZnVw',
+        accessDenied: 'Access denied. Comando "{val}" no reconocido. Escribe "hello world" para ingresar.'
+      }
+    };
+
+    let commandHistory = [];
+    let currentLang = localStorage.getItem('portfolio-lang') || 'en';
+    let audioEnabled = true;
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let ambientDroneNode1 = null;
+    let ambientDroneNode2 = null;
+    let ambientGainNode = null;
+    let isAmbientPlaying = false;
+
+    function decodeUtf8Base64(str) {
+      return decodeURIComponent(escape(atob(str)));
+    }
+
+    function startAmbientDrone() {
+      if (!audioEnabled || isAmbientPlaying) return;
+      try {
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        
+        ambientDroneNode1 = audioCtx.createOscillator();
+        ambientDroneNode2 = audioCtx.createOscillator();
+        ambientGainNode = audioCtx.createGain();
+
+        ambientDroneNode1.type = 'sine';
+        ambientDroneNode1.frequency.setValueAtTime(55, audioCtx.currentTime);
+
+        ambientDroneNode2.type = 'triangle';
+        ambientDroneNode2.frequency.setValueAtTime(110, audioCtx.currentTime);
+
+        ambientGainNode.gain.setValueAtTime(0.002, audioCtx.currentTime);
+
+        ambientDroneNode1.connect(ambientGainNode);
+        ambientDroneNode2.connect(ambientGainNode);
+        ambientGainNode.connect(audioCtx.destination);
+
+        ambientDroneNode1.start();
+        ambientDroneNode2.start();
+        isAmbientPlaying = true;
+      } catch (e) {}
+    }
+
+    function stopAmbientDrone() {
+      if (!isAmbientPlaying) return;
+      try {
+        if (ambientDroneNode1) ambientDroneNode1.stop();
+        if (ambientDroneNode2) ambientDroneNode2.stop();
+        isAmbientPlaying = false;
+      } catch (e) {}
+    }
+
+    function playKeyClick() {
+      if (!audioEnabled) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(900, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(450, audioCtx.currentTime + 0.04);
+        gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.04);
+      } catch (e) {}
+    }
+
+    function playBootSound() {
+      if (!audioEnabled) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(950, audioCtx.currentTime + 0.35);
+        gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.35);
+      } catch (e) {}
+    }
+
+    function playClickSound() {
+      if (!audioEnabled) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.05);
+        gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.05);
+      } catch (e) {}
+    }
+
+    function playHoverSound(e) {
+      if (!audioEnabled) return;
+      if (e && e.stopPropagation) e.stopPropagation();
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(950, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1400, audioCtx.currentTime + 0.025);
+        gain.gain.setValueAtTime(0.002, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.025);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.025);
+      } catch (err) {}
+    }
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      const btn = document.getElementById('audio-toggle');
+      btn.textContent = audioEnabled ? '🔊 Sound' : '🔇 Muted';
+      
+      if (!audioEnabled) {
+        stopAmbientDrone();
+      } else if (mainContent.classList.contains('visible')) {
+        startAmbientDrone();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const interactiveElements = document.querySelectorAll('button, a, .project-card, .skill-category-card, .badge-skill, .tag');
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', playHoverSound);
+        el.addEventListener('click', (e) => {
+          if (el.classList.contains('badge-skill') || el.classList.contains('tag')) {
+            e.stopPropagation();
+          }
+          playClickSound();
+        });
+      });
+    });
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.body.setAttribute('data-lang', lang);
+      localStorage.setItem('portfolio-lang', lang);
+      
+      const t = terminali18n[currentLang];
+      cmdInput.placeholder = t.placeholder;
+      typewriterEl.textContent = t.welcomeText;
+
+      renderLogHistory();
+    }
+
+    function toggleLang() {
+      const newLang = document.body.getAttribute('data-lang') === 'en' ? 'es' : 'en';
+      setLanguage(newLang);
+    }
+
+    function renderLogHistory() {
+      const t = terminali18n[currentLang];
+      terminalLog.innerHTML = '';
+      
+      commandHistory.forEach(item => {
+        if (item.type === 'help') {
+          terminalLog.innerHTML += `
+            <div style="color:var(--accent-blue); margin: 0.4rem 0;">
+              ${t.helpTitle}
+              <div style="padding-left: 0.8rem; margin-top: 0.2rem; color: var(--accent-green);">
+                > ${t.cmdHello}<br>
+                > ${t.cmdLang}<br>
+                > ${t.cmdHelp}<br>
+                > ${t.cmdCredits}<br>
+                > ${t.cmdClear}
+              </div>
+            </div>`;
+        } else if (item.type === 'langChanged') {
+          terminalLog.innerHTML += `<p style="color:var(--accent-green);">${t.langChanged}</p>`;
+        } else if (item.type === 'langUsage') {
+          terminalLog.innerHTML += `<p style="color:var(--accent-blue);">${t.langUsage}</p>`;
+        } else if (item.type === 'credits') {
+          terminalLog.innerHTML += `<p style="color:var(--accent-green);">${t.creditsText}</p>`;
+        } else if (item.type === 'alt') {
+          terminalLog.innerHTML += `<p style="color:#a278ff; font-weight:bold; font-size:1.15rem; text-shadow: 0 0 10px rgba(162,120,255,0.6);">[SECRET] WAH! You shouldn't be here... Sending Tako to re-education...</p>`;
+        } else if (item.type === 'denied') {
+          const deniedMsg = t.accessDenied.replace('{val}', item.val);
+          terminalLog.innerHTML += `<p style="color:#f85149;">${deniedMsg}</p>`;
+        }
+      });
+      terminalLog.scrollTop = terminalLog.scrollHeight;
+    }
+
+    let charIndex = 0;
+    function typeEffect() {
+      const fullText = terminali18n[currentLang].welcomeText;
+      if (charIndex < fullText.length) {
+        typewriterEl.textContent += fullText.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeEffect, 25);
+      }
+    }
+
+    window.addEventListener('load', () => {
+      setLanguage(currentLang);
+      typewriterEl.textContent = '';
+      typeEffect();
+    });
+
+    function copyEmail() {
+      navigator.clipboard.writeText("ivan.latrille1@gmail.com");
+      alert("Correo copiado al portapapeles / Email copied to clipboard!");
+    }
+
+    function openPortfolio() {
+      playBootSound();
+      heroTerminal.style.opacity = '0';
+      setTimeout(() => {
+        heroTerminal.style.display = 'none';
+        mainContent.classList.add('visible');
+        startAmbientDrone();
+        initScrollObserve();
+      }, 500);
+    }
+
+    function rebootTerminal() {
+      stopAmbientDrone();
+      mainContent.classList.remove('visible');
+      heroTerminal.style.display = 'flex';
+      setTimeout(() => {
+        heroTerminal.style.opacity = '1';
+        cmdInput.focus();
+      }, 50);
+    }
+
+    cmdInput.addEventListener('keydown', function(e) {
+      if (e.key.length === 1 || e.key === 'Backspace') {
+        playKeyClick();
+      }
+
+      if (e.key === 'Enter') {
+        const val = cmdInput.value.trim().toLowerCase();
+        cmdInput.value = '';
+
+        if (val === 'hello world') {
+          openPortfolio();
+        } else if (btoa(val) === 'aW5h') {
+          document.body.classList.add('alt-mode');
+          commandHistory.push({ type: 'alt' });
+          renderLogHistory();
+          setTimeout(() => {
+            window.open(decodeUtf8Base64(terminali18n[currentLang].secMsg), '_blank');
+          }, 850);
+        } else if (val === 'help') {
+          commandHistory.push({ type: 'help' });
+          renderLogHistory();
+        } else if (val === 'lang es') {
+          commandHistory.push({ type: 'langChanged' });
+          setLanguage('es');
+        } else if (val === 'lang en') {
+          commandHistory.push({ type: 'langChanged' });
+          setLanguage('en');
+        } else if (val === 'lang') {
+          commandHistory.push({ type: 'langUsage' });
+          renderLogHistory();
+        } else if (val === 'credits') {
+          commandHistory.push({ type: 'credits' });
+          renderLogHistory();
+        } else if (val === 'clear') {
+          commandHistory = [];
+          document.body.classList.remove('alt-mode');
+          renderLogHistory();
+        } else {
+          commandHistory.push({ type: 'denied', val: val });
+          renderLogHistory();
+        }
+      }
+    });
+
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const filterBtns = document.querySelectorAll('.btn-filter');
+
+      filterBtns.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (category === 'all' || cat.split(' ').includes(category)) {
+          card.classList.remove('hidden-card');
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+    }
+
+    function initScrollObserve() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+    }
+
+    function launchGame() {
+      const modal = document.getElementById('game-modal');
+      const container = document.getElementById('modal-game-container');
+      modal.style.display = 'flex';
+      container.innerHTML = '<iframe src="https://itch.io/embed-upload/18917167?color=000000" allowfullscreen></iframe>';
+    }
+
+    function closeGame() {
+      const modal = document.getElementById('game-modal');
+      const container = document.getElementById('modal-game-container');
+      modal.style.display = 'none';
+      container.innerHTML = '';
+    }
+
+    function openLightbox(imgSrc) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = imgSrc;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.style.display = 'none';
+      document.getElementById('lightbox-img').src = '';
+    }
+  </script>
+</body>
+</html>
