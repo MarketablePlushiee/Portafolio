@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ivan Latrille | Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --bg-color: #0d1117;
@@ -29,6 +33,7 @@
       font-family: 'Courier New', Courier, monospace;
       overflow-x: hidden;
       position: relative;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     body::before {
@@ -196,6 +201,17 @@
     .btn-reboot:hover {
       background: #30363d;
       border-color: var(--accent-blue);
+    }
+
+    .btn-executive-toggle {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid #38bdf8;
+    }
+
+    .btn-executive-toggle:hover {
+      background: #38bdf8;
+      color: #0b0f19;
     }
 
     h1 {
@@ -659,6 +675,72 @@
       display: block !important;
     }
 
+    /* ========================================================= */
+    /* MODO EJECUTIVO / SOBRIO (TOGGLE DINÁMICO VIA CSS)         */
+    /* ========================================================= */
+    body.executive-mode {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      --bg-color: #0b0f19 !important;
+      --card-bg: #131b2e !important;
+      --border-color: #1e293d !important;
+      --text-main: #f3f4f6 !important;
+      --text-muted: #9ca3af !important;
+      --accent-green: #34d399 !important;
+      --accent-blue: #38bdf8 !important;
+      --accent-purple: #c084fc !important;
+      --crt-glow: rgba(56, 189, 248, 0.15) !important;
+    }
+
+    /* Desactivar efectos CRT retro */
+    body.executive-mode::before,
+    body.executive-mode::after {
+      display: none !important;
+    }
+
+    body.executive-mode h1 {
+      font-weight: 800 !important;
+      letter-spacing: -0.02em !important;
+      text-shadow: none !important;
+      color: #ffffff !important;
+    }
+
+    body.executive-mode h2 {
+      font-weight: 700 !important;
+      border-left: 4px solid var(--accent-blue) !important;
+      color: #ffffff !important;
+      text-shadow: none !important;
+    }
+
+    body.executive-mode .project-card,
+    body.executive-mode .skill-category-card {
+      border-radius: 12px !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+      border-color: #1e293d !important;
+    }
+
+    body.executive-mode .project-card:hover,
+    body.executive-mode .skill-category-card:hover {
+      border-color: var(--accent-blue) !important;
+      box-shadow: 0 8px 30px rgba(56, 189, 248, 0.15) !important;
+      transform: translateY(-2px);
+    }
+
+    body.executive-mode .btn-filter,
+    body.executive-mode .btn-header,
+    body.executive-mode .btn-action,
+    body.executive-mode .btn-cv {
+      border-radius: 8px !important;
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    body.executive-mode .badge-skill,
+    body.executive-mode .tag {
+      border-radius: 6px !important;
+      font-family: 'Inter', sans-serif !important;
+      background: #1e293d !important;
+      border-color: #334155 !important;
+    }
+
     @media (max-width: 1400px) {
       .secret-side-gif {
         width: 85px;
@@ -714,6 +796,9 @@
     <header>
       <div class="header-controls">
         <button id="audio-toggle" class="btn-header btn-reboot" onclick="toggleAudio()">🔊 Sound</button>
+        <button id="view-toggle" class="btn-header btn-executive-toggle" onclick="toggleExecutiveMode()">
+          💼 <span class="lang-en">Executive View</span><span class="lang-es">Vista Ejecutiva</span>
+        </button>
         <button class="btn-header btn-reboot" onclick="rebootTerminal()">⚡ RE-BOOT TERMINAL</button>
         <button id="lang-toggle" class="btn-header" onclick="toggleLang()">🌐 EN / ES</button>
       </div>
@@ -959,7 +1044,6 @@
           </p>
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-bottom: 1.2rem;">
-            <!-- FOTO 1: PRECISIÓN Y CITAS (.png) -->
             <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
               <div style="border-radius: 4px; overflow: hidden; background: #000; margin-bottom: 8px;">
                 <img src="rag-preview-1.png" alt="RAG Legal Accuracy & Source Citation" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
@@ -970,7 +1054,6 @@
               </p>
             </div>
 
-            <!-- FOTO 2: CONTROL DE ALUCINACIONES Y SCOPE (.png) -->
             <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
               <div style="border-radius: 4px; overflow: hidden; background: #000; margin-bottom: 8px;">
                 <img src="rag-preview-2.png" alt="Anti-Hallucination Guardrails & Scope Control" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
@@ -1238,6 +1321,19 @@
       return decodeURIComponent(escape(atob(str)));
     }
 
+    function toggleExecutiveMode() {
+      document.body.classList.toggle('executive-mode');
+      const isExec = document.body.classList.contains('executive-mode');
+      localStorage.setItem('portfolio-view-mode', isExec ? 'executive' : 'terminal');
+      
+      const toggleBtn = document.getElementById('view-toggle');
+      if (toggleBtn) {
+        toggleBtn.innerHTML = isExec 
+          ? '💻 <span class="lang-en">Terminal View</span><span class="lang-es">Vista Terminal</span>' 
+          : '💼 <span class="lang-en">Executive View</span><span class="lang-es">Vista Ejecutiva</span>';
+      }
+    }
+
     function startAmbientDrone() {
       if (!audioEnabled || isAmbientPlaying) return;
       try {
@@ -1368,6 +1464,11 @@
           playClickSound();
         });
       });
+
+      // Cargar preferencia guardada de Vista Ejecutiva
+      if (localStorage.getItem('portfolio-view-mode') === 'executive') {
+        toggleExecutiveMode();
+      }
     });
 
     function setLanguage(lang) {
