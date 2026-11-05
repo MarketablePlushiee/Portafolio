@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ivan Latrille | Developer Portfolio</title>
+  <title>Ivan Latrille | Developer & AI Specialist Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     /* ========================================================= */
-    /* 1. MODO TERMINAL / HACKER (BASE ORIGINAL INTACTA)          */
+    /* 1. MODO TERMINAL / HACKER (ESTILOS ORIGINALES COMPLETOS)   */
     /* ========================================================= */
     :root {
       --bg-color: #0d1117;
@@ -24,11 +24,7 @@
       --crt-glow: rgba(63, 185, 80, 0.15);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
       background-color: var(--bg-color);
@@ -84,8 +80,7 @@
     }
 
     #hero-terminal {
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       background-color: #050505;
       display: flex; flex-direction: column;
@@ -120,7 +115,6 @@
       position: relative; z-index: 10; opacity: 0; visibility: hidden;
       transition: opacity 0.8s ease; max-width: 1600px; width: 98%; margin: 0 auto; padding: 2rem 1rem;
     }
-
     #main-content.visible { opacity: 1; visibility: visible; }
 
     header {
@@ -236,75 +230,180 @@
     @media (max-width: 900px) { .charts-row-grid { grid-template-columns: 1fr !important; } }
 
     /* ========================================================= */
-    /* 2. MODO EJECUTIVO / CORPORATIVO (ESTILO MAQUETA DE HERMANO)*/
+    /* 2. MODO EJECUTIVO / CORPORATIVO HIGH-FIDELITY             */
     /* ========================================================= */
     #executive-view { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem 4rem 1.5rem; }
-    .exec-nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid #1e293d; margin-bottom: 2.5rem; }
-    .exec-logo { font-size: 1.4rem; font-weight: 800; color: #38bdf8; background: #1e293d; padding: 0.3rem 0.8rem; border-radius: 8px; }
-    .exec-nav-links { display: flex; gap: 20px; align-items: center; }
-    .exec-nav-links a { color: #9ca3af; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
-    .exec-nav-links a:hover { color: #f3f4f6; }
-    .exec-btn-cv { background: #0284c7; color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; }
+    
+    .exec-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 0; border-bottom: 1px solid #1e293b; margin-bottom: 2.5rem;
+    }
+    
+    .exec-logo {
+      font-size: 1.3rem; font-weight: 800; color: #38bdf8; background: #1e293b;
+      padding: 0.35rem 0.85rem; border-radius: 8px; letter-spacing: 0.05em;
+    }
+    
+    .exec-nav-links { display: flex; gap: 24px; align-items: center; }
+    .exec-nav-links a { color: #94a3b8; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+    .exec-nav-links a:hover { color: #f8fafc; }
+    
+    .exec-btn-cv-header {
+      background: #0284c7; color: #ffffff !important; padding: 0.55rem 1.1rem;
+      border-radius: 6px; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; transition: background 0.2s;
+    }
+    .exec-btn-cv-header:hover { background: #0369a1; }
 
-    .exec-hero { display: grid; grid-template-columns: 1fr 380px; gap: 3rem; align-items: center; margin-bottom: 4rem; }
-    @media (max-width: 960px) { .exec-hero { grid-template-columns: 1fr; } }
-    .exec-hero-tag { color: #9ca3af; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 0.5rem; }
-    .exec-hero-title { font-size: 2.8rem; font-weight: 800; line-height: 1.1; color: #ffffff; margin-bottom: 0.8rem; }
-    .exec-hero-subtitle { color: #38bdf8; font-size: 1.2rem; font-weight: 600; margin-bottom: 1.2rem; }
-    .exec-hero-desc { color: #9ca3af; font-size: 1rem; line-height: 1.6; margin-bottom: 1.8rem; }
-    .exec-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 1.5rem; }
-    .exec-btn-main { background: #0284c7; color: white; padding: 0.75rem 1.3rem; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-    .exec-btn-sec { background: #1e293d; color: #f3f4f6; border: 1px solid #334155; padding: 0.75rem 1.2rem; border-radius: 8px; font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    /* Hero Ejecutivo */
+    .exec-hero { display: grid; grid-template-columns: 1fr 400px; gap: 3.5rem; align-items: center; margin-bottom: 4rem; }
+    @media (max-width: 980px) { .exec-hero { grid-template-columns: 1fr; } }
+    
+    .exec-hero-tag { color: #94a3b8; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.6rem; }
+    .exec-hero-title { font-size: 3rem; font-weight: 800; line-height: 1.1; color: #ffffff; margin-bottom: 0.8rem; }
+    .exec-hero-subtitle { color: #38bdf8; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.2rem; line-height: 1.4; }
+    .exec-hero-desc { color: #94a3b8; font-size: 0.98rem; line-height: 1.65; margin-bottom: 2rem; }
 
-    .exec-profile-card { background: #131b2e; border: 1px solid #1e293d; border-radius: 16px; padding: 1.5rem; text-align: center; }
-    .exec-avatar { width: 140px; height: 140px; border-radius: 50%; background: #1e293d; margin: 0 auto 1.2rem auto; display: flex; justify-content: center; align-items: center; font-size: 3rem; border: 3px solid #38bdf8; }
-    .exec-quote { font-style: italic; color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.2rem; padding: 0.8rem; background: rgba(0,0,0,0.2); border-radius: 8px; }
-    .exec-pillars { display: flex; flex-direction: column; gap: 8px; text-align: left; font-size: 0.85rem; color: #9ca3af; }
-    .exec-pillars span::before { content: "📊 "; }
+    .exec-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 1.8rem; }
+    
+    .exec-btn-blue {
+      background: #0284c7; color: #ffffff; padding: 0.75rem 1.4rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;
+    }
+    .exec-btn-blue:hover { background: #0369a1; text-decoration: none; }
 
-    .exec-section-title { font-size: 1.6rem; font-weight: 700; color: #ffffff; margin-bottom: 1.8rem; display: flex; align-items: center; justify-content: space-between; }
-    .exec-section-sub { font-size: 0.85rem; color: #9ca3af; font-weight: 400; }
-    .exec-spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
-    .exec-spec-card { background: #131b2e; border: 1px solid #1e293d; border-radius: 12px; padding: 1.5rem; transition: transform 0.2s, border-color 0.2s; }
-    .exec-spec-card:hover { transform: translateY(-4px); border-color: #38bdf8; }
-    .exec-spec-icon { font-size: 2rem; margin-bottom: 1rem; color: #38bdf8; }
-    .exec-spec-card h3 { font-size: 1.1rem; color: #ffffff; margin-bottom: 0.5rem; }
-    .exec-spec-card p { font-size: 0.88rem; color: #9ca3af; line-height: 1.5; }
+    .exec-btn-white {
+      background: #ffffff; color: #0f172a; padding: 0.75rem 1.4rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;
+    }
+    .exec-btn-white:hover { background: #e2e8f0; text-decoration: none; }
 
-    .exec-projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.8rem; margin-bottom: 4rem; }
-    .exec-project-card { background: #131b2e; border: 1px solid #1e293d; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
-    .exec-project-img { height: 180px; width: 100%; object-fit: cover; background: #000; }
-    .exec-project-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
-    .exec-project-badge { display: inline-block; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.8rem; align-self: flex-start; }
-    .exec-project-body h3 { font-size: 1.2rem; color: #ffffff; margin-bottom: 0.5rem; }
-    .exec-project-body p { font-size: 0.88rem; color: #9ca3af; line-height: 1.5; margin-bottom: 1.2rem; }
-    .exec-project-actions { display: flex; gap: 10px; margin-top: auto; }
-    .exec-project-actions a { flex: 1; text-align: center; padding: 0.5rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
-    .btn-exec-case { background: #0284c7; color: white; }
-    .btn-exec-git { background: #1e293d; color: #f3f4f6; border: 1px solid #334155; }
+    .exec-btn-dark {
+      background: #1e293b; color: #f8fafc; border: 1px solid #334155; padding: 0.75rem 1.4rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;
+    }
+    .exec-btn-dark:hover { background: #334155; text-decoration: none; }
 
-    .exec-skills-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem; }
-    @media (max-width: 768px) { .exec-skills-split { grid-template-columns: 1fr; } }
-    .exec-skills-box { background: #131b2e; border: 1px solid #1e293d; border-radius: 12px; padding: 1.8rem; }
-    .exec-skills-box h3 { font-size: 1.1rem; color: #ffffff; margin-bottom: 1.2rem; }
-    .exec-tech-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .exec-chip { background: #1e293d; border: 1px solid #334155; color: #f3f4f6; padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; font-weight: 500; }
-    .exec-check-list { display: flex; flex-direction: column; gap: 12px; }
-    .exec-check-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #cbd5e1; }
-    .exec-check-icon { width: 20px; height: 20px; background: rgba(52, 211, 153, 0.2); color: #34d399; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.75rem; font-weight: bold; }
+    .exec-meta-bar {
+      display: flex; gap: 18px; flex-wrap: wrap; align-items: center; font-size: 0.88rem; color: #94a3b8;
+    }
+    .exec-meta-bar a { color: #38bdf8; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+    .exec-meta-bar a:hover { text-decoration: underline; }
 
-    .exec-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
-    .exec-timeline-item { background: #131b2e; border: 1px solid #1e293d; border-radius: 12px; padding: 1.2rem; position: relative; }
-    .exec-timeline-item::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: #0284c7; border-radius: 12px 12px 0 0; }
-    .exec-tl-year { font-size: 0.8rem; color: #38bdf8; font-weight: 600; margin-bottom: 0.4rem; }
-    .exec-tl-title { font-size: 0.95rem; color: #ffffff; font-weight: 700; margin-bottom: 0.3rem; }
-    .exec-tl-desc { font-size: 0.82rem; color: #9ca3af; line-height: 1.4; }
+    /* Tarjeta Derecha Perfil Foto */
+    .exec-profile-card {
+      background: #0f172a; border: 1px solid #1e293b; border-radius: 20px; padding: 1.8rem; position: relative;
+    }
+    
+    .exec-avatar-container {
+      width: 170px; height: 170px; border-radius: 50%; border: 4px solid #38bdf8;
+      margin: 0 auto 1.5rem auto; overflow: hidden; background: #1e293b;
+      display: flex; justify-content: center; align-items: center;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+    }
 
-    .exec-footer { background: linear-gradient(135deg, #131b2e 0%, #0b0f19 100%); border: 1px solid #1e293d; border-radius: 16px; padding: 2.5rem; text-align: center; }
-    .exec-footer h2 { font-size: 2rem; color: #ffffff; margin-bottom: 0.5rem; }
-    .exec-footer p { color: #9ca3af; margin-bottom: 1.5rem; }
-    .exec-footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-    .exec-footer-links a { color: #38bdf8; text-decoration: none; font-weight: 600; }
+    .exec-avatar-img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+    }
+
+    .exec-badge-topright {
+      position: absolute; top: 15px; right: 15px; text-align: right; font-size: 0.65rem;
+      font-weight: 800; color: #38bdf8; letter-spacing: 0.08em; line-height: 1.3;
+    }
+
+    .exec-quote-box {
+      background: #1e293b; border-radius: 10px; padding: 0.9rem 1.2rem; margin-bottom: 1.4rem; text-align: center;
+    }
+    .exec-quote-text { font-style: italic; color: #cbd5e1; font-size: 0.92rem; font-weight: 500; }
+
+    .exec-pillars-list { display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; color: #cbd5e1; }
+    .exec-pillar-item { display: flex; align-items: center; gap: 10px; }
+    .exec-pillar-icon { color: #38bdf8; display: flex; align-items: center; justify-content: center; width: 22px; }
+
+    /* Áreas de Especialización */
+    .exec-section-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 2rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.8rem;
+    }
+    .exec-section-header h2 { font-size: 1.7rem; font-weight: 800; color: #ffffff; margin: 0; border: none; padding: 0; text-shadow: none; }
+    .exec-section-sub { font-size: 0.78rem; color: #64748b; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .exec-spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.5rem; margin-bottom: 4.5rem; }
+    .exec-spec-card {
+      background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 1.8rem;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .exec-spec-card:hover { transform: translateY(-4px); border-color: #38bdf8; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+    .exec-spec-icon-box {
+      width: 48px; height: 48px; border-radius: 12px; background: rgba(56, 189, 248, 0.1);
+      display: flex; justify-content: center; align-items: center; color: #38bdf8; margin-bottom: 1.2rem;
+    }
+    .exec-spec-card h3 { font-size: 1.15rem; color: #ffffff; margin-bottom: 0.6rem; font-weight: 700; }
+    .exec-spec-card p { font-size: 0.88rem; color: #94a3b8; line-height: 1.55; }
+
+    /* Proyectos 3 Columnas */
+    .exec-projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.8rem; margin-bottom: 4.5rem; }
+    .exec-project-card {
+      background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; overflow: hidden;
+      display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s;
+    }
+    .exec-project-card:hover { transform: translateY(-4px); border-color: #38bdf8; }
+    .exec-project-img { height: 190px; width: 100%; object-fit: cover; background: #000; }
+    .exec-project-body { padding: 1.6rem; display: flex; flex-direction: column; flex: 1; }
+    
+    .exec-project-badge {
+      display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.15); color: #38bdf8;
+      padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.78rem; font-weight: 700; margin-bottom: 0.9rem; align-self: flex-start;
+    }
+    .exec-project-body h3 { font-size: 1.25rem; color: #ffffff; margin-bottom: 0.6rem; font-weight: 700; }
+    .exec-project-body p { font-size: 0.88rem; color: #94a3b8; line-height: 1.55; margin-bottom: 1.5rem; }
+    
+    .exec-project-actions { display: flex; gap: 12px; margin-top: auto; }
+    .exec-project-actions a {
+      flex: 1; text-align: center; padding: 0.65rem 0.8rem; border-radius: 8px;
+      font-size: 0.88rem; font-weight: 600; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+    }
+
+    /* Habilidades Split */
+    .exec-skills-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4.5rem; }
+    @media (max-width: 800px) { .exec-skills-split { grid-template-columns: 1fr; } }
+    .exec-skills-box { background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 2rem; }
+    .exec-skills-box h3 { font-size: 1.2rem; color: #ffffff; margin-bottom: 1.4rem; font-weight: 700; }
+    
+    .exec-tech-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .exec-chip {
+      background: #1e293b; border: 1px solid #334155; color: #f8fafc;
+      padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.88rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px;
+    }
+
+    .exec-check-list { display: flex; flex-direction: column; gap: 14px; }
+    .exec-check-item { display: flex; align-items: center; gap: 12px; font-size: 0.92rem; color: #cbd5e1; font-weight: 500; }
+    .exec-check-icon {
+      width: 22px; height: 22px; background: rgba(52, 211, 153, 0.15); color: #34d399;
+      border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; font-weight: 800; flex-shrink: 0;
+    }
+
+    /* Trayectoria Timeline Horizontal */
+    .exec-timeline-track {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 4.5rem; position: relative;
+    }
+    .exec-timeline-item {
+      background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 1.5rem; position: relative;
+    }
+    .exec-timeline-item::before {
+      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: #0284c7; border-radius: 14px 14px 0 0;
+    }
+    .exec-tl-year { font-size: 0.8rem; color: #38bdf8; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; }
+    .exec-tl-title { font-size: 1rem; color: #ffffff; font-weight: 700; margin-bottom: 0.4rem; }
+    .exec-tl-desc { font-size: 0.85rem; color: #94a3b8; line-height: 1.45; }
+
+    /* Footer Hablemos */
+    .exec-footer {
+      background: linear-gradient(135deg, #0f172a 0%, #030712 100%);
+      border: 1px solid #1e293b; border-radius: 20px; padding: 3rem 2rem; text-align: center;
+    }
+    .exec-footer h2 { font-size: 2.2rem; color: #ffffff; margin-bottom: 0.6rem; font-weight: 800; }
+    .exec-footer p { color: #94a3b8; margin-bottom: 1.8rem; font-size: 1rem; }
+    .exec-footer-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
   </style>
 </head>
 <body class="terminal-mode" data-lang="en">
@@ -330,7 +429,7 @@
 
 
   <!-- ========================================================= -->
-  <!-- VISTA 1: MODO TÉCNICO / HACKER (BASE ORIGINAL INTACTA)    -->
+  <!-- VISTA 1: MODO TÉCNICO / HACKER (BASE ORIGINAL COMPLETA)   -->
   <!-- ========================================================= -->
   <div id="terminal-view">
     <div id="hero-terminal">
@@ -554,7 +653,7 @@
           <div class="project-card" data-category="ai" style="grid-column: 1 / -1;">
             <h3>IntegraSST — Legal & OHS RAG Assistant</h3>
             <p class="lang-en">Production-ready Retrieval-Augmented Generation (RAG) assistant designed to query Chilean Labor Safety Legislation (Ley 16.744, DS 594, DS 44, and Labor Code) with zero hallucinations and strict source citations.</p>
-            <p class="lang-es">Asistente RAG (Retrieval-Augmented Generation) listo para producción diseñado para consultar la legislación chilena de seguridad laboral (Ley 16.744, DS 594, DS 44 y Código del Trabajo) sin alucinaciones y con citas normativas estrictamente vinculantes.</p>
+            <p class="lang-es">Asistente RAG (Retrieval-Augmented Generation) listo para producción diseñado para consultar la legislación chilena de seguridad laboral (Ley 16.744, DS 594, DS 44 y Código del Trabajo) sin alucinaciones y con citas normativas strictly vinculantes.</p>
             
             <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
               <li class="lang-en"><strong>Vector Database & Chunking Pipeline:</strong> Automated ingestion of legal PDFs into ChromaDB using <code>RecursiveCharacterTextSplitter</code> (1000 chunk size, 200 overlap) and <code>paraphrase-multilingual-MiniLM-L12-v2</code> embeddings for accurate semantic retrieval.</li>
@@ -821,7 +920,7 @@
 
 
   <!-- ========================================================= -->
-  <!-- VISTA 2: MODO EJECUTIVO (ESTRUCTURA CORPORATIVA ADICIONAL) -->
+  <!-- VISTA 2: MODO EJECUTIVO HIGH-FIDELITY (MAQUETA HERMANO)  -->
   <!-- ========================================================= -->
   <div id="executive-view">
     <nav class="exec-nav">
@@ -833,7 +932,10 @@
         <a href="#habilidades-exec">Habilidades</a>
         <a href="#trayectoria-exec">Trayectoria</a>
         <button class="btn-header btn-reboot" onclick="switchMode('terminal')">💻 MODO TÉCNICO / HACKER</button>
-        <a href="Ivan_Latrille_CV.pdf" target="_blank" class="exec-btn-cv">Descargar CV</a>
+        <a href="Ivan_Latrille_CV.pdf" target="_blank" class="exec-btn-cv-header">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Descargar CV
+        </a>
       </div>
     </nav>
 
@@ -844,53 +946,115 @@
         <h1 class="exec-hero-title">Ivan Ignacio Latrille Brito</h1>
         <div class="exec-hero-subtitle">Especialista en Inteligencia Artificial Aplicada, Realidad Virtual y Desarrollo de Productos Digitales</div>
         <p class="exec-hero-desc">
-          Desarrollo soluciones tecnológicas basadas en IA, visión computacional y realidad extendida para resolver desafíos reales en seguridad, entrenamiento y automatización. Mi enfoque combina investigación aplicada, desarrollo de software y diseño de experiencias inmersivas con impacto en la industria.
+          Desarrollo soluciones tecnológicas basadas en IA, visión computacional y realidad extendida para resolver desafíos reales en seguridad, entrenamiento y automatización. Mi enfoque combina investigación aplicada, desarrollo de software y diseño de experiencias inmersivas con impacto en la industria y la educación.
         </p>
+        
         <div class="exec-hero-btns">
-          <a href="Ivan_Latrille_CV.pdf" target="_blank" class="exec-btn-main">📄 Descargar CV</a>
-          <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-sec">💼 Ver LinkedIn</a>
-          <a href="#proyectos-exec" class="exec-btn-sec">👁️ Ver Proyectos</a>
+          <!-- Botón 1: Descargar CV -->
+          <a href="Ivan_Latrille_CV.pdf" target="_blank" class="exec-btn-blue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Descargar CV
+          </a>
+
+          <!-- Botón 2: Ver LinkedIn (con logo azul original) -->
+          <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-white">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#0077b5"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/></svg>
+            Ver LinkedIn
+          </a>
+
+          <!-- Botón 3: Ver Proyectos -->
+          <a href="#proyectos-exec" class="exec-btn-dark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
+            Ver Proyectos
+          </a>
         </div>
-        <div style="font-size: 0.85rem; color: #9ca3af;">📍 Santiago, Chile | ✉️ ivan.latrille1@gmail.com | 💻 GitHub</div>
+
+        <!-- Barra Metadata Inferior con Links Activos -->
+        <div class="exec-meta-bar">
+          <span>📍 Santiago, Chile</span>
+          <span>✉️ ivan.latrille1@gmail.com</span>
+          <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/></svg>
+            ivan latrille
+          </a>
+          <a href="https://github.com/MarketablePlushiee" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
       </div>
 
+      <!-- Tarjeta de Foto Perfil -->
       <div class="exec-profile-card">
-        <div class="exec-avatar">👨‍💻</div>
-        <div class="exec-quote">"Tecnología para un mundo más seguro y preparado"</div>
-        <div class="exec-pillars">
-          <span>Soluciones con impacto real</span>
-          <span>Trabajo interdisciplinario</span>
-          <span>Innovación constante</span>
-          <span>Orientado a resultados</span>
+        <div class="exec-badge-topright">
+          IA<br>XR<br>SIMULACIÓN<br>INNOVACIÓN<br>PERSONAS
+        </div>
+
+        <div class="exec-avatar-container">
+          <img src="profile.jpg" alt="Ivan Latrille" class="exec-avatar-img" onerror="this.src='ppe-preview-1.jpg';">
+        </div>
+
+        <div class="exec-quote-box">
+          <p class="exec-quote-text">"Tecnología para un mundo más seguro y preparado"</p>
+        </div>
+
+        <div class="exec-pillars-list">
+          <div class="exec-pillar-item">
+            <span class="exec-pillar-icon">📊</span>
+            <span>Soluciones con impacto real</span>
+          </div>
+          <div class="exec-pillar-item">
+            <span class="exec-pillar-icon">👥</span>
+            <span>Trabajo interdisciplinario</span>
+          </div>
+          <div class="exec-pillar-item">
+            <span class="exec-pillar-icon">💡</span>
+            <span>Innovación constante</span>
+          </div>
+          <div class="exec-pillar-item">
+            <span class="exec-pillar-icon">🎯</span>
+            <span>Orientado a resultados</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Áreas de Especialización -->
-    <section id="especializacion" style="margin-bottom: 4rem;">
-      <div class="exec-section-title">
-        <span>Áreas de Especialización</span>
+    <section id="especializacion" style="margin-bottom: 4.5rem;">
+      <div class="exec-section-header">
+        <h2>Áreas de Especialización</h2>
         <span class="exec-section-sub">CONOCIMIENTO TÉCNICO + VISIÓN DE PRODUCTO = SOLUCIONES REALES</span>
       </div>
       
       <div class="exec-spec-grid">
         <div class="exec-spec-card">
-          <div class="exec-spec-icon">🧠</div>
+          <div class="exec-spec-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12a10 10 0 0 1 17.8-6.1L12 12z"></path></svg>
+          </div>
           <h3>IA Aplicada</h3>
           <p>Diseño y entrenamiento de modelos para visión computacional, aprendizaje por refuerzo y sistemas inteligentes.</p>
         </div>
+
         <div class="exec-spec-card">
-          <div class="exec-spec-icon">🥽</div>
+          <div class="exec-spec-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="4"></rect><circle cx="8" cy="12" r="2"></circle><circle cx="16" cy="12" r="2"></circle></svg>
+          </div>
           <h3>XR y Simulación</h3>
           <p>Desarrollo de experiencias inmersivas para entrenamiento, educación y operación en entornos industriales.</p>
         </div>
+
         <div class="exec-spec-card">
-          <div class="exec-spec-icon">&lt;/&gt;</div>
+          <div class="exec-spec-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </div>
           <h3>Desarrollo de Software</h3>
           <p>Implementación de aplicaciones interactivas, herramientas web y sistemas escalables con Python, C# y C++.</p>
         </div>
+
         <div class="exec-spec-card">
-          <div class="exec-spec-icon">🔬</div>
+          <div class="exec-spec-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          </div>
           <h3>Investigación e Innovación</h3>
           <p>Exploración de nuevas tecnologías como agentes autónomos, IA generativa RAG y simulación para la industria.</p>
         </div>
@@ -898,9 +1062,9 @@
     </section>
 
     <!-- Proyectos Destacados (3 columnas) -->
-    <section id="proyectos-exec" style="margin-bottom: 4rem;">
-      <div class="exec-section-title">
-        <span>Proyectos Destacados</span>
+    <section id="proyectos-exec" style="margin-bottom: 4.5rem;">
+      <div class="exec-section-header">
+        <h2>Proyectos Destacados</h2>
         <span class="exec-section-sub">DEL CONCEPTO A LA REALIDAD</span>
       </div>
 
@@ -913,8 +1077,11 @@
             <h3>PPE Audit & Monitoring System</h3>
             <p>Sistema de detección automática de Equipos de Protección Personal (EPP) en entornos industriales utilizando YOLOv8 y visión por computador.</p>
             <div class="exec-project-actions">
-              <a href="https://yolov8-safety-equipment-detection-qsj9ufsc4gezwsv7v3t9ms.streamlit.app/" target="_blank" class="btn-exec-case">Ver Caso ↗</a>
-              <a href="https://github.com/MarketablePlushiee/yolov8-safety-equipment-detection" target="_blank" class="btn-exec-git">GitHub</a>
+              <a href="https://yolov8-safety-equipment-detection-qsj9ufsc4gezwsv7v3t9ms.streamlit.app/" target="_blank" class="exec-btn-blue">Ver Caso ↗</a>
+              <a href="https://github.com/MarketablePlushiee/yolov8-safety-equipment-detection" target="_blank" class="exec-btn-white">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                GitHub
+              </a>
             </div>
           </div>
         </div>
@@ -927,8 +1094,11 @@
             <h3>Industrial Safety Simulator</h3>
             <p>Simulador inmersivo para capacitación y entrenamiento en entornos industriales mediante Realidad Virtual y Unity 3D.</p>
             <div class="exec-project-actions">
-              <a href="https://youtu.be/rJ_wUe6Tru4" target="_blank" class="btn-exec-case">Ver Demo ↗</a>
-              <a href="https://github.com/MarketablePlushiee" target="_blank" class="btn-exec-git">GitHub</a>
+              <a href="https://youtu.be/rJ_wUe6Tru4" target="_blank" class="exec-btn-blue">Ver Demo ↗</a>
+              <a href="https://github.com/MarketablePlushiee" target="_blank" class="exec-btn-white">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                GitHub
+              </a>
             </div>
           </div>
         </div>
@@ -941,8 +1111,11 @@
             <h3>Agentes con Aprendizaje por Refuerzo</h3>
             <p>Entrenamiento de agentes autónomos mediante PPO y Unity ML-Agents para tareas en entornos simulados.</p>
             <div class="exec-project-actions">
-              <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank" class="btn-exec-case">Ver Caso ↗</a>
-              <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank" class="btn-exec-git">GitHub</a>
+              <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank" class="exec-btn-blue">Ver Caso ↗</a>
+              <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank" class="exec-btn-white">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                GitHub
+              </a>
             </div>
           </div>
         </div>
@@ -950,9 +1123,9 @@
     </section>
 
     <!-- Habilidades y Tecnologías Split -->
-    <section id="habilidades-exec" style="margin-bottom: 4rem;">
-      <div class="exec-section-title">
-        <span>Habilidades y Tecnologías</span>
+    <section id="habilidades-exec" style="margin-bottom: 4.5rem;">
+      <div class="exec-section-header">
+        <h2>Habilidades y Tecnologías</h2>
         <span class="exec-section-sub">HERRAMIENTAS PARA GENERAR IMPACTO</span>
       </div>
 
@@ -990,15 +1163,15 @@
     </section>
 
     <!-- Trayectoria Académica y Profesional -->
-    <section id="trayectoria-exec" style="margin-bottom: 4rem;">
-      <div class="exec-section-title">
-        <span>Trayectoria Académica y Profesional</span>
-        <span class="exec-section-sub">APRENDIZAJE CONTINUO | EXPERIENCIA PRÁCTICA</span>
+    <section id="trayectoria-exec" style="margin-bottom: 4.5rem;">
+      <div class="exec-section-header">
+        <h2>Trayectoria Académica y Profesional</h2>
+        <span class="exec-section-sub">APRENDIZAJE CONTINUO | EXPERIENCIA PRÁCTICA | VISIÓN DE FUTURO</span>
       </div>
 
-      <div class="exec-timeline">
+      <div class="exec-timeline-track">
         <div class="exec-timeline-item">
-          <div class="exec-tl-year">2020 — Presente</div>
+          <div class="exec-tl-year">2020 — 2027</div>
           <div class="exec-tl-title">Universidad Bernardo O'Higgins</div>
           <div class="exec-tl-desc">Ingeniería en Realidad Virtual y Diseño de Juegos Digitales.</div>
         </div>
@@ -1013,8 +1186,8 @@
           <div class="exec-tl-desc">Simulación y entrenamiento industrial con Meta Quest.</div>
         </div>
         <div class="exec-timeline-item">
-          <div class="exec-tl-year">2022 — Presente</div>
-          <div class="exec-tl-title">Gestión Operativa</div>
+          <div class="exec-tl-year">Actualidad</div>
+          <div class="exec-tl-title">Aplicación en la Industria</div>
           <div class="exec-tl-desc">Soluciones tecnológicas con impacto operacional en automotora.</div>
         </div>
       </div>
@@ -1023,11 +1196,17 @@
     <!-- Footer Hablemos -->
     <footer class="exec-footer">
       <h2>Hablemos</h2>
-      <p>Estoy abierto a nuevas oportunidades de investigación, proyectos y desarrollo en IA/XR.</p>
+      <p>Estoy abierto a nuevas oportunidades de investigación, práctica profesional y desarrollo en IA / XR.</p>
       <div class="exec-footer-links">
-        <a href="mailto:ivan.latrille1@gmail.com">✉️ ivan.latrille1@gmail.com</a>
-        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank">💼 LinkedIn</a>
-        <a href="https://github.com/MarketablePlushiee" target="_blank">💻 GitHub</a>
+        <a href="mailto:ivan.latrille1@gmail.com" class="exec-btn-blue">✉️ ivan.latrille1@gmail.com</a>
+        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-white">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#0077b5"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/MarketablePlushiee" target="_blank" class="exec-btn-dark">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          GitHub
+        </a>
       </div>
     </footer>
   </div>
