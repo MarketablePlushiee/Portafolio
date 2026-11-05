@@ -10,7 +10,7 @@
   
   <style>
     /* ========================================================= */
-    /* 1. MODO TERMINAL / HACKER (ESTILOS ORIGINALES COMPLETOS)   */
+    /* 1. MODO TERMINAL / TÉCNICO (ESTILOS ORIGINALES COMPLETOS) */
     /* ========================================================= */
     :root {
       --bg-color: #0d1117;
@@ -137,8 +137,9 @@
     h1 { color: var(--accent-blue); font-size: 2rem; max-width: 70%; text-shadow: 0 0 8px rgba(88, 166, 255, 0.3); }
     .subtitle { color: var(--accent-green); margin-top: 0.5rem; font-weight: bold; }
 
-    section { margin-bottom: 3rem; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
-    section.is-visible { opacity: 1 !important; transform: translateY(0) !important; }
+    /* Animaciones acotadas solo al modo terminal */
+    #terminal-view section { margin-bottom: 3rem; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+    #terminal-view section.is-visible { opacity: 1 !important; transform: translateY(0) !important; }
     h2 { color: var(--accent-green); margin-bottom: 1.5rem; border-left: 3px solid var(--accent-green); padding-left: 0.5rem; text-shadow: 0 0 5px var(--crt-glow); }
 
     .filter-container { display: flex; gap: 10px; margin-bottom: 1.5rem; flex-wrap: wrap; }
@@ -233,6 +234,7 @@
     /* 2. MODO EJECUTIVO / CORPORATIVO HIGH-FIDELITY             */
     /* ========================================================= */
     #executive-view { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem 4rem 1.5rem; }
+    #executive-view section { opacity: 1 !important; transform: none !important; }
     
     .exec-nav {
       display: flex; justify-content: space-between; align-items: center;
@@ -289,7 +291,7 @@
     .exec-meta-bar a { color: #38bdf8; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
     .exec-meta-bar a:hover { text-decoration: underline; }
 
-    /* Tarjeta Derecha Perfil Foto */
+    /* Tarjeta Perfil Foto */
     .exec-profile-card {
       background: #0f172a; border: 1px solid #1e293b; border-radius: 20px; padding: 1.8rem; position: relative;
     }
@@ -429,7 +431,7 @@
 
 
   <!-- ========================================================= -->
-  <!-- VISTA 1: MODO TÉCNICO / HACKER (BASE ORIGINAL COMPLETA)   -->
+  <!-- VISTA 1: MODO TÉCNICO (PANEL CONSOLA POR DEFECTO)         -->
   <!-- ========================================================= -->
   <div id="terminal-view">
     <div id="hero-terminal">
@@ -653,7 +655,7 @@
           <div class="project-card" data-category="ai" style="grid-column: 1 / -1;">
             <h3>IntegraSST — Legal & OHS RAG Assistant</h3>
             <p class="lang-en">Production-ready Retrieval-Augmented Generation (RAG) assistant designed to query Chilean Labor Safety Legislation (Ley 16.744, DS 594, DS 44, and Labor Code) with zero hallucinations and strict source citations.</p>
-            <p class="lang-es">Asistente RAG (Retrieval-Augmented Generation) listo para producción diseñado para consultar la legislación chilena de seguridad laboral (Ley 16.744, DS 594, DS 44 y Código del Trabajo) sin alucinaciones y con citas normativas strictly vinculantes.</p>
+            <p class="lang-es">Asistente RAG (Retrieval-Augmented Generation) listo para producción diseñado para consultar la legislación chilena de seguridad laboral (Ley 16.744, DS 594, DS 44 y Código del Trabajo) sin alucinaciones y con citas normativas estrictamente vinculantes.</p>
             
             <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
               <li class="lang-en"><strong>Vector Database & Chunking Pipeline:</strong> Automated ingestion of legal PDFs into ChromaDB using <code>RecursiveCharacterTextSplitter</code> (1000 chunk size, 200 overlap) and <code>paraphrase-multilingual-MiniLM-L12-v2</code> embeddings for accurate semantic retrieval.</li>
@@ -931,7 +933,7 @@
         <a href="#proyectos-exec">Proyectos</a>
         <a href="#habilidades-exec">Habilidades</a>
         <a href="#trayectoria-exec">Trayectoria</a>
-        <button class="btn-header btn-reboot" onclick="switchMode('terminal')">💻 MODO TÉCNICO / HACKER</button>
+        <button class="btn-header btn-reboot" onclick="switchMode('terminal')">💻 MODO TÉCNICO</button>
         <a href="Ivan_Latrille_CV.pdf" target="_blank" class="exec-btn-cv-header">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           Descargar CV
@@ -956,7 +958,7 @@
             Descargar CV
           </a>
 
-          <!-- Botón 2: Ver LinkedIn (con logo azul original) -->
+          <!-- Botón 2: Ver LinkedIn -->
           <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-white">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#0077b5"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/></svg>
             Ver LinkedIn
@@ -1228,11 +1230,9 @@
         stopAmbientDrone();
         document.body.classList.remove('terminal-mode');
         document.body.classList.add('exec-mode-active');
-        localStorage.setItem('portfolio-mode', 'executive');
       } else {
         document.body.classList.remove('exec-mode-active');
         document.body.classList.add('terminal-mode');
-        localStorage.setItem('portfolio-mode', 'terminal');
         if (mainContent.classList.contains('visible')) {
           startAmbientDrone();
         }
@@ -1417,11 +1417,8 @@
         });
       });
 
-      // Cargar modo recordado
-      const savedMode = localStorage.getItem('portfolio-mode');
-      if (savedMode === 'executive') {
-        switchMode('executive');
-      }
+      // Asegurar que al abrir la página SIEMPRE inicie en Modo Terminal (Consola de Inicio)
+      switchMode('terminal');
     });
 
     function setLanguage(lang) {
@@ -1591,7 +1588,7 @@
         });
       }, { threshold: 0.01, rootMargin: "0px 0px 50px 0px" });
 
-      document.querySelectorAll('section').forEach(sec => {
+      document.querySelectorAll('#terminal-view section').forEach(sec => {
         observer.observe(sec);
         sec.classList.add('is-visible');
       });
