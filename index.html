@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ivan Latrille | Developer & AI Specialist Portfolio</title>
+  <title>Ivan Latrille | Applied AI, Reinforcement Learning & XR Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   
   <style>
     /* ========================================================= */
-    /* 1. MODO TERMINAL / TÉCNICO (ESTILOS ORIGINALES COMPLETOS) */
+    /* 1. MODO TERMINAL / TÉCNICO                                */
     /* ========================================================= */
     :root {
       --bg-color: #0d1117;
@@ -75,40 +75,129 @@
     body.exec-mode-active #executive-view { display: block !important; }
     body.exec-mode-active {
       font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
-      background-color: #0b0f19 !important;
-      color: #f3f4f6 !important;
+      background-color: #0a0e0c !important;
+      color: #e6edf3 !important;
     }
 
+    /* Pantalla de Inicio (Selector de Idioma + Consola) */
     #hero-terminal {
       position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background-color: #050505;
+      background-color: #050706;
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
       z-index: 100;
-      transition: opacity 0.5s ease, visibility 0.5s;
+      transition: opacity 0.45s ease, visibility 0.45s;
     }
 
     .terminal-box {
       border: 1px solid var(--border-color);
       padding: 2rem; border-radius: 8px;
       background-color: var(--card-bg);
-      box-shadow: 0 0 20px var(--crt-glow);
-      text-align: left; max-width: 650px; width: 90%;
+      box-shadow: 0 0 24px var(--crt-glow);
+      text-align: left; max-width: 680px; width: 92%;
       position: relative; z-index: 101;
       transition: all 0.4s ease;
       background-size: contain; background-repeat: no-repeat; background-position: center;
       display: flex; flex-direction: column; justify-content: space-between;
     }
 
-    .terminal-text { color: var(--accent-blue); margin-bottom: 1rem; font-size: 1rem; min-height: 1.2rem; }
-    .terminal-log { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; max-height: 280px; overflow-y: hidden; }
+    .lang-gate-title {
+      color: var(--accent-green);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.8rem;
+      font-weight: bold;
+    }
+
+    .lang-gate-sub {
+      color: var(--text-main);
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .lang-gate-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-lang-choice {
+      flex: 1;
+      min-width: 180px;
+      background: #0d1117;
+      border: 1px solid var(--accent-green);
+      color: var(--accent-green);
+      padding: 0.85rem 1.2rem;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .btn-lang-choice:hover {
+      background: #238636;
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(63, 185, 80, 0.35);
+    }
+
+    .terminal-text { color: var(--accent-blue); margin-bottom: 1rem; font-size: 0.98rem; line-height: 1.5; min-height: 2.8rem; }
+    .terminal-log { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; max-height: 260px; overflow-y: auto; }
     .input-line { display: flex; align-items: center; gap: 10px; margin-top: auto; }
     .prompt-symbol { color: var(--accent-green); font-weight: bold; }
     
     .command-input {
       background: transparent; border: none; border-bottom: 2px solid var(--accent-green);
-      color: var(--accent-green); font-family: inherit; font-size: 1.1rem; outline: none; flex: 1; padding: 5px;
+      color: var(--accent-green); font-family: inherit; font-size: 1.05rem; outline: none; flex: 1; padding: 5px;
+    }
+
+    .terminal-quick-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border-color);
+    }
+
+    .btn-terminal-exec {
+      background: #238636;
+      color: #ffffff;
+      border: 1px solid #2ea043;
+      padding: 0.5rem 0.95rem;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-terminal-exec:hover {
+      background: #2ea043;
+    }
+
+    .btn-terminal-lang-back {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 0.45rem 0.75rem;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-terminal-lang-back:hover {
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
     }
 
     #main-content {
@@ -131,13 +220,12 @@
     .btn-header:hover { background: #2ea043; }
     .btn-reboot { background: #21262d; color: var(--accent-blue); border: 1px solid var(--border-color); }
     .btn-reboot:hover { background: #30363d; border-color: var(--accent-blue); }
-    .btn-exec-switch { background: #0284c7; color: white; border: 1px solid #38bdf8; }
-    .btn-exec-switch:hover { background: #0369a1; }
+    .btn-exec-switch { background: #1f6feb; color: white; border: 1px solid #58a6ff; }
+    .btn-exec-switch:hover { background: #1158c7; }
 
     h1 { color: var(--accent-blue); font-size: 2rem; max-width: 70%; text-shadow: 0 0 8px rgba(88, 166, 255, 0.3); }
     .subtitle { color: var(--accent-green); margin-top: 0.5rem; font-weight: bold; }
 
-    /* Animaciones acotadas solo al modo terminal */
     #terminal-view section { margin-bottom: 3rem; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
     #terminal-view section.is-visible { opacity: 1 !important; transform: translateY(0) !important; }
     h2 { color: var(--accent-green); margin-bottom: 1.5rem; border-left: 3px solid var(--accent-green); padding-left: 0.5rem; text-shadow: 0 0 5px var(--crt-glow); }
@@ -155,7 +243,6 @@
       header { padding-top: 4.5rem; }
       .header-controls { top: 0; left: 0; right: auto; }
       h1 { max-width: 100%; font-size: 1.4rem; }
-      .modal-game-content { width: 95vw !important; height: 75vh !important; }
       .terminal-box { padding: 1.2rem; }
     }
 
@@ -179,19 +266,6 @@
     .badge-skill { background: #0d1117; border: 1px solid var(--border-color); color: var(--text-main); padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.8rem; cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.1s; }
     .badge-skill:hover { border-color: var(--accent-green); color: var(--accent-green); transform: translateY(-2px); }
 
-    .game-preview-wrapper { width: 100%; max-width: 400px; height: 440px; margin: 1.5rem auto; border: 2px solid var(--border-color); border-radius: 12px; overflow: hidden; background: #000; position: relative; }
-    .game-cover-interactive { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; display: flex; justify-content: center; align-items: center; z-index: 10; }
-    .game-cover-interactive img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background-color: #000; z-index: 1; }
-    .cover-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2; transition: background 0.2s; }
-    .game-cover-interactive:hover .cover-overlay { background: rgba(0,0,0,0.2); }
-    .play-badge { position: relative; z-index: 3; background: #238636; color: white; padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 1.1rem; font-weight: bold; border: 2px solid #2ea043; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-
-    #game-modal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; flex-direction: column; }
-    .modal-game-content { width: 100%; max-width: 650px; height: 85vh; background: #000; border-radius: 8px; overflow: hidden; border: none; position: relative; }
-    .modal-game-content iframe { width: 100%; height: calc(100% + 90px); border: none; background: #000; margin-bottom: -90px; }
-    .close-modal-btn { position: absolute; top: 20px; right: 30px; color: white; font-size: 2.5rem; cursor: pointer; background: none; border: none; z-index: 1001; transition: color 0.2s; }
-    .close-modal-btn:hover { color: #f85149; }
-
     #lightbox { display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 2rem; }
     #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
     .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 2.5rem; cursor: pointer; transition: color 0.2s; }
@@ -212,7 +286,7 @@
     /* Modo Secreto INA */
     body.alt-mode { --accent-green: #a278ff !important; --accent-blue: #a278ff !important; --border-color: #5b3191 !important; --crt-glow: rgba(162, 120, 255, 0.4) !important; }
     body.alt-mode h1, body.alt-mode h2, body.alt-mode h3, body.alt-mode h4, body.alt-mode a, body.alt-mode .terminal-text, body.alt-mode .prompt-symbol, body.alt-mode .command-input, body.alt-mode .btn-action, body.alt-mode .credits-box strong { color: #a278ff !important; border-color: #a278ff !important; }
-    body.alt-mode .btn-header, body.alt-mode .play-badge, body.alt-mode .btn-cv { background: #5b3191 !important; border-color: #7c44c5 !important; }
+    body.alt-mode .btn-header, body.alt-mode .btn-cv { background: #5b3191 !important; border-color: #7c44c5 !important; }
     body.alt-mode .btn-filter.active, body.alt-mode .btn-filter:hover { color: #a278ff !important; border-color: #a278ff !important; box-shadow: 0 0 12px rgba(162, 120, 255, 0.4) !important; }
     body.alt-mode .terminal-box { border-color: #a278ff !important; box-shadow: 0 0 35px rgba(162, 120, 255, 0.6) !important; background-image: linear-gradient(rgba(22, 27, 34, 0.85), rgba(22, 27, 34, 0.85)), url('https://i.imgur.com/oc6O3Iw.png') !important; min-height: 520px !important; }
     body.alt-mode .terminal-log { margin-top: auto !important; padding-top: 290px !important; }
@@ -231,184 +305,523 @@
     @media (max-width: 900px) { .charts-row-grid { grid-template-columns: 1fr !important; } }
 
     /* ========================================================= */
-    /* 2. MODO EJECUTIVO / CORPORATIVO HIGH-FIDELITY             */
+    /* 2. MODO EJECUTIVO (ESTÉTICA EDITORIAL CARBÓN & ESMERALDA) */
     /* ========================================================= */
-    #executive-view { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem 4rem 1.5rem; }
-    #executive-view section { opacity: 1 !important; transform: none !important; }
-    
+    #executive-view {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem 1.5rem;
+    }
+
+    #executive-view section {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .exec-mono {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    /* Barra de navegación */
     .exec-nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 0; border-bottom: 1px solid #1e293b; margin-bottom: 2.5rem;
-    }
-    
-    .exec-logo {
-      font-size: 1.3rem; font-weight: 800; color: #38bdf8; background: #1e293b;
-      padding: 0.35rem 0.85rem; border-radius: 8px; letter-spacing: 0.05em;
-    }
-    
-    .exec-nav-links { display: flex; gap: 24px; align-items: center; }
-    .exec-nav-links a { color: #94a3b8; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
-    .exec-nav-links a:hover { color: #f8fafc; }
-    
-    .exec-btn-cv-header {
-      background: #0284c7; color: #ffffff !important; padding: 0.55rem 1.1rem;
-      border-radius: 6px; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; transition: background 0.2s;
-    }
-    .exec-btn-cv-header:hover { background: #0369a1; }
-
-    /* Hero Ejecutivo */
-    .exec-hero { display: grid; grid-template-columns: 1fr 400px; gap: 3.5rem; align-items: center; margin-bottom: 4rem; }
-    @media (max-width: 980px) { .exec-hero { grid-template-columns: 1fr; } }
-    
-    .exec-hero-tag { color: #94a3b8; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.6rem; }
-    .exec-hero-title { font-size: 3rem; font-weight: 800; line-height: 1.1; color: #ffffff; margin-bottom: 0.8rem; }
-    .exec-hero-subtitle { color: #38bdf8; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.2rem; line-height: 1.4; }
-    .exec-hero-desc { color: #94a3b8; font-size: 0.98rem; line-height: 1.65; margin-bottom: 2rem; }
-
-    .exec-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 1.8rem; }
-    
-    .exec-btn-blue {
-      background: #0284c7; color: #ffffff; padding: 0.75rem 1.4rem; border-radius: 8px;
-      font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;
-    }
-    .exec-btn-blue:hover { background: #0369a1; text-decoration: none; }
-
-    .exec-btn-white {
-      background: #ffffff; color: #0f172a; padding: 0.75rem 1.4rem; border-radius: 8px;
-      font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;
-    }
-    .exec-btn-white:hover { background: #e2e8f0; text-decoration: none; }
-
-    .exec-btn-dark {
-      background: #1e293b; color: #f8fafc; border: 1px solid #334155; padding: 0.75rem 1.4rem; border-radius: 8px;
-      font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s;
-    }
-    .exec-btn-dark:hover { background: #334155; text-decoration: none; }
-
-    .exec-meta-bar {
-      display: flex; gap: 24px; flex-wrap: wrap; align-items: center; font-size: 0.9rem; color: #94a3b8; font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #1e2a23;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    /* Tarjeta Perfil Foto */
-    .exec-profile-card {
-      background: #0f172a; border: 1px solid #1e293b; border-radius: 20px; padding: 1.8rem; position: relative;
-    }
-    
-    .exec-avatar-container {
-      width: 170px; height: 170px; border-radius: 50%; border: 4px solid #38bdf8;
-      margin: 0 auto 1.5rem auto; overflow: hidden; background: #1e293b;
-      display: flex; justify-content: center; align-items: center;
-      box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+    .exec-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #e6edf3;
     }
 
-    .exec-avatar-img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center;
+    .exec-brand-mark {
+      background: #132219;
+      border: 1px solid #2ea043;
+      color: #3fb950;
+      padding: 0.3rem 0.65rem;
+      border-radius: 5px;
     }
 
-    .exec-badge-topright {
-      position: absolute; top: 15px; right: 15px; text-align: right; font-size: 0.65rem;
-      font-weight: 800; color: #38bdf8; letter-spacing: 0.08em; line-height: 1.3;
+    .exec-nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    .exec-quote-box {
-      background: #1e293b; border-radius: 10px; padding: 0.9rem 1.2rem; margin-bottom: 1.4rem; text-align: center;
-    }
-    .exec-quote-text { font-style: italic; color: #cbd5e1; font-size: 0.92rem; font-weight: 500; }
-
-    .exec-pillars-list { display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; color: #cbd5e1; }
-    .exec-pillar-item { display: flex; align-items: center; gap: 10px; }
-    .exec-pillar-icon { color: #38bdf8; display: flex; align-items: center; justify-content: center; width: 22px; }
-
-    /* Áreas de Especialización */
-    .exec-section-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 2rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.8rem;
-    }
-    .exec-section-header h2 { font-size: 1.7rem; font-weight: 800; color: #ffffff; margin: 0; border: none; padding: 0; text-shadow: none; }
-    .exec-section-sub { font-size: 0.78rem; color: #64748b; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-
-    .exec-spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.5rem; margin-bottom: 4.5rem; }
-    .exec-spec-card {
-      background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 1.8rem;
-      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    }
-    .exec-spec-card:hover { transform: translateY(-4px); border-color: #38bdf8; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-    .exec-spec-icon-box {
-      width: 48px; height: 48px; border-radius: 12px; background: rgba(56, 189, 248, 0.1);
-      display: flex; justify-content: center; align-items: center; color: #38bdf8; margin-bottom: 1.2rem;
-    }
-    .exec-spec-card h3 { font-size: 1.15rem; color: #ffffff; margin-bottom: 0.6rem; font-weight: 700; }
-    .exec-spec-card p { font-size: 0.88rem; color: #94a3b8; line-height: 1.55; }
-
-    /* Proyectos 3 Columnas */
-    .exec-projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.8rem; margin-bottom: 4.5rem; }
-    .exec-project-card {
-      background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; overflow: hidden;
-      display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s;
-    }
-    .exec-project-card:hover { transform: translateY(-4px); border-color: #38bdf8; }
-    .exec-project-img { height: 190px; width: 100%; object-fit: cover; background: #000; }
-    .exec-project-body { padding: 1.6rem; display: flex; flex-direction: column; flex: 1; }
-    
-    .exec-project-badge {
-      display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.15); color: #38bdf8;
-      padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.78rem; font-weight: 700; margin-bottom: 0.9rem; align-self: flex-start;
-    }
-    .exec-project-body h3 { font-size: 1.25rem; color: #ffffff; margin-bottom: 0.6rem; font-weight: 700; }
-    .exec-project-body p { font-size: 0.88rem; color: #94a3b8; line-height: 1.55; margin-bottom: 1.5rem; }
-    
-    .exec-project-actions { display: flex; gap: 12px; margin-top: auto; }
-    .exec-project-actions a {
-      flex: 1; text-align: center; padding: 0.65rem 0.8rem; border-radius: 8px;
-      font-size: 0.88rem; font-weight: 600; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+    .exec-nav-links a {
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
     }
 
-    /* Habilidades Split */
-    .exec-skills-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4.5rem; }
-    @media (max-width: 800px) { .exec-skills-split { grid-template-columns: 1fr; } }
-    .exec-skills-box { background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 2rem; }
-    .exec-skills-box h3 { font-size: 1.2rem; color: #ffffff; margin-bottom: 1.4rem; font-weight: 700; }
-    
-    .exec-tech-chips { display: flex; flex-wrap: wrap; gap: 10px; }
-    .exec-chip {
-      background: #1e293b; border: 1px solid #334155; color: #f8fafc;
-      padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.88rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px;
+    .exec-nav-links a:hover {
+      color: #3fb950;
+      text-decoration: none;
     }
 
-    .exec-check-list { display: flex; flex-direction: column; gap: 14px; }
-    .exec-check-item { display: flex; align-items: center; gap: 12px; font-size: 0.92rem; color: #cbd5e1; font-weight: 500; }
-    .exec-check-icon {
-      width: 22px; height: 22px; background: rgba(52, 211, 153, 0.15); color: #34d399;
-      border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; font-weight: 800; flex-shrink: 0;
+    .exec-btn-outline {
+      background: #111714;
+      color: #c9d1d9 !important;
+      border: 1px solid #26352d;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color 0.2s, color 0.2s;
     }
 
-    /* Trayectoria Timeline Horizontal */
-    .exec-timeline-track {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 4.5rem; position: relative;
+    .exec-btn-outline:hover {
+      border-color: #3fb950;
+      color: #3fb950 !important;
+      text-decoration: none;
     }
-    .exec-timeline-item {
-      background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 1.5rem; position: relative;
-    }
-    .exec-timeline-item::before {
-      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: #0284c7; border-radius: 14px 14px 0 0;
-    }
-    .exec-tl-year { font-size: 0.8rem; color: #38bdf8; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; }
-    .exec-tl-title { font-size: 1rem; color: #ffffff; font-weight: 700; margin-bottom: 0.4rem; }
-    .exec-tl-desc { font-size: 0.85rem; color: #94a3b8; line-height: 1.45; }
 
-    /* Footer Hablemos */
+    .exec-btn-primary {
+      background: #238636;
+      color: #ffffff !important;
+      border: 1px solid #2ea043;
+      padding: 0.55rem 1.1rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .exec-btn-primary:hover {
+      background: #2ea043;
+      text-decoration: none;
+    }
+
+    /* Hero Editorial */
+    .exec-hero {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 3rem;
+      align-items: start;
+      margin-bottom: 4.5rem;
+    }
+
+    @media (max-width: 920px) {
+      .exec-hero { grid-template-columns: 1fr; }
+    }
+
+    .exec-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #111b15;
+      border: 1px solid #213a2a;
+      color: #3fb950;
+      padding: 0.35rem 0.85rem;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .exec-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3fb950;
+      box-shadow: 0 0 8px #3fb950;
+    }
+
+    .exec-hero-name {
+      font-size: 2.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: #f0f6fc;
+      margin-bottom: 0.75rem;
+    }
+
+    .exec-hero-role {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #3fb950;
+      margin-bottom: 1.25rem;
+    }
+
+    .exec-hero-summary {
+      color: #9ca3af;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+      max-width: 640px;
+    }
+
+    .exec-hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .exec-hero-location {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: #7d8590;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    /* Tarjeta Lateral de Credenciales */
+    .exec-dossier-card {
+      background: #111714;
+      border: 1px solid #1f2d25;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .exec-dossier-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid #1f2d25;
+      margin-bottom: 1.2rem;
+    }
+
+    .exec-dossier-photo {
+      width: 72px;
+      height: 72px;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 1px solid #2ea043;
+      background: #0a0e0c;
+    }
+
+    .exec-dossier-id-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin-bottom: 0.25rem;
+    }
+
+    .exec-dossier-id-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #3fb950;
+    }
+
+    .exec-dossier-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .exec-dossier-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .exec-dossier-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #7d8590;
+    }
+
+    .exec-dossier-value {
+      font-size: 0.86rem;
+      color: #d1d5db;
+      font-weight: 500;
+    }
+
+    /* Encabezados de Sección */
+    .exec-sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid #1f2d25;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .exec-sec-head h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #f0f6fc;
+      border: none;
+      padding: 0;
+      margin: 0;
+      text-shadow: none;
+    }
+
+    .exec-sec-index {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #3fb950;
+    }
+
+    /* Grilla de Proyectos (2x2 sobria con métricas reales) */
+    .exec-proj-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4.5rem;
+    }
+
+    @media (max-width: 820px) {
+      .exec-proj-grid { grid-template-columns: 1fr; }
+    }
+
+    .exec-proj-card {
+      background: #111714;
+      border: 1px solid #1f2d25;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s ease;
+    }
+
+    .exec-proj-card:hover {
+      border-color: #3fb950;
+    }
+
+    .exec-proj-media {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      background: #070a08;
+      border-bottom: 1px solid #1f2d25;
+    }
+
+    .exec-proj-content {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .exec-proj-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .exec-proj-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: #3fb950;
+      background: #132219;
+      border: 1px solid #213a2a;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .exec-proj-metric {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #8b949e;
+    }
+
+    .exec-proj-content h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin-bottom: 0.55rem;
+    }
+
+    .exec-proj-content p {
+      font-size: 0.88rem;
+      color: #9ca3af;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+
+    .exec-proj-links {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    /* Capacidades & Stack */
+    .exec-cap-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 4.5rem;
+    }
+
+    @media (max-width: 850px) {
+      .exec-cap-grid { grid-template-columns: 1fr; }
+    }
+
+    .exec-panel {
+      background: #111714;
+      border: 1px solid #1f2d25;
+      border-radius: 8px;
+      padding: 1.6rem;
+    }
+
+    .exec-cap-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .exec-cap-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .exec-cap-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #3fb950;
+      background: #132219;
+      border: 1px solid #213a2a;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-top: 2px;
+    }
+
+    .exec-cap-item h4 {
+      font-size: 0.96rem;
+      color: #f0f6fc;
+      margin-bottom: 0.25rem;
+    }
+
+    .exec-cap-item p {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      line-height: 1.45;
+    }
+
+    .exec-stack-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .exec-stack-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .exec-stack-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: #7d8590;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .exec-stack-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .exec-stack-chip {
+      background: #0a0e0c;
+      border: 1px solid #223028;
+      color: #c9d1d9;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: 4px;
+    }
+
+    /* Trayectoria */
+    .exec-edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 4rem;
+    }
+
+    .exec-edu-card {
+      background: #111714;
+      border: 1px solid #1f2d25;
+      border-top: 3px solid #238636;
+      border-radius: 6px;
+      padding: 1.35rem;
+    }
+
+    .exec-edu-period {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      color: #3fb950;
+      margin-bottom: 0.45rem;
+    }
+
+    .exec-edu-card h3 {
+      font-size: 1rem;
+      color: #f0f6fc;
+      margin-bottom: 0.35rem;
+    }
+
+    .exec-edu-card p {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      line-height: 1.45;
+    }
+
+    /* Footer */
     .exec-footer {
-      background: linear-gradient(135deg, #0f172a 0%, #030712 100%);
-      border: 1px solid #1e293b; border-radius: 20px; padding: 3rem 2rem; text-align: center;
+      border-top: 1px solid #1f2d25;
+      padding-top: 2.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
     }
-    .exec-footer h2 { font-size: 2.2rem; color: #ffffff; margin-bottom: 0.6rem; font-weight: 800; }
-    .exec-footer p { color: #94a3b8; margin-bottom: 1.8rem; font-size: 1rem; }
-    .exec-footer-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    .exec-footer-text h3 {
+      font-size: 1.2rem;
+      color: #f0f6fc;
+      margin-bottom: 0.25rem;
+    }
+
+    .exec-footer-text p {
+      font-size: 0.88rem;
+      color: #8b949e;
+    }
+
+    .exec-footer-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 <body class="terminal-mode" data-lang="en">
 
-  <!-- ASSETS SECRETO MODO ALT (TAKODACHI) -->
+  <!-- ASSETS SECRETO MODO ALT -->
   <img src="https://i.imgur.com/uCUYkuT.gif" class="secret-side-gif left-1" alt="asset-01">
   <img src="https://i.imgur.com/8vbbnyq.gif" class="secret-side-gif left-2" alt="asset-02">
   <img src="https://i.imgur.com/dF7nGqQ.gif" class="secret-side-gif left-3" alt="asset-03">
@@ -416,12 +829,7 @@
   <img src="https://i.imgur.com/uCUYkuT.gif" class="secret-side-gif right-2" alt="asset-01">
   <img src="https://i.imgur.com/8vbbnyq.gif" class="secret-side-gif right-3" alt="asset-02">
 
-  <!-- MODALES E INTERFACES GLOBALES -->
-  <div id="game-modal">
-    <button class="close-modal-btn" onclick="closeGame()">&times;</button>
-    <div class="modal-game-content" id="modal-game-container"></div>
-  </div>
-
+  <!-- LIGHTBOX GLOBAL -->
   <div id="lightbox" onclick="closeLightbox()">
     <span class="lightbox-close">&times;</span>
     <img id="lightbox-img" src="" alt="Zoomed Image">
@@ -429,35 +837,66 @@
 
 
   <!-- ========================================================= -->
-  <!-- VISTA 1: MODO TÉCNICO (PANEL CONSOLA POR DEFECTO)         -->
+  <!-- VISTA 1: MODO TÉCNICO (SELECTOR DE IDIOMA + CONSOLA)      -->
   <!-- ========================================================= -->
   <div id="terminal-view">
     <div id="hero-terminal">
-      <div class="terminal-box" id="term-box">
+      
+      <!-- PASO 1: SELECTOR DE IDIOMA INICIAL -->
+      <div class="terminal-box" id="lang-gate">
+        <div>
+          <div class="lang-gate-title">&gt; BOOT_SEQUENCE // PORTFOLIO_OS v2.6</div>
+          <p class="lang-gate-sub">
+            Select your preferred language to initialize the console.<br>
+            <span style="color: var(--text-muted);">Seleccione su idioma preferido para iniciar la consola.</span>
+          </p>
+        </div>
+        <div class="lang-gate-buttons">
+          <button class="btn-lang-choice" onclick="selectBootLanguage('en')">[ 1 ] ENGLISH</button>
+          <button class="btn-lang-choice" onclick="selectBootLanguage('es')">[ 2 ] ESPAÑOL</button>
+        </div>
+      </div>
+
+      <!-- PASO 2: CONSOLA INTERACTIVA CON ACCESO DIRECTO A MODO EJECUTIVO -->
+      <div class="terminal-box" id="term-box" style="display: none;">
         <div>
           <div id="typewriter" class="terminal-text"></div>
           <div id="terminal-log" class="terminal-log"></div>
         </div>
         <div class="input-line">
-          <span class="prompt-symbol">></span>
-          <input type="text" id="cmd" class="command-input" placeholder="Type &quot;hello world&quot; and press ENTER" autofocus autocomplete="off">
+          <span class="prompt-symbol">&gt;</span>
+          <input type="text" id="cmd" class="command-input" placeholder="Type &quot;hello world&quot; and press ENTER" autocomplete="off">
+        </div>
+        <div class="terminal-quick-bar">
+          <button class="btn-terminal-exec" onclick="openExecutiveFromTerminal()">
+            <span class="lang-en">💼 Open Executive Mode (Simplified View) →</span>
+            <span class="lang-es">💼 Abrir Modo Ejecutivo (Vista Simplificada) →</span>
+          </button>
+          <button class="btn-terminal-lang-back" onclick="returnToLangGate()">
+            <span class="lang-en">🌐 Language</span>
+            <span class="lang-es">🌐 Idioma</span>
+          </button>
         </div>
       </div>
+
     </div>
 
     <div id="main-content">
       <header>
         <div class="header-controls">
           <button id="audio-toggle" class="btn-header btn-reboot" onclick="toggleAudio()">🔊 Sound</button>
-          <button class="btn-header btn-exec-switch" onclick="switchMode('executive')">💼 MODO EJECUTIVO</button>
+          <button class="btn-header btn-exec-switch" onclick="switchMode('executive')">
+            <span class="lang-en">💼 EXECUTIVE MODE</span>
+            <span class="lang-es">💼 MODO EJECUTIVO</span>
+          </button>
           <button class="btn-header btn-reboot" onclick="rebootTerminal()">⚡ RE-BOOT TERMINAL</button>
           <button id="lang-toggle" class="btn-header" onclick="toggleLang()">🌐 EN / ES</button>
         </div>
 
         <h1>[ Ivan Ignacio Latrille Brito ]</h1>
         <p class="subtitle">
-          <span class="lang-en">VR & Game Engineering Student · Applied AI & Reinforcement Learning</span>
-          <span class="lang-es">Estudiante de Ingeniería en RV y Videojuegos · IA Aplicada y Aprendizaje por Refuerzo</span>
+          <span class="lang-en">VR & Game Engineering Student · Applied AI, Reinforcement Learning & XR</span>
+          <span class="lang-es">Estudiante de Ingeniería en RV y Videojuegos · IA Aplicada, Aprendizaje por Refuerzo y XR</span>
         </p>
         <p style="margin-top: 0.8rem; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
           <a href="Ivan_Latrille_CV.pdf" target="_blank" class="btn-cv">📄 <span class="lang-en">Download CV (PDF)</span><span class="lang-es">Descargar CV (PDF)</span></a>
@@ -473,8 +912,8 @@
 
       <section id="about">
         <h2>// <span class="lang-en">About Me</span><span class="lang-es">Sobre Mí</span></h2>
-        <p class="lang-en">Virtual Reality and Game Design Engineering student at Universidad Bernardo O'Higgins, focused on applied artificial intelligence for interactive systems. Experienced in training reinforcement learning agents (PPO) in simulated environments and leading the development of an industrial-safety VR simulator that won 1st place at the UBO Inicia competition. Looking for an AI internship where I can contribute with Python, model training and evaluation, and learn from a team shipping AI to production.</p>
-        <p class="lang-es">Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo O'Higgins, enfocado en inteligencia artificial aplicada a sistemas interactivos. Con experiencia entrenando agentes mediante aprendizaje por refuerzo (PPO) en entornos simulados y liderando el desarrollo de un simulador de seguridad industrial en RV ganador del 1er lugar en el concurso UBO Inicia. Busco una práctica profesional en IA donde aportar con Python, entrenamiento y evaluación de modelos.</p>
+        <p class="lang-en">Virtual Reality and Game Design Engineering student at Universidad Bernardo O'Higgins, focused on applied artificial intelligence for interactive systems. Experienced in training single-agent and multi-agent reinforcement learning policies (PPO & Self-Play) in Unity, building computer vision and legal RAG pipelines in Python, and leading the development of an industrial-safety VR simulator that won 1st place at the UBO Inicia competition.</p>
+        <p class="lang-es">Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo O'Higgins, enfocado en inteligencia artificial aplicada a sistemas interactivos. Con experiencia entrenando políticas de aprendizaje por refuerzo individual y competitivo multi-agente (PPO y Self-Play) en Unity, desarrollando pipelines de visión computacional y RAG legal en Python, y liderando el simulador de seguridad industrial en RV ganador del 1er lugar en el concurso UBO Inicia.</p>
       </section>
 
       <section id="skills">
@@ -485,25 +924,24 @@
             <h4>// AI & Applied Machine Learning</h4>
             <div class="skill-badges">
               <span class="badge-skill">Unity ML-Agents</span>
-              <span class="badge-skill">Reinforcement Learning</span>
-              <span class="badge-skill">PPO Algorithm</span>
+              <span class="badge-skill">PPO & Self-Play</span>
               <span class="badge-skill">PyTorch</span>
+              <span class="badge-skill">ONNX Runtime</span>
               <span class="badge-skill">TensorBoard</span>
               <span class="badge-skill">YOLOv8</span>
-              <span class="badge-skill">Ultralytics</span>
               <span class="badge-skill">RAG / LangChain</span>
               <span class="badge-skill">ChromaDB</span>
             </div>
           </div>
 
           <div class="skill-category-card">
-            <h4>// Core Game Engine & XR</h4>
+            <h4>// Simulation, Game Engine & XR</h4>
             <div class="skill-badges">
-              <span class="badge-skill">Unity 3D (URP)</span>
+              <span class="badge-skill">Unity 6 (URP)</span>
               <span class="badge-skill">Unreal Engine</span>
               <span class="badge-skill">OpenXR</span>
               <span class="badge-skill">Meta Quest SDK</span>
-              <span class="badge-skill">Shader Graph</span>
+              <span class="badge-skill">Rigid-Body Physics</span>
             </div>
           </div>
 
@@ -519,13 +957,13 @@
           </div>
 
           <div class="skill-category-card">
-            <h4>// Tools & Environments</h4>
+            <h4>// Tools & Deployment</h4>
             <div class="skill-badges">
               <span class="badge-skill">Git & GitHub</span>
+              <span class="badge-skill">CUDA / GPU Training</span>
+              <span class="badge-skill">Streamlit</span>
               <span class="badge-skill">Visual Studio</span>
               <span class="badge-skill">VS Code</span>
-              <span class="badge-skill">WebGL</span>
-              <span class="badge-skill">AudioMixer</span>
             </div>
           </div>
         </div>
@@ -537,8 +975,8 @@
         <div class="filter-container">
           <button class="btn-filter active" onclick="filterProjects('all')">[ ALL ]</button>
           <button class="btn-filter" onclick="filterProjects('ai')">[ AI / MACHINE LEARNING ]</button>
+          <button class="btn-filter" onclick="filterProjects('rl')">[ REINFORCEMENT LEARNING ]</button>
           <button class="btn-filter" onclick="filterProjects('vr')">[ VR / XR ]</button>
-          <button class="btn-filter" onclick="filterProjects('gamedev')">[ GAME DEV ]</button>
         </div>
 
         <div class="projects-grid">
@@ -639,6 +1077,7 @@
 
             <div class="tags">
               <span class="tag">Python</span>
+              <span class="tag">YOLOv8</span>
               <span class="tag">Streamlit</span>
               <span class="tag">Computer Vision</span>
               <span class="tag">OpenCV</span>
@@ -659,8 +1098,8 @@
               <li class="lang-en"><strong>Vector Database & Chunking Pipeline:</strong> Automated ingestion of legal PDFs into ChromaDB using <code>RecursiveCharacterTextSplitter</code> (1000 chunk size, 200 overlap) and <code>paraphrase-multilingual-MiniLM-L12-v2</code> embeddings for accurate semantic retrieval.</li>
               <li class="lang-es"><strong>Pipeline Vectorial y Segmentación:</strong> Ingesta automatizada de PDFs legales en ChromaDB usando <code>RecursiveCharacterTextSplitter</code> (bloques de 1000 caracteres, solapamiento 200) y embeddings <code>paraphrase-multilingual-MiniLM-L12-v2</code> para búsqueda semántica precisa.</li>
               
-              <li class="lang-en"><strong>Hallucination-Proof Groundedness ($K=6$):</strong> Configured retriever ($k=6$) with strict system prompts forcing the LLM (Gemini 3.5 Flash / Groq) to cite exact legal articles or explicitly decline out-of-scope questions.</li>
-              <li class="lang-es"><strong>Fidelidad y Mitigación de Alucinaciones ($K=6$):</strong> Recuperador optimizado ($k=6$) con prompts de sistema estrictos que obligan al LLM (Gemini 3.5 Flash / Groq) a citar artículos legales exactos o declarar si la información no está en la base de datos.</li>
+              <li class="lang-en"><strong>Hallucination-Proof Groundedness (k = 6):</strong> Configured retriever (k = 6) with strict system prompts forcing the LLM (Gemini / Groq) to cite exact legal articles or explicitly decline out-of-scope questions.</li>
+              <li class="lang-es"><strong>Fidelidad y Mitigación de Alucinaciones (k = 6):</strong> Recuperador optimizado (k = 6) con prompts de sistema estrictos que obligan al LLM (Gemini / Groq) a citar artículos legales exactos o declarar si la información no está en la base de datos.</li>
 
               <li class="lang-en"><strong>Secure Architecture & UX:</strong> Secure backend API key management (secrets handling), interactive evidence inspector, knowledge scope panel, and direct PDF source downloads for auditability.</li>
               <li class="lang-es"><strong>Arquitectura Segura y UX:</strong> Manejo seguro de API Keys en segundo plano, inspector interactivo de evidencias recuperadas, panel de alcance normativo y descarga directa de PDFs oficiales.</li>
@@ -732,96 +1171,13 @@
             </div>
           </div>
 
-          <!-- PROYECTO 3: AUTONOMOUS AGENT -->
-          <div class="project-card" data-category="ai">
-            <h3>Autonomous Agent (ML-Agents DRL)</h3>
-            <p class="lang-en">Reinforcement learning proof of concept implemented in Unity and Python using the Unity ML-Agents Toolkit. Designed and trained an autonomous agent to navigate dynamic obstacle courses through policy optimization.</p>
-            <p class="lang-es">Prueba de concepto de aprendizaje por refuerzo implementada en Unity y Python utilizando el Unity ML-Agents Toolkit. Diseñé y entrené un agente autónomo para navegar circuitos de obstáculos dinámicos mediante optimización de políticas.</p>
-            
-            <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
-              <li class="lang-en"><strong>Algorithm & training:</strong> Proximal policy optimization (PPO) using vector observations and continuous action spaces.</li>
-              <li class="lang-es"><strong>Algoritmo y entrenamiento:</strong> Proximal Policy Optimization (PPO) usando observaciones vectoriales y espacios de acción continua.</li>
-              <li class="lang-en"><strong>Reward function architecture:</strong> Custom reward shaping designed to minimize navigation time while penalizing collisions and erratic motion.</li>
-              <li class="lang-es"><strong>Arquitectura de recompensas:</strong> Diseño de recompensas personalizadas para minimizar el tiempo de navegación y penalizar colisiones y movimientos erráticos.</li>
-              <li class="lang-en"><strong>Metrics & telemetry:</strong> Real-time training metrics, entropy loss, and cumulative rewards tracked via TensorBoard.</li>
-              <li class="lang-es"><strong>Métricas y telemetría:</strong> Seguimiento en tiempo real de métricas de entrenamiento, pérdida de entropía y recompensas acumuladas vía TensorBoard.</li>
-            </ul>
-
-            <div style="width: 100%; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: #000; margin-bottom: 1rem;">
-              <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
-            </div>
-
-            <p style="font-size: 0.8rem; color: var(--accent-green); margin: 1.2rem 0 0.5rem 0; font-weight: bold;">
-              <span class="lang-en">// TensorBoard Training Telemetry (Click to expand):</span>
-              <span class="lang-es">// Telemetría de Entrenamiento TensorBoard (Clic para ampliar):</span>
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; margin-bottom: 1.2rem;">
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-                <img src="tb-1.png" alt="TensorBoard Reward" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-                <img src="tb-2.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-                <img src="tb-3.png" alt="TensorBoard Loss" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: auto; display: block;">
-              </div>
-            </div>
-
-            <div class="tags">
-              <span class="tag">C#</span>
-              <span class="tag">Python</span>
-              <span class="tag">Unity ML-Agents</span>
-              <span class="tag">PyTorch</span>
-              <span class="tag">Reinforcement Learning</span>
-              <span class="tag">TensorBoard</span>
-            </div>
-            <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank">View Repository →</a>
-          </div>
-
-          <!-- PROYECTO 4: MAGIC HEART -->
-          <div class="project-card" data-category="gamedev">
-            <h3>Magic Heart - Survival Defense (URP & VFX)</h3>
-            <p class="lang-en">Action-arcade survival defense developed in Unity (URP) targeting mobile and touch platforms. Features dynamic game systems, custom visual effects, and dynamic audio management.</p>
-            <p class="lang-es">Juego de defensa y supervivencia arcade desarrollado en Unity (URP) para plataformas móviles y táctiles. Cuenta con sistemas de juego dinámicos, efectos visuales personalizados y gestión de audio dinámico.</p>
-            
-            <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
-              <li class="lang-en"><strong>Wave system:</strong> Dynamic enemy spawning algorithms with progressive difficulty scaling over time.</li>
-              <li class="lang-es"><strong>Sistema de oleadas:</strong> Algoritmos de generación dinámica de enemigos con escalado progresivo de dificultad.</li>
-              <li class="lang-en"><strong>Graphics & VFX:</strong> Custom Shader Graph integration (Ice slowdown, Magma DOT, hit feedback) and procedural squash/stretch game-feel.</li>
-              <li class="lang-es"><strong>Gráficos y VFX:</strong> Integración de Shader Graphs personalizados (ralentización de hielo, daño por magma, feedback de impacto) y game-feel procedimental de deformación.</li>
-              <li class="lang-en"><strong>Audio & input architecture:</strong> Multi-channel AudioMixer with dynamic pause controls and hybrid touch/mouse Raycast tracking.</li>
-              <li class="lang-es"><strong>Arquitectura de audio e input:</strong> AudioMixer multicanal con controles de pausa dinámicos y sistema de seguimiento por raycast híbrido (táctil y mouse).</li>
-            </ul>
-
-            <div class="game-preview-wrapper">
-              <div id="interactive-cover" class="game-cover-interactive" onclick="launchGame()">
-                <img src="magic-preview.png" alt="Magic Heart Cover">
-                <div class="cover-overlay"></div>
-                <div class="play-badge">
-                  <span class="lang-en">▶ PLAY DEMO</span>
-                  <span class="lang-es">▶ JUGAR DEMO</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="tags">
-              <span class="tag">C#</span>
-              <span class="tag">Unity URP</span>
-              <span class="tag">Shader Graph</span>
-              <span class="tag">WebGL</span>
-              <span class="tag">Game Design</span>
-              <span class="tag">Mobile</span>
-            </div>
-            <a href="https://github.com/MarketablePlushiee/Magic-Heart-Tower-Defense" target="_blank">View Repository →</a>
-          </div>
-
-          <!-- PROYECTO 5: SAFEVR -->
-          <div class="project-card" data-category="vr gamedev" style="grid-column: 1 / -1;">
-            <h3>SafeVR - <span class="lang-en">Industrial Safety Simulator</span><span class="lang-es">Simulador de Seguridad Industrial</span></h3>
+          <!-- PROYECTO 3: SAFEVR (DESTACADO DEBAJO DE INTEGRASST) -->
+          <div class="project-card" data-category="vr" style="grid-column: 1 / -1;">
+            <h3>SafeVR — <span class="lang-en">Industrial Safety VR Simulator</span><span class="lang-es">Simulador de Seguridad Industrial en RV</span></h3>
             <p>
               <strong style="color: var(--accent-green);">
-                <span class="lang-en">🏆 1st Place - UBO Inicia Entrepreneurship Contest</span>
-                <span class="lang-es">🏆 1er Lugar - Concurso de Emprendimiento UBO Inicia</span>
+                <span class="lang-en">🏆 1st Place — UBO Inicia Entrepreneurship Contest</span>
+                <span class="lang-es">🏆 1er Lugar — Concurso de Emprendimiento UBO Inicia</span>
               </strong>
             </p>
             <p style="margin-top: 0.8rem;" class="lang-en">Industrial safety training often relies on passive presentations or manuals that don't fully prepare people for high-pressure situations. SafeVR was created to explore how interactive simulation could make risk prevention more engaging and practical. Working closely with my team, I served as project leader and lead developer, focusing on building the core Unity prototype, designing intuitive user interactions for Meta Quest, and implementing responsive visual feedback and extinguisher mechanics.</p>
@@ -873,8 +1229,102 @@
               <span class="tag">Unity 3D</span>
               <span class="tag">OpenXR</span>
               <span class="tag">Meta Quest</span>
-              <span class="tag">Gameplay Programming</span>
+              <span class="tag">VR Simulation</span>
             </div>
+          </div>
+
+          <!-- PROYECTO 4: AUTONOMOUS SOCCER RL (PPO & SELF-PLAY) -->
+          <div class="project-card" data-category="ai rl">
+            <h3>Autonomous 1v1 Soccer Agents (PPO & Self-Play)</h3>
+            <p class="lang-en">Competitive multi-agent Deep Reinforcement Learning environment in Unity 6 and Python. Autonomous agents learn 1v1 arcade soccer under continuous rigid-body physics via PPO and Self-Play, exporting to ONNX for real-time inference.</p>
+            <p class="lang-es">Entorno competitivo multi-agente de Aprendizaje por Refuerzo Profundo en Unity 6 y Python. Los agentes aprenden fútbol 1v1 bajo física rígida continua mediante PPO y Self-Play, exportando el modelo a ONNX para inferencia en tiempo real.</p>
+            
+            <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+              <li class="lang-en"><strong>Egocentric Observation & Discrete Control:</strong> 14 local-frame continuous observations with a 3×3×3 (27-action) discrete branch space across 25 parallel arenas (50 simultaneous agents, 1M steps in 19m 19s).</li>
+              <li class="lang-es"><strong>Observación Egocéntrica y Control Discreto:</strong> 14 variables continuas proyectadas al marco local del agente y espacio discreto de 3×3×3 (27 acciones) en 25 canchas paralelas (50 agentes simultáneos, 1M pasos en 19m 19s).</li>
+              <li class="lang-en"><strong>Quantitative Convergence:</strong> Reduced mean episode duration by 77.9% (from 299-step timeouts to 66.49 steps/goal) while maintaining stable Self-Play ELO (1092.67).</li>
+              <li class="lang-es"><strong>Convergencia Cuantitativa:</strong> Reducción del 77,9% en duración media de episodio (de empates de 299 pasos a 66,49 pasos/gol) manteniendo estabilidad competitiva en Self-Play ELO (1092,67).</li>
+            </ul>
+
+            <div style="width: 100%; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: #000; margin-bottom: 1rem;">
+              <img src="demo-1x.gif" alt="Autonomous Soccer 1x Inference Demo" style="width: 100%; height: auto; display: block;">
+            </div>
+
+            <p style="font-size: 0.8rem; color: var(--accent-green); margin: 0.8rem 0 0.5rem 0; font-weight: bold;">
+              <span class="lang-en">// Arena Architecture & TensorBoard Telemetry (Click to expand):</span>
+              <span class="lang-es">// Arquitectura de Arena y Telemetría TensorBoard (Clic para ampliar):</span>
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 1.2rem;">
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
+                <img src="arena-preview.png" alt="Unity 6 Arena Physics" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 65px; object-fit: cover; display: block;">
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
+                <img src="tb-reward.png" alt="TensorBoard Cumulative Reward" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 65px; object-fit: cover; display: block;">
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
+                <img src="tb-length.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 65px; object-fit: cover; display: block;">
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
+                <img src="tb-elo.png" alt="TensorBoard Self-Play ELO" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 65px; object-fit: cover; display: block;">
+              </div>
+            </div>
+
+            <div class="tags">
+              <span class="tag">C#</span>
+              <span class="tag">Python</span>
+              <span class="tag">Unity 6</span>
+              <span class="tag">ML-Agents</span>
+              <span class="tag">PPO & Self-Play</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">ONNX</span>
+            </div>
+            <a href="https://github.com/MarketablePlushiee/AutonomousSoccerRL" target="_blank">📦 <span class="lang-en">View Repository</span><span class="lang-es">Ver Repositorio</span> →</a>
+          </div>
+
+          <!-- PROYECTO 5: AUTONOMOUS OBSTACLE AGENT -->
+          <div class="project-card" data-category="ai rl">
+            <h3>Autonomous Obstacle Agent (ML-Agents DRL)</h3>
+            <p class="lang-en">Reinforcement learning navigation system implemented in Unity and Python using the Unity ML-Agents Toolkit. Trained an autonomous agent to traverse dynamic obstacle courses through policy optimization.</p>
+            <p class="lang-es">Sistema de navegación con aprendizaje por refuerzo implementado en Unity y Python utilizando Unity ML-Agents Toolkit. Entrené un agente autónomo para atravesar circuitos de obstáculos dinámicos mediante optimización de políticas.</p>
+            
+            <ul style="margin: 0.8rem 0 1rem 1.2rem; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4;">
+              <li class="lang-en"><strong>Algorithm & training:</strong> Proximal Policy Optimization (PPO) using vector observations and continuous action spaces.</li>
+              <li class="lang-es"><strong>Algoritmo y entrenamiento:</strong> Proximal Policy Optimization (PPO) usando observaciones vectoriales y espacios de acción continua.</li>
+              <li class="lang-en"><strong>Reward function architecture:</strong> Custom reward shaping designed to minimize navigation time while penalizing collisions and erratic motion.</li>
+              <li class="lang-es"><strong>Arquitectura de recompensas:</strong> Diseño de recompensas personalizadas para minimizar el tiempo de navegación y penalizar colisiones y movimientos erráticos.</li>
+              <li class="lang-en"><strong>Metrics & telemetry:</strong> Real-time training metrics, entropy loss, and cumulative rewards tracked via TensorBoard.</li>
+              <li class="lang-es"><strong>Métricas y telemetría:</strong> Seguimiento en tiempo real de métricas de entrenamiento, pérdida de entropía y recompensas acumuladas vía TensorBoard.</li>
+            </ul>
+
+            <div style="width: 100%; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: #000; margin-bottom: 1rem;">
+              <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
+            </div>
+
+            <p style="font-size: 0.8rem; color: var(--accent-green); margin: 0.8rem 0 0.5rem 0; font-weight: bold;">
+              <span class="lang-en">// TensorBoard Training Telemetry (Click to expand):</span>
+              <span class="lang-es">// Telemetría de Entrenamiento TensorBoard (Clic para ampliar):</span>
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.2rem;">
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
+                <img src="tb-1.png" alt="TensorBoard Reward" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 65px; object-fit: cover; display: block;">
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
+                <img src="tb-2.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 65px; object-fit: cover; display: block;">
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
+                <img src="tb-3.png" alt="TensorBoard Loss" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 65px; object-fit: cover; display: block;">
+              </div>
+            </div>
+
+            <div class="tags">
+              <span class="tag">C#</span>
+              <span class="tag">Python</span>
+              <span class="tag">Unity ML-Agents</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">Reinforcement Learning</span>
+              <span class="tag">TensorBoard</span>
+            </div>
+            <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank">📦 <span class="lang-en">View Repository</span><span class="lang-es">Ver Repositorio</span> →</a>
           </div>
 
         </div>
@@ -920,327 +1370,410 @@
 
 
   <!-- ========================================================= -->
-  <!-- VISTA 2: MODO EJECUTIVO HIGH-FIDELITY (MAQUETA HERMANO)  -->
+  <!-- VISTA 2: MODO EJECUTIVO (CARBÓN Y VERDE ESMERALDA)        -->
   <!-- ========================================================= -->
   <div id="executive-view">
     <nav class="exec-nav">
-      <div class="exec-logo">IL</div>
+      <div class="exec-brand">
+        <span class="exec-brand-mark">IL</span>
+        <span>IVAN LATRILLE</span>
+      </div>
       <div class="exec-nav-links">
-        <a href="#about-exec">Sobre mí</a>
-        <a href="#especializacion">Especialización</a>
-        <a href="#proyectos-exec">Proyectos</a>
-        <a href="#habilidades-exec">Habilidades</a>
-        <a href="#trayectoria-exec">Trayectoria</a>
-        <button class="btn-header btn-reboot" onclick="switchMode('terminal')">💻 MODO TÉCNICO</button>
-        <a href="Ivan_Latrille_CV.pdf" target="_blank" class="exec-btn-cv-header">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Descargar CV
+        <a href="#exec-projects"><span class="lang-en">Projects</span><span class="lang-es">Proyectos</span></a>
+        <a href="#exec-capabilities"><span class="lang-en">Capabilities</span><span class="lang-es">Capacidades</span></a>
+        <a href="#exec-background"><span class="lang-en">Background</span><span class="lang-es">Trayectoria</span></a>
+        <button class="exec-btn-outline" onclick="toggleLang()">🌐 EN / ES</button>
+        <button class="exec-btn-outline" onclick="switchMode('terminal')">
+          <span class="lang-en">💻 Technical Console</span>
+          <span class="lang-es">💻 Consola Técnica</span>
+        </button>
+        <a href="Ivan_Latrille_CV.pdf" target="_blank" class="exec-btn-primary">
+          <span class="lang-en">Download CV</span>
+          <span class="lang-es">Descargar CV</span>
         </a>
       </div>
     </nav>
 
-    <!-- Hero Sección -->
-    <section class="exec-hero" id="about-exec">
+    <!-- Hero Editorial -->
+    <section class="exec-hero">
       <div>
-        <div class="exec-hero-tag">IDEAS &gt; TECNOLOGÍA &gt; IMPACTO REAL</div>
-        <h1 class="exec-hero-title">Ivan Ignacio Latrille Brito</h1>
-        <div class="exec-hero-subtitle">Especialista en Inteligencia Artificial Aplicada, Realidad Virtual y Desarrollo de Productos Digitales</div>
-        <p class="exec-hero-desc">
-          Desarrollo soluciones tecnológicas basadas en IA, visión computacional y realidad extendida para resolver desafíos reales en seguridad, entrenamiento y automatización. Mi enfoque combina investigación aplicada, desarrollo de software y diseño de experiencias inmersivas con impacto en la industria y la educación.
-        </p>
-        
-        <div class="exec-hero-btns">
-          <!-- Botón 1: Descargar CV -->
-          <a href="Ivan_Latrille_CV.pdf" target="_blank" class="exec-btn-blue">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Descargar CV
-          </a>
-
-          <!-- Botón 2: Ver LinkedIn -->
-          <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-white">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="#0077b5"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/></svg>
-            Ver LinkedIn
-          </a>
-
-          <!-- Botón 3: Ver GitHub -->
-          <a href="https://github.com/MarketablePlushiee" target="_blank" class="exec-btn-dark">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
-            Ver GitHub
-          </a>
-
-          <!-- Botón 4: Ver Proyectos -->
-          <a href="#proyectos-exec" class="exec-btn-dark">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
-            Ver Proyectos
-          </a>
+        <div class="exec-status-pill">
+          <span class="exec-status-dot"></span>
+          <span class="lang-en">OPEN TO AI / XR INTERNSHIPS & APPLIED RESEARCH</span>
+          <span class="lang-es">DISPONIBLE PARA PRÁCTICA E INVESTIGACIÓN EN IA / XR</span>
         </div>
 
-        <!-- Barra Metadata Inferior Limpia (Ubicación y Correo) -->
-        <div class="exec-meta-bar">
-          <span>📍 Santiago, Chile</span>
+        <h1 class="exec-hero-name">Ivan Ignacio Latrille Brito</h1>
+        <div class="exec-hero-role">
+          <span class="lang-en">VR & Game Engineering · Applied AI, Reinforcement Learning & Computer Vision</span>
+          <span class="lang-es">Ingeniería en RV y Videojuegos · IA Aplicada, Aprendizaje por Refuerzo y Visión Computacional</span>
+        </div>
+
+        <p class="exec-hero-summary lang-en">
+          Final-year Virtual Reality & Digital Game Design Engineering student at Universidad Bernardo O'Higgins. I build end-to-end technical systems combining Deep Reinforcement Learning (PPO & Self-Play), Computer Vision (YOLOv8), Legal RAG pipelines, and interactive OpenXR simulations for industrial safety.
+        </p>
+        <p class="exec-hero-summary lang-es">
+          Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo O'Higgins. Desarrollo sistemas técnicos de extremo a extremo que integran Aprendizaje por Refuerzo Profundo (PPO y Self-Play), Visión Computacional (YOLOv8), asistentes RAG normativos y simulaciones interactivas OpenXR para seguridad industrial.
+        </p>
+
+        <div class="exec-hero-actions">
+          <a href="Ivan_Latrille_CV.pdf" target="_blank" class="exec-btn-primary">
+            📄 <span class="lang-en">Download CV (PDF)</span><span class="lang-es">Descargar CV (PDF)</span>
+          </a>
+          <a href="https://github.com/MarketablePlushiee" target="_blank" class="exec-btn-outline">
+            GitHub ↗
+          </a>
+          <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-outline">
+            LinkedIn ↗
+          </a>
+          <button class="exec-btn-outline" onclick="copyEmail()">
+            📋 <span class="lang-en">Copy Email</span><span class="lang-es">Copiar Correo</span>
+          </button>
+        </div>
+
+        <div class="exec-hero-location">
+          <span>📍 Quilicura, Santiago, Chile</span>
           <span>✉️ ivan.latrille1@gmail.com</span>
         </div>
       </div>
 
-      <!-- Tarjeta de Foto Perfil -->
-      <div class="exec-profile-card">
-        <div class="exec-badge-topright">
-          IA<br>XR<br>SIMULACIÓN<br>INNOVACIÓN<br>PERSONAS
+      <!-- Tarjeta Dossier de Credenciales -->
+      <aside class="exec-dossier-card">
+        <div class="exec-dossier-top">
+          <img src="profile.jpg" alt="Ivan Latrille" class="exec-dossier-photo" onerror="this.src='ppe-preview-1.jpg';">
+          <div>
+            <div class="exec-dossier-id-title">Ivan Latrille Brito</div>
+            <div class="exec-dossier-id-sub">@MarketablePlushiee</div>
+          </div>
         </div>
 
-        <div class="exec-avatar-container">
-          <img src="profile.jpg" alt="Ivan Latrille" class="exec-avatar-img" onerror="this.src='ppe-preview-1.jpg';">
-        </div>
+        <div class="exec-dossier-rows">
+          <div class="exec-dossier-row">
+            <span class="exec-dossier-label"><span class="lang-en">Degree</span><span class="lang-es">Formación</span></span>
+            <span class="exec-dossier-value">
+              <span class="lang-en">B.Eng. VR & Digital Game Design (UBO, '27)</span>
+              <span class="lang-es">Ing. en Realidad Virtual y Juegos Digitales (UBO, '27)</span>
+            </span>
+          </div>
 
-        <div class="exec-quote-box">
-          <p class="exec-quote-text">"Tecnología para un mundo más seguro y preparado"</p>
-        </div>
+          <div class="exec-dossier-row">
+            <span class="exec-dossier-label"><span class="lang-en">Primary Stack</span><span class="lang-es">Stack Principal</span></span>
+            <span class="exec-dossier-value">Python · C# · Unity 6 · PyTorch · OpenXR</span>
+          </div>
 
-        <div class="exec-pillars-list">
-          <div class="exec-pillar-item">
-            <span class="exec-pillar-icon">📊</span>
-            <span>Soluciones con impacto real</span>
+          <div class="exec-dossier-row">
+            <span class="exec-dossier-label"><span class="lang-en">Recognition</span><span class="lang-es">Reconocimiento</span></span>
+            <span class="exec-dossier-value">
+              <span class="lang-en">🏆 1st Place — UBO Inicia (SafeVR)</span>
+              <span class="lang-es">🏆 1er Lugar — Concurso UBO Inicia (SafeVR)</span>
+            </span>
           </div>
-          <div class="exec-pillar-item">
-            <span class="exec-pillar-icon">👥</span>
-            <span>Trabajo interdisciplinario</span>
-          </div>
-          <div class="exec-pillar-item">
-            <span class="exec-pillar-icon">💡</span>
-            <span>Innovación constante</span>
-          </div>
-          <div class="exec-pillar-item">
-            <span class="exec-pillar-icon">🎯</span>
-            <span>Orientado a resultados</span>
+
+          <div class="exec-dossier-row">
+            <span class="exec-dossier-label"><span class="lang-en">Languages</span><span class="lang-es">Idiomas</span></span>
+            <span class="exec-dossier-value">
+              <span class="lang-en">Spanish (Native) · English (C2 Certified)</span>
+              <span class="lang-es">Español (Nativo) · Inglés (Certificación C2)</span>
+            </span>
           </div>
         </div>
-      </div>
+      </aside>
     </section>
 
-    <!-- Áreas de Especialización -->
-    <section id="especializacion" style="margin-bottom: 4.5rem;">
-      <div class="exec-section-header">
-        <h2>Áreas de Especialización</h2>
-        <span class="exec-section-sub">CONOCIMIENTO TÉCNICO + VISIÓN DE PRODUCTO = SOLUCIONES REALES</span>
-      </div>
-      
-      <div class="exec-spec-grid">
-        <div class="exec-spec-card">
-          <div class="exec-spec-icon-box">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12a10 10 0 0 1 17.8-6.1L12 12z"></path></svg>
-          </div>
-          <h3>IA Aplicada</h3>
-          <p>Diseño y entrenamiento de modelos para visión computacional, aprendizaje por refuerzo y sistemas inteligentes.</p>
-        </div>
-
-        <div class="exec-spec-card">
-          <div class="exec-spec-icon-box">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="4"></rect><circle cx="8" cy="12" r="2"></circle><circle cx="16" cy="12" r="2"></circle></svg>
-          </div>
-          <h3>XR y Simulación</h3>
-          <p>Desarrollo de experiencias inmersivas para entrenamiento, educación y operación en entornos industriales.</p>
-        </div>
-
-        <div class="exec-spec-card">
-          <div class="exec-spec-icon-box">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-          </div>
-          <h3>Desarrollo de Software</h3>
-          <p>Implementación de aplicaciones interactivas, herramientas web y sistemas escalables con Python, C# y C++.</p>
-        </div>
-
-        <div class="exec-spec-card">
-          <div class="exec-spec-icon-box">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-          </div>
-          <h3>Investigación e Innovación</h3>
-          <p>Exploración de nuevas tecnologías como agentes autónomos, IA generativa RAG y simulación para la industria.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Proyectos Destacados (3 columnas) -->
-    <section id="proyectos-exec" style="margin-bottom: 4.5rem;">
-      <div class="exec-section-header">
-        <h2>Proyectos Destacados</h2>
-        <span class="exec-section-sub">DEL CONCEPTO A LA REALIDAD</span>
+    <!-- Proyectos Destacados (4 proyectos clave en grilla 2x2) -->
+    <section id="exec-projects">
+      <div class="exec-sec-head">
+        <h2><span class="lang-en">Selected Engineering Projects</span><span class="lang-es">Proyectos de Ingeniería Seleccionados</span></h2>
+        <span class="exec-sec-index">01 // PORTFOLIO</span>
       </div>
 
-      <div class="exec-projects-grid">
-        <!-- Proyecto 1 -->
-        <div class="exec-project-card">
-          <img src="ppe-preview-1.jpg" class="exec-project-img" alt="PPE Detection">
-          <div class="exec-project-body">
-            <span class="exec-project-badge">Computer Vision</span>
+      <div class="exec-proj-grid">
+        <!-- Card 1: SafeVR -->
+        <article class="exec-proj-card">
+          <img src="safevr-1.png" alt="SafeVR Simulator" class="exec-proj-media">
+          <div class="exec-proj-content">
+            <div class="exec-proj-meta">
+              <span class="exec-proj-tag">XR + UNITY · OPENXR</span>
+              <span class="exec-proj-metric">🏆 1st Place UBO Inicia</span>
+            </div>
+            <h3>SafeVR — <span class="lang-en">Industrial Safety Simulator</span><span class="lang-es">Simulador de Seguridad Industrial</span></h3>
+            <p class="lang-en">Lead developer and project manager for an interactive VR fire-extinguisher training simulator built for Meta Quest, replacing passive safety manuals with hands-on emergency loops.</p>
+            <p class="lang-es">Líder de proyecto y desarrollador principal de un simulador inmersivo de uso de extintores para Meta Quest, reemplazando presentaciones pasivas por entrenamiento práctico de emergencias.</p>
+            <div class="exec-proj-links">
+              <a href="https://youtu.be/rJ_wUe6Tru4" target="_blank" class="exec-btn-primary">
+                <span class="lang-en">Watch EtMday Demo ↗</span><span class="lang-es">Ver Demo EtMday ↗</span>
+              </a>
+              <button class="exec-btn-outline" onclick="switchMode('terminal')">
+                <span class="lang-en">Tech Details</span><span class="lang-es">Ficha Técnica</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: AutonomousSoccerRL -->
+        <article class="exec-proj-card">
+          <img src="demo-1x.gif" alt="Autonomous 1v1 Soccer RL" class="exec-proj-media">
+          <div class="exec-proj-content">
+            <div class="exec-proj-meta">
+              <span class="exec-proj-tag">DEEP RL · PPO & SELF-PLAY</span>
+              <span class="exec-proj-metric">1M Steps · 1092.7 ELO</span>
+            </div>
+            <h3>Autonomous 1v1 Soccer Agents</h3>
+            <p class="lang-en">Multi-agent reinforcement learning environment in Unity 6 and PyTorch. Agents learn offensive alignment and defensive clearances under rigid-body physics, exported to ONNX for real-time inference.</p>
+            <p class="lang-es">Entorno competitivo multi-agente en Unity 6 y PyTorch. Los agentes aprenden conducción ofensiva y despejes defensivos bajo física continua, exportados a ONNX para inferencia en tiempo real.</p>
+            <div class="exec-proj-links">
+              <a href="https://github.com/MarketablePlushiee/AutonomousSoccerRL" target="_blank" class="exec-btn-primary">
+                <span class="lang-en">GitHub Repository ↗</span><span class="lang-es">Repositorio GitHub ↗</span>
+              </a>
+              <button class="exec-btn-outline" onclick="switchMode('terminal')">
+                <span class="lang-en">TensorBoard Data</span><span class="lang-es">Métricas TensorBoard</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: PPE Audit YOLOv8 -->
+        <article class="exec-proj-card">
+          <img src="ppe-preview-1.jpg" alt="PPE Audit System" class="exec-proj-media">
+          <div class="exec-proj-content">
+            <div class="exec-proj-meta">
+              <span class="exec-proj-tag">COMPUTER VISION · YOLOv8</span>
+              <span class="exec-proj-metric">75.1% mAP@50</span>
+            </div>
             <h3>PPE Audit & Monitoring System</h3>
-            <p>Sistema de detección automática de Equipos de Protección Personal (EPP) en entornos industriales utilizando YOLOv8 y visión por computador.</p>
-            <div class="exec-project-actions">
-              <a href="https://yolov8-safety-equipment-detection-qsj9ufsc4gezwsv7v3t9ms.streamlit.app/" target="_blank" class="exec-btn-blue">Ver Caso ↗</a>
-              <a href="https://github.com/MarketablePlushiee/yolov8-safety-equipment-detection" target="_blank" class="exec-btn-white">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
-                GitHub
+            <p class="lang-en">Automated workplace safety inspection web app fine-tuned on 1,518 annotated industrial images to detect helmets, vests, boots, gloves, and goggles with spatial worker association.</p>
+            <p class="lang-es">Aplicación web de inspección de seguridad laboral entrenada con 1.518 imágenes industriales anotadas para detectar cascos, chalecos, botas, guantes y gafas con asociación espacial por trabajador.</p>
+            <div class="exec-proj-links">
+              <a href="https://yolov8-safety-equipment-detection-qsj9ufsc4gezwsv7v3t9ms.streamlit.app/" target="_blank" class="exec-btn-primary">
+                <span class="lang-en">Live App ↗</span><span class="lang-es">Ver App en Vivo ↗</span>
               </a>
+              <a href="https://github.com/MarketablePlushiee/yolov8-safety-equipment-detection" target="_blank" class="exec-btn-outline">
+                GitHub ↗
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: IntegraSST RAG -->
+        <article class="exec-proj-card">
+          <img src="rag-preview-1.png" alt="IntegraSST Legal RAG" class="exec-proj-media">
+          <div class="exec-proj-content">
+            <div class="exec-proj-meta">
+              <span class="exec-proj-tag">GENERATIVE AI · RAG</span>
+              <span class="exec-proj-metric">LangChain + ChromaDB</span>
+            </div>
+            <h3>IntegraSST — Legal & OHS RAG Assistant</h3>
+            <p class="lang-en">Grounded Retrieval-Augmented Generation assistant for Chilean occupational safety legislation (Ley 16.744, DS 594, DS 44), enforcing exact article citations and out-of-scope guardrails.</p>
+            <p class="lang-es">Asistente RAG fundamentado para la normativa chilena de seguridad laboral (Ley 16.744, DS 594, DS 44), con citas exactas de artículos y control estricto contra alucinaciones.</p>
+            <div class="exec-proj-links">
+              <a href="https://rag-seguridad-laboral-cl.streamlit.app/" target="_blank" class="exec-btn-primary">
+                <span class="lang-en">Live App ↗</span><span class="lang-es">Ver App en Vivo ↗</span>
+              </a>
+              <a href="https://github.com/MarketablePlushiee/rag-seguridad-laboral-chile" target="_blank" class="exec-btn-outline">
+                GitHub ↗
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Capacidades Técnicas y Stack -->
+    <section id="exec-capabilities">
+      <div class="exec-sec-head">
+        <h2><span class="lang-en">Core Capabilities & Tech Stack</span><span class="lang-es">Capacidades Técnicas y Herramientas</span></h2>
+        <span class="exec-sec-index">02 // SKILLS</span>
+      </div>
+
+      <div class="exec-cap-grid">
+        <div class="exec-panel">
+          <div class="exec-cap-list">
+            <div class="exec-cap-item">
+              <span class="exec-cap-num">01</span>
+              <div>
+                <h4><span class="lang-en">Deep Reinforcement Learning & Simulation</span><span class="lang-es">Aprendizaje por Refuerzo Profundo y Simulación</span></h4>
+                <p class="lang-en">Design of reward functions, egocentric observation spaces, and multi-agent PPO training loops in Unity ML-Agents with ONNX deployment.</p>
+                <p class="lang-es">Diseño de funciones de recompensa, espacios de observación egocéntricos y entrenamiento multi-agente PPO en Unity ML-Agents con despliegue ONNX.</p>
+              </div>
+            </div>
+
+            <div class="exec-cap-item">
+              <span class="exec-cap-num">02</span>
+              <div>
+                <h4><span class="lang-en">Computer Vision & Applied NLP (RAG)</span><span class="lang-es">Visión Computacional y NLP Aplicado (RAG)</span></h4>
+                <p class="lang-en">Custom object detection fine-tuning (YOLOv8) and vector-indexed document retrieval pipelines (LangChain, ChromaDB) with verifiable source attribution.</p>
+                <p class="lang-es">Entrenamiento de modelos de detección de objetos (YOLOv8) y pipelines de recuperación documental vectorial (LangChain, ChromaDB) con citas verificables.</p>
+              </div>
+            </div>
+
+            <div class="exec-cap-item">
+              <span class="exec-cap-num">03</span>
+              <div>
+                <h4><span class="lang-en">Virtual Reality & Interactive Systems</span><span class="lang-es">Realidad Virtual y Sistemas Interactivos</span></h4>
+                <p class="lang-en">End-to-end VR prototyping in Unity (C# / OpenXR) for Meta Quest, translating operational safety procedures into measurable training scenarios.</p>
+                <p class="lang-es">Prototipado integral en realidad virtual con Unity (C# / OpenXR) para Meta Quest, transformando protocolos de seguridad en escenarios medibles.</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Proyecto 2 -->
-        <div class="exec-project-card">
-          <img src="safevr-1.png" class="exec-project-img" alt="SafeVR Simulator">
-          <div class="exec-project-body">
-            <span class="exec-project-badge">XR + Unity (🏆 1er Lugar)</span>
-            <h3>Industrial Safety Simulator</h3>
-            <p>Simulador inmersivo para capacitación y entrenamiento en entornos industriales mediante Realidad Virtual y Unity 3D.</p>
-            <div class="exec-project-actions">
-              <a href="https://youtu.be/rJ_wUe6Tru4" target="_blank" class="exec-btn-blue">Ver Demo ↗</a>
-              <a href="https://github.com/MarketablePlushiee" target="_blank" class="exec-btn-white">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
-                GitHub
-              </a>
+        <div class="exec-panel">
+          <div class="exec-stack-group">
+            <div class="exec-stack-title"><span class="lang-en">AI & Data Science</span><span class="lang-es">IA y Ciencia de Datos</span></div>
+            <div class="exec-stack-chips">
+              <span class="exec-stack-chip">Python</span>
+              <span class="exec-stack-chip">PyTorch</span>
+              <span class="exec-stack-chip">ML-Agents (PPO)</span>
+              <span class="exec-stack-chip">ONNX</span>
+              <span class="exec-stack-chip">YOLOv8</span>
+              <span class="exec-stack-chip">LangChain</span>
+              <span class="exec-stack-chip">ChromaDB</span>
+              <span class="exec-stack-chip">TensorBoard</span>
             </div>
           </div>
-        </div>
 
-        <!-- Proyecto 3 -->
-        <div class="exec-project-card">
-          <img src="ml-preview.gif" class="exec-project-img" alt="AI Research">
-          <div class="exec-project-body">
-            <span class="exec-project-badge">AI Research</span>
-            <h3>Agentes con Aprendizaje por Refuerzo</h3>
-            <p>Entrenamiento de agentes autónomos mediante PPO y Unity ML-Agents para tareas en entornos simulados.</p>
-            <div class="exec-project-actions">
-              <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank" class="exec-btn-blue">Ver Caso ↗</a>
-              <a href="https://github.com/MarketablePlushiee/Unity-ML-Agents-PPO" target="_blank" class="exec-btn-white">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
-                GitHub
-              </a>
+          <div class="exec-stack-group">
+            <div class="exec-stack-title"><span class="lang-en">Engines & XR</span><span class="lang-es">Motores 3D y XR</span></div>
+            <div class="exec-stack-chips">
+              <span class="exec-stack-chip">Unity 6 (URP)</span>
+              <span class="exec-stack-chip">C#</span>
+              <span class="exec-stack-chip">OpenXR</span>
+              <span class="exec-stack-chip">Meta Quest SDK</span>
+              <span class="exec-stack-chip">Unreal Engine</span>
+            </div>
+          </div>
+
+          <div class="exec-stack-group">
+            <div class="exec-stack-title"><span class="lang-en">Software & Web</span><span class="lang-es">Software y Web</span></div>
+            <div class="exec-stack-chips">
+              <span class="exec-stack-chip">Git & GitHub</span>
+              <span class="exec-stack-chip">Streamlit</span>
+              <span class="exec-stack-chip">C++</span>
+              <span class="exec-stack-chip">JavaScript</span>
+              <span class="exec-stack-chip">HTML5 / CSS3</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Habilidades y Tecnologías Split -->
-    <section id="habilidades-exec" style="margin-bottom: 4.5rem;">
-      <div class="exec-section-header">
-        <h2>Habilidades y Tecnologías</h2>
-        <span class="exec-section-sub">HERRAMIENTAS PARA GENERAR IMPACTO</span>
+    <!-- Educación y Experiencia -->
+    <section id="exec-background">
+      <div class="exec-sec-head">
+        <h2><span class="lang-en">Education & Experience</span><span class="lang-es">Educación y Experiencia</span></h2>
+        <span class="exec-sec-index">03 // BACKGROUND</span>
       </div>
 
-      <div class="exec-skills-split">
-        <div class="exec-skills-box">
-          <h3>Tecnologías Principales</h3>
-          <div class="exec-tech-chips">
-            <span class="exec-chip">Python</span>
-            <span class="exec-chip">Unity 3D</span>
-            <span class="exec-chip">Unreal Engine</span>
-            <span class="exec-chip">PyTorch</span>
-            <span class="exec-chip">YOLOv8</span>
-            <span class="exec-chip">OpenXR</span>
-            <span class="exec-chip">TensorBoard</span>
-            <span class="exec-chip">LangChain</span>
-            <span class="exec-chip">C#</span>
-            <span class="exec-chip">C++</span>
-            <span class="exec-chip">JavaScript</span>
-            <span class="exec-chip">HTML5 / CSS3</span>
-          </div>
+      <div class="exec-edu-grid">
+        <div class="exec-edu-card">
+          <div class="exec-edu-period">2023 — 2027 (<span class="lang-en">Expected</span><span class="lang-es">Estimado</span>)</div>
+          <h3>Universidad Bernardo O'Higgins</h3>
+          <p>
+            <span class="lang-en">B.Eng. in Virtual Reality and Digital Game Design Engineering. Focus on simulation architecture, applied AI, and interactive systems.</span>
+            <span class="lang-es">Ingeniería en Realidad Virtual y Diseño de Juegos Digitales. Enfoque en arquitectura de simulación, IA aplicada y sistemas interactivos.</span>
+          </p>
         </div>
 
-        <div class="exec-skills-box">
-          <h3>Competencias Clave</h3>
-          <div class="exec-check-list">
-            <div class="exec-check-item"><span class="exec-check-icon">✓</span> Resolución de problemas complejos</div>
-            <div class="exec-check-item"><span class="exec-check-icon">✓</span> Liderazgo técnico y trabajo en equipo</div>
-            <div class="exec-check-item"><span class="exec-check-icon">✓</span> Diseño y desarrollo de experiencias XR</div>
-            <div class="exec-check-item"><span class="exec-check-icon">✓</span> Comunicación efectiva de valor ejecutivo</div>
-            <div class="exec-check-item"><span class="exec-check-icon">✓</span> Análisis de datos y visión computacional</div>
-            <div class="exec-check-item"><span class="exec-check-icon">✓</span> Innovación y aprendizaje continuo</div>
-          </div>
+        <div class="exec-edu-card">
+          <div class="exec-edu-period">2022 — <span class="lang-en">Present</span><span class="lang-es">Presente</span></div>
+          <h3>Automotora Inalco S.A. / Inalcar / Forcenter</h3>
+          <p>
+            <span class="lang-en">Logistics & Operational Assistant — Branch operational management, customer service, and technical troubleshooting at point of sale.</span>
+            <span class="lang-es">Asistente Logístico y Operativo — Gestión operativa de sucursal, atención al cliente y resolución técnica en punto de venta.</span>
+          </p>
+        </div>
+
+        <div class="exec-edu-card">
+          <div class="exec-edu-period">2007 — 2018</div>
+          <h3>Colegio Padre Pedro Arrupe</h3>
+          <p>
+            <span class="lang-en">Technical-Professional High School Degree in Automotive Mechanics.</span>
+            <span class="lang-es">Título Técnico Profesional de Nivel Medio en Mecánica Automotriz.</span>
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Trayectoria Académica y Profesional -->
-    <section id="trayectoria-exec" style="margin-bottom: 4.5rem;">
-      <div class="exec-section-header">
-        <h2>Trayectoria Académica y Profesional</h2>
-        <span class="exec-section-sub">APRENDIZAJE CONTINUO | EXPERIENCIA PRÁCTICA | VISIÓN DE FUTURO</span>
-      </div>
-
-      <div class="exec-timeline-track">
-        <div class="exec-timeline-item">
-          <div class="exec-tl-year">2020 — 2027</div>
-          <div class="exec-tl-title">Universidad Bernardo O'Higgins</div>
-          <div class="exec-tl-desc">Ingeniería en Realidad Virtual y Diseño de Juegos Digitales.</div>
-        </div>
-        <div class="exec-timeline-item">
-          <div class="exec-tl-year">2022 — Actualidad</div>
-          <div class="exec-tl-title">Investigación en IA</div>
-          <div class="exec-tl-desc">Aprendizaje por Refuerzo (PPO) y Machine Learning Aplicado.</div>
-        </div>
-        <div class="exec-timeline-item">
-          <div class="exec-tl-year">2022 — Actualidad</div>
-          <div class="exec-tl-title">Desarrollo de Proyectos XR</div>
-          <div class="exec-tl-desc">Simulación y entrenamiento industrial con Meta Quest.</div>
-        </div>
-        <div class="exec-timeline-item">
-          <div class="exec-tl-year">Actualidad</div>
-          <div class="exec-tl-title">Aplicación en la Industria</div>
-          <div class="exec-tl-desc">Soluciones tecnológicas con impacto operacional en automotora.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer Hablemos -->
+    <!-- Footer Directo -->
     <footer class="exec-footer">
-      <h2>Hablemos</h2>
-      <p>Estoy abierto a nuevas oportunidades de investigación, práctica profesional y desarrollo en IA / XR.</p>
-      <div class="exec-footer-links">
-        <a href="mailto:ivan.latrille1@gmail.com" class="exec-btn-blue">✉️ ivan.latrille1@gmail.com</a>
-        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-white">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#0077b5"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/MarketablePlushiee" target="_blank" class="exec-btn-dark">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
-          GitHub
-        </a>
+      <div class="exec-footer-text">
+        <h3><span class="lang-en">Contact & Links</span><span class="lang-es">Contacto y Enlaces</span></h3>
+        <p>ivan.latrille1@gmail.com · Quilicura, Santiago, Chile</p>
+      </div>
+      <div class="exec-footer-actions">
+        <a href="mailto:ivan.latrille1@gmail.com" class="exec-btn-primary">✉️ <span class="lang-en">Send Email</span><span class="lang-es">Enviar Correo</span></a>
+        <a href="https://github.com/MarketablePlushiee" target="_blank" class="exec-btn-outline">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-outline">LinkedIn ↗</a>
+        <button class="exec-btn-outline" onclick="switchMode('terminal')">💻 <span class="lang-en">Technical View</span><span class="lang-es">Vista Técnica</span></button>
       </div>
     </footer>
   </div>
 
 
   <!-- ========================================================= -->
-  <!-- SCRIPTS Y LÓGICA DE CONTROL COMPLETA                     -->
+  <!-- SCRIPTS Y LÓGICA DE CONTROL                               -->
   <!-- ========================================================= -->
   <script>
     const cmdInput = document.getElementById('cmd');
     const heroTerminal = document.getElementById('hero-terminal');
+    const langGate = document.getElementById('lang-gate');
+    const termBox = document.getElementById('term-box');
     const mainContent = document.getElementById('main-content');
     const terminalLog = document.getElementById('terminal-log');
     const typewriterEl = document.getElementById('typewriter');
 
-    // Conmutador de Vistas (Terminal vs Ejecutivo)
     function switchMode(mode) {
       if (mode === 'executive') {
         stopAmbientDrone();
         document.body.classList.remove('terminal-mode');
         document.body.classList.add('exec-mode-active');
+        window.scrollTo(0, 0);
       } else {
         document.body.classList.remove('exec-mode-active');
         document.body.classList.add('terminal-mode');
         if (mainContent.classList.contains('visible')) {
           startAmbientDrone();
+          initScrollObserve();
         }
       }
     }
 
+    function openExecutiveFromTerminal() {
+      playClickSound();
+      heroTerminal.style.opacity = '0';
+      setTimeout(() => {
+        heroTerminal.style.display = 'none';
+        mainContent.classList.add('visible');
+        switchMode('executive');
+      }, 350);
+    }
+
+    function selectBootLanguage(lang) {
+      playClickSound();
+      setLanguage(lang);
+      langGate.style.display = 'none';
+      termBox.style.display = 'flex';
+      charIndex = 0;
+      typewriterEl.textContent = '';
+      typeEffect();
+      setTimeout(() => {
+        if (cmdInput) cmdInput.focus();
+      }, 50);
+    }
+
+    function returnToLangGate() {
+      playClickSound();
+      termBox.style.display = 'none';
+      langGate.style.display = 'flex';
+    }
+
     const terminali18n = {
       en: {
-        welcomeText: '> System initialized. Type "hello world" and press ENTER to access (or type "help" for commands):',
-        placeholder: 'Type "hello world" and press ENTER',
+        welcomeText: '> System initialized. Type "hello world" + ENTER for Technical Mode, or use the button below for Executive Mode (type "help" for commands):',
+        placeholder: 'Type "hello world" or "exec" and press ENTER',
         helpTitle: 'Available system commands:',
-        cmdHello: '"hello world" — Access portfolio',
+        cmdHello: '"hello world" — Access full Technical Portfolio',
+        cmdExec: '"exec" / "executive" — Open simplified Executive Mode',
         cmdLang: '"lang es" / "lang en" — Change system language',
         cmdHelp: '"help" — Display command list',
         cmdCredits: '"credits" — Display portfolio developer credits',
@@ -1249,13 +1782,14 @@
         langUsage: '[System] Usage: "lang es" (Spanish) or "lang en" (English)',
         creditsText: 'Portfolio Created, Designed & Developed by Ivan Latrille.',
         secMsg: 'aHR0cHM6Ly95b3V0dS5iZS82c0FRMXd1WXp4az9zaT1OSGY0YlZwb0UwdHR3ZnVw',
-        accessDenied: 'Access denied. Command "{val}" not recognized. Type "hello world" to enter.'
+        accessDenied: 'Access denied. Command "{val}" not recognized. Type "hello world" or "exec" to enter.'
       },
       es: {
-        welcomeText: '> Sistema inicializado. Escribe "hello world" y presiona ENTER para acceder (o escribe "help" para ver comandos):',
-        placeholder: 'Escribe "hello world" y presiona ENTER',
+        welcomeText: '> Sistema inicializado. Escribe "hello world" + ENTER para Modo Técnico, o usa el botón de abajo para Modo Ejecutivo (escribe "help" para comandos):',
+        placeholder: 'Escribe "hello world" o "exec" y presiona ENTER',
         helpTitle: 'Comandos de sistema disponibles:',
-        cmdHello: '"hello world" — Acceder al portafolio',
+        cmdHello: '"hello world" — Acceder al Portafolio Técnico completo',
+        cmdExec: '"exec" / "ejecutivo" — Abrir Modo Ejecutivo simplificado',
         cmdLang: '"lang es" / "lang en" — Cambiar idioma del sistema',
         cmdHelp: '"help" — Mostrar lista de comandos',
         cmdCredits: '"credits" — Mostrar créditos del desarrollador',
@@ -1264,7 +1798,7 @@
         langUsage: '[System] Uso: "lang es" (Español) o "lang en" (Inglés)',
         creditsText: 'Portafolio Creado, Diseñado y Desarrollado por Ivan Latrille.',
         secMsg: 'aHR0cHM6Ly95b3V0dS5iZS82c0FRMXd1WXp4az9zaT1OSGY0YlZwb0UwdHR3ZnVw',
-        accessDenied: 'Access denied. Comando "{val}" no reconocido. Escribe "hello world" para ingresar.'
+        accessDenied: 'Acceso denegado. Comando "{val}" no reconocido. Escribe "hello world" o "exec" para ingresar.'
       }
     };
 
@@ -1285,22 +1819,17 @@
     function startAmbientDrone() {
       if (!audioEnabled || isAmbientPlaying || document.body.classList.contains('exec-mode-active')) return;
       try {
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-        
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         ambientDroneNode1 = audioCtx.createOscillator();
         ambientDroneNode2 = audioCtx.createOscillator();
         ambientGainNode = audioCtx.createGain();
 
         ambientDroneNode1.type = 'sine';
         ambientDroneNode1.frequency.setValueAtTime(55, audioCtx.currentTime);
-
         ambientDroneNode2.type = 'triangle';
         ambientDroneNode2.frequency.setValueAtTime(110, audioCtx.currentTime);
 
         ambientGainNode.gain.setValueAtTime(0.002, audioCtx.currentTime);
-
         ambientDroneNode1.connect(ambientGainNode);
         ambientDroneNode2.connect(ambientGainNode);
         ambientGainNode.connect(audioCtx.destination);
@@ -1393,7 +1922,6 @@
       audioEnabled = !audioEnabled;
       const btn = document.getElementById('audio-toggle');
       btn.textContent = audioEnabled ? '🔊 Sound' : '🔇 Muted';
-      
       if (!audioEnabled) {
         stopAmbientDrone();
       } else if (mainContent.classList.contains('visible')) {
@@ -1413,7 +1941,6 @@
         });
       });
 
-      // Iniciar en Modo Terminal (Consola) por defecto
       switchMode('terminal');
     });
 
@@ -1445,11 +1972,12 @@
             <div style="color:var(--accent-blue); margin: 0.4rem 0;">
               ${t.helpTitle}
               <div style="padding-left: 0.8rem; margin-top: 0.2rem; color: var(--accent-green);">
-                > ${t.cmdHello}<br>
-                > ${t.cmdLang}<br>
-                > ${t.cmdHelp}<br>
-                > ${t.cmdCredits}<br>
-                > ${t.cmdClear}
+                &gt; ${t.cmdHello}<br>
+                &gt; ${t.cmdExec}<br>
+                &gt; ${t.cmdLang}<br>
+                &gt; ${t.cmdHelp}<br>
+                &gt; ${t.cmdCredits}<br>
+                &gt; ${t.cmdClear}
               </div>
             </div>`;
         } else if (item.type === 'langChanged') {
@@ -1474,21 +2002,13 @@
       if (charIndex < fullText.length) {
         typewriterEl.textContent += fullText.charAt(charIndex);
         charIndex++;
-        setTimeout(typeEffect, 25);
+        setTimeout(typeEffect, 20);
       }
     }
 
-    window.addEventListener('load', () => {
-      setLanguage(currentLang);
-      if (typewriterEl) {
-        typewriterEl.textContent = '';
-        typeEffect();
-      }
-    });
-
     function copyEmail() {
       navigator.clipboard.writeText("ivan.latrille1@gmail.com");
-      alert("Correo copiado al portapapeles / Email copied to clipboard!");
+      alert(currentLang === 'es' ? "Correo copiado: ivan.latrille1@gmail.com" : "Email copied: ivan.latrille1@gmail.com");
     }
 
     function openPortfolio() {
@@ -1499,16 +2019,17 @@
         mainContent.classList.add('visible');
         startAmbientDrone();
         initScrollObserve();
-      }, 500);
+      }, 450);
     }
 
     function rebootTerminal() {
       stopAmbientDrone();
       mainContent.classList.remove('visible');
       heroTerminal.style.display = 'flex';
+      langGate.style.display = 'flex';
+      termBox.style.display = 'none';
       setTimeout(() => {
         heroTerminal.style.opacity = '1';
-        cmdInput.focus();
       }, 50);
     }
 
@@ -1523,6 +2044,8 @@
 
         if (val === 'hello world') {
           openPortfolio();
+        } else if (val === 'exec' || val === 'executive' || val === 'ejecutivo') {
+          openExecutiveFromTerminal();
         } else if (btoa(val) === 'aW5h') {
           document.body.classList.add('alt-mode');
           commandHistory.push({ type: 'alt' });
@@ -1588,20 +2111,6 @@
         observer.observe(sec);
         sec.classList.add('is-visible');
       });
-    }
-
-    function launchGame() {
-      const modal = document.getElementById('game-modal');
-      const container = document.getElementById('modal-game-container');
-      modal.style.display = 'flex';
-      container.innerHTML = '<iframe src="https://itch.io/embed-upload/18917167?color=000000" allowfullscreen></iframe>';
-    }
-
-    function closeGame() {
-      const modal = document.getElementById('game-modal');
-      const container = document.getElementById('modal-game-container');
-      modal.style.display = 'none';
-      container.innerHTML = '';
     }
 
     function openLightbox(imgSrc) {
