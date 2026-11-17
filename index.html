@@ -200,7 +200,7 @@
       border-color: var(--accent-blue);
     }
 
-    /* Contenedor Principal Técnico (Vista alejada y con márgenes cómodos) */
+    /* Contenedor Principal Técnico */
     #main-content {
       position: relative; z-index: 10; opacity: 0; visibility: hidden;
       transition: opacity 0.8s ease; max-width: 1160px; width: 92%; margin: 0 auto; padding: 2rem 1.2rem 3.5rem 1.2rem;
@@ -256,6 +256,71 @@
     .project-card:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(88, 166, 255, 0.1); }
     .project-card h3 { color: var(--accent-blue); margin-bottom: 0.75rem; font-size: 1.08rem; }
 
+    /* Simetría multimedia para tarjetas RL en paralelo */
+    .rl-media-dock {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      padding-top: 0.35rem;
+    }
+
+    .rl-main-gif-box {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 0.85rem;
+    }
+
+    .rl-main-gif-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .rl-thumbs-label {
+      font-size: 0.76rem;
+      color: var(--accent-green);
+      margin: 0.15rem 0 0.5rem 0;
+      font-weight: bold;
+      line-height: 1.35;
+      min-height: 2.1em;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .rl-thumbs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 0.9rem;
+    }
+
+    .rl-thumb-square {
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #070a08;
+    }
+
+    .rl-thumb-square img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .rl-tags {
+      display: flex;
+      gap: 0.45rem;
+      margin: 0 0 0.85rem 0;
+      flex-wrap: wrap;
+    }
+
     .credits-box { margin-top: 0.75rem; padding: 0.7rem; background: rgba(0, 0, 0, 0.3); border-left: 2px solid var(--accent-blue); border-radius: 4px; font-size: 0.82rem; }
     .credits-box strong { color: var(--accent-green); }
     .tags { display: flex; gap: 0.45rem; margin: 0.9rem 0 0.9rem 0; flex-wrap: wrap; margin-top: auto; }
@@ -273,7 +338,7 @@
     .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 2.5rem; cursor: pointer; transition: color 0.2s; }
     .lightbox-close:hover { color: #f85149; }
     .zoomable { cursor: zoom-in; transition: transform 0.2s; }
-    .zoomable:hover { transform: scale(1.02); }
+    .zoomable:hover { transform: scale(1.03); }
 
     .tag { background: #21262d; border: 1px solid var(--border-color); color: var(--text-muted); padding: 0.18rem 0.55rem; border-radius: 12px; font-size: 0.76rem; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
     .tag:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
@@ -378,20 +443,21 @@
       background: #111714;
       color: #c9d1d9 !important;
       border: 1px solid #26352d;
-      padding: 0.45rem 0.85rem;
+      padding: 0.48rem 0.9rem;
       border-radius: 6px;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: border-color 0.2s, color 0.2s;
+      gap: 7px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
     }
 
     .exec-btn-outline:hover {
       border-color: #3fb950;
       color: #3fb950 !important;
+      background: #141f19;
       text-decoration: none;
     }
 
@@ -493,7 +559,7 @@
       flex-wrap: wrap;
     }
 
-    /* Tarjeta Lateral de Credenciales (Foto ampliada) */
+    /* Tarjeta Lateral de Credenciales */
     .exec-dossier-card {
       background: #111714;
       border: 1px solid #1f2d25;
@@ -1256,30 +1322,33 @@
               <li class="lang-es"><strong>Convergencia Cuantitativa:</strong> Reducción del 77,9% en duración media de episodio (de empates de 299 pasos a 66,49 pasos/gol) manteniendo estabilidad competitiva en Self-Play ELO (1092,67).</li>
             </ul>
 
-            <div style="width: 100%; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: #000; margin-bottom: 0.85rem;">
-              <img src="demo-1x.gif" alt="Autonomous Soccer 1x Inference Demo" style="width: 100%; height: auto; display: block;">
+            <div class="rl-media-dock">
+              <div class="rl-main-gif-box">
+                <img src="demo-1x.gif" alt="Autonomous Soccer 1x Inference Demo">
+              </div>
+
+              <div class="rl-thumbs-label">
+                <span class="lang-en">// Arena Architecture & TensorBoard Telemetry (Click to expand):</span>
+                <span class="lang-es">// Arquitectura de Arena y Telemetría TensorBoard (Clic para ampliar):</span>
+              </div>
+
+              <div class="rl-thumbs-grid">
+                <div class="rl-thumb-square">
+                  <img src="arena-preview.png" alt="Unity 6 Arena Physics" class="zoomable" onclick="openLightbox(this.src)">
+                </div>
+                <div class="rl-thumb-square">
+                  <img src="tb-reward.png" alt="TensorBoard Cumulative Reward" class="zoomable" onclick="openLightbox(this.src)">
+                </div>
+                <div class="rl-thumb-square">
+                  <img src="tb-length.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)">
+                </div>
+                <div class="rl-thumb-square">
+                  <img src="tb-elo.png" alt="TensorBoard Self-Play ELO" class="zoomable" onclick="openLightbox(this.src)">
+                </div>
+              </div>
             </div>
 
-            <p style="font-size: 0.76rem; color: var(--accent-green); margin: 0.6rem 0 0.4rem 0; font-weight: bold;">
-              <span class="lang-en">// Arena Architecture & TensorBoard Telemetry (Click to expand):</span>
-              <span class="lang-es">// Arquitectura de Arena y Telemetría TensorBoard (Clic para ampliar):</span>
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 1rem;">
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-                <img src="arena-preview.png" alt="Unity 6 Arena Physics" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 55px; object-fit: cover; display: block;">
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-                <img src="tb-reward.png" alt="TensorBoard Cumulative Reward" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 55px; object-fit: cover; display: block;">
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-                <img src="tb-length.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 55px; object-fit: cover; display: block;">
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-                <img src="tb-elo.png" alt="TensorBoard Self-Play ELO" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 55px; object-fit: cover; display: block;">
-              </div>
-            </div>
-
-            <div class="tags">
+            <div class="rl-tags">
               <span class="tag">C#</span>
               <span class="tag">Python</span>
               <span class="tag">Unity 6</span>
@@ -1306,27 +1375,30 @@
               <li class="lang-es"><strong>Métricas y telemetría:</strong> Seguimiento en tiempo real de métricas de entrenamiento, pérdida de entropía y recompensas acumuladas vía TensorBoard.</li>
             </ul>
 
-            <div style="width: 100%; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: #000; margin-bottom: 0.85rem;">
-              <img src="ml-preview.gif" alt="ML-Agents Simulation" style="width: 100%; height: auto; display: block;">
+            <div class="rl-media-dock">
+              <div class="rl-main-gif-box">
+                <img src="ml-preview.gif" alt="ML-Agents Simulation">
+              </div>
+
+              <div class="rl-thumbs-label">
+                <span class="lang-en">// TensorBoard Training Telemetry (Click to expand):</span>
+                <span class="lang-es">// Telemetría de Entrenamiento TensorBoard (Clic para ampliar):</span>
+              </div>
+
+              <div class="rl-thumbs-grid">
+                <div class="rl-thumb-square">
+                  <img src="tb-1.png" alt="TensorBoard Reward" class="zoomable" onclick="openLightbox(this.src)">
+                </div>
+                <div class="rl-thumb-square">
+                  <img src="tb-2.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)">
+                </div>
+                <div class="rl-thumb-square">
+                  <img src="tb-3.png" alt="TensorBoard Loss" class="zoomable" onclick="openLightbox(this.src)">
+                </div>
+              </div>
             </div>
 
-            <p style="font-size: 0.76rem; color: var(--accent-green); margin: 0.6rem 0 0.4rem 0; font-weight: bold;">
-              <span class="lang-en">// TensorBoard Training Telemetry (Click to expand):</span>
-              <span class="lang-es">// Telemetría de Entrenamiento TensorBoard (Clic para ampliar):</span>
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 1rem;">
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-                <img src="tb-1.png" alt="TensorBoard Reward" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 55px; object-fit: cover; display: block;">
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-                <img src="tb-2.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 55px; object-fit: cover; display: block;">
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background: var(--card-bg);">
-                <img src="tb-3.png" alt="TensorBoard Loss" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 55px; object-fit: cover; display: block;">
-              </div>
-            </div>
-
-            <div class="tags">
+            <div class="rl-tags">
               <span class="tag">C#</span>
               <span class="tag">Python</span>
               <span class="tag">Unity ML-Agents</span>
@@ -1431,9 +1503,11 @@
             📄 <span class="lang-en">Download CV (PDF)</span><span class="lang-es">Descargar CV (PDF)</span>
           </a>
           <a href="https://github.com/MarketablePlushiee" target="_blank" class="exec-btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
             GitHub ↗
           </a>
           <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
             LinkedIn ↗
           </a>
           <button class="exec-btn-outline" onclick="copyEmail()">
@@ -1712,8 +1786,14 @@
       </div>
       <div class="exec-footer-actions">
         <a href="mailto:ivan.latrille1@gmail.com" class="exec-btn-primary">✉️ <span class="lang-en">Send Email</span><span class="lang-es">Enviar Correo</span></a>
-        <a href="https://github.com/MarketablePlushiee" target="_blank" class="exec-btn-outline">GitHub ↗</a>
-        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-outline">LinkedIn ↗</a>
+        <a href="https://github.com/MarketablePlushiee" target="_blank" class="exec-btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub ↗
+        </a>
+        <a href="https://www.linkedin.com/in/ivan-ignacio-latrille-brito-407b5a416/" target="_blank" class="exec-btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          LinkedIn ↗
+        </a>
         <button class="exec-btn-outline" onclick="switchMode('terminal')">💻 <span class="lang-en">Technical View</span><span class="lang-es">Vista Técnica</span></button>
       </div>
     </footer>
