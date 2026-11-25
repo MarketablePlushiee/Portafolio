@@ -282,7 +282,7 @@
       flex-shrink: 0;
     }
 
-    /* Layout horizontal para proyectos RL de ancho completo */
+    /* Layout horizontal para proyectos RL */
     .rl-horizontal-showcase {
       display: grid;
       grid-template-columns: 1.15fr 1fr;
@@ -334,16 +334,26 @@
       height: 100%;
     }
 
-    .rl-thumbs-3col {
+    /* Grilla simétrica de 3 tarjetas apaisadas (2 arriba + 1 centrada abajo del mismo tamaño) */
+    .rl-thumbs-3grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       height: 100%;
     }
 
+    .rl-thumbs-3grid .rl-thumb-card:nth-child(3) {
+      grid-column: 1 / -1;
+      width: calc(50% - 5px);
+      justify-self: center;
+    }
+
     @media (max-width: 600px) {
-      .rl-thumbs-3col {
+      .rl-thumbs-3grid {
         grid-template-columns: 1fr;
+      }
+      .rl-thumbs-3grid .rl-thumb-card:nth-child(3) {
+        width: 100%;
       }
     }
 
@@ -355,7 +365,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 4px;
+      padding: 6px;
     }
 
     .rl-thumb-card img {
@@ -1100,110 +1110,7 @@
 
         <div class="projects-grid">
 
-          <!-- PROYECTO 1: PROJECT CHIMERA (HYBRID BOSS AI) -->
-          <div class="project-card" data-category="ai rl" style="grid-column: 1 / -1;">
-            <div class="project-card-header">
-              <h3>Project Chimera — <span class="lang-en">Adaptive Boss AI via Hybrid Reinforcement Learning (PPO + FSM)</span><span class="lang-es">IA Adaptativa de Jefe mediante Aprendizaje por Refuerzo Híbrido (PPO + FSM)</span></h3>
-              <span class="project-year-badge">📅 2026</span>
-            </div>
-            <p class="lang-en">Tactical 3D boss-fight prototype built in Unity 6 (URP) and Python. Solves the predictability of static boss patterns through a 3-Layer Hybrid AI Architecture: a 12s sliding-window behavioral profiler, a Proximal Policy Optimization (PPO) tactical policy network, and a deterministic Finite State Machine (FSM) guaranteeing readable telegraphs and fair hitboxes.</p>
-            <p class="lang-es">Prototipo de combate táctico 3D desarrollado en Unity 6 (URP) y Python. Resuelve la previsibilidad de los jefes con patrones estáticos mediante una Arquitectura Híbrida de IA en 3 Capas: un perfilador conductual en ventana deslizante de 12s, una red neuronal PPO para decisión táctica y una FSM determinista que garantiza telegrafías visuales justas y hitboxes precisas.</p>
-
-            <ul style="margin: 0.75rem 0 0.9rem 1.2rem; color: var(--text-muted); font-size: 0.83rem; line-height: 1.45;">
-              <li class="lang-en"><strong>Layer 1 — Real-Time Behavioral Telemetry:</strong> Samples player trajectories every 0.10s over a 12.0s window to extract 6 normalized features (Melee Aggression, Ranged Pressure, Dash Frequency, Parry Success, Lateral Dodge Bias, and Normalized Distance).</li>
-              <li class="lang-es"><strong>Capa 1 — Telemetría Conductual en Tiempo Real:</strong> Muestrea trayectorias y acciones cada 0,10s en una ventana de 12,0s para extraer 6 variables normalizadas (Agresión Melee, Presión Ranged, Frecuencia de Dash, Éxito de Parry, Sesgo Lateral y Distancia Media).</li>
-
-              <li class="lang-en"><strong>Layer 2 — Masked PPO Tactical Policy:</strong> 24 continuous observations and a 6×5 (30-combination) discrete action space using <code>IDiscreteActionMask</code> across 8 parallel arenas (500k steps in 22m 48s against 3 heuristic player archetypes), exported to ONNX (0.22 ms CPU inference).</li>
-              <li class="lang-es"><strong>Capa 2 — Política Táctica PPO Enmascarada:</strong> 24 observaciones continuas y espacio discreto de 6×5 (30 combinaciones) con <code>IDiscreteActionMask</code> entrenado en 8 arenas paralelas (500k pasos en 22m 48s frente a 3 arquetipos heurísticos), exportado a ONNX (0,22 ms en CPU).</li>
-
-              <li class="lang-en"><strong>Layer 3 — Deterministic Combat FSM & Sim-to-Human Finding:</strong> Executes 4 counter-attacks (<code>GapCloserLunge</code>, <code>ShockwaveRing</code>, velocity-predicted <code>LeadShotVolley</code>, <code>DelayedParrySlam</code>) with Phase 2 escalation (≤50% HP). Achieved 100% win rate vs training bots while revealing human out-of-distribution Perfect Parry vulnerability.</li>
-              <li class="lang-es"><strong>Capa 3 — FSM Determinista y Hallazgo Sim-to-Human:</strong> Ejecuta 4 contra-ataques (<code>GapCloserLunge</code>, <code>ShockwaveRing</code>, <code>LeadShotVolley</code> predictivo y <code>DelayedParrySlam</code>) con escalado en Fase 2 (≤50% HP). Logró 100% de victorias ante bots de entrenamiento y evidenció vulnerabilidad ante Parries Perfectos humanos (out-of-distribution).</li>
-            </ul>
-
-            <p style="font-size: 0.78rem; color: var(--accent-green); margin: 0.6rem 0 0.45rem 0; font-weight: bold;">
-              <span class="lang-en">// Quantitative Calibration Results (v1 Baseline → v2 Final):</span>
-              <span class="lang-es">// Resultados Cuantitativos de Calibración (v1 Base → v2 Final):</span>
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 1rem;">
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; background: rgba(0,0,0,0.3); text-align: center;">
-                <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">Cumulative Reward</span>
-                <strong style="font-size: 1rem; color: var(--accent-green);">+2.14 (+278.9%)</strong>
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; background: rgba(0,0,0,0.3); text-align: center;">
-                <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">Mean Episode</span>
-                <strong style="font-size: 1rem; color: var(--accent-blue);">168.75 steps</strong>
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; background: rgba(0,0,0,0.3); text-align: center;">
-                <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">CPU Inference</span>
-                <strong style="font-size: 1rem; color: var(--accent-purple);">0.22 ms / frame</strong>
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; background: rgba(0,0,0,0.3); text-align: center;">
-                <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">Bot Win Rate (1x)</span>
-                <strong style="font-size: 1rem; color: var(--text-main);">100%</strong>
-              </div>
-            </div>
-
-            <p style="font-size: 0.78rem; color: var(--accent-green); margin: 0.6rem 0 0.45rem 0; font-weight: bold;">
-              <span class="lang-en">// Real-Time 1x Inference Combat Demos (Human vs Trained ONNX Policy):</span>
-              <span class="lang-es">// Demos de Combate en Tiempo Real 1x (Humano vs Política ONNX Entrenada):</span>
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 1rem;">
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
-                <div style="border-radius: 4px; overflow: hidden; background: #000; margin-bottom: 6px;">
-                  <img src="chimera-demo-1.gif" alt="Player Victory Demo" style="width: 100%; height: auto; display: block;">
-                </div>
-                <p style="font-size: 0.73rem; color: var(--text-muted); line-height: 1.35;">
-                  <span class="lang-en"><strong>Player Victory (Out-of-Distribution Parries):</strong> Human player defeats ChimeraBoss by chaining timed Perfect Parries (+35 reflected posture damage).</span>
-                  <span class="lang-es"><strong>Victoria del Jugador (Parries Out-of-Distribution):</strong> El jugador derrota al jefe encadenando Parries Perfectos (+35 daño de postura reflejado).</span>
-                </p>
-              </div>
-
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
-                <div style="border-radius: 4px; overflow: hidden; background: #000; margin-bottom: 6px;">
-                  <img src="chimera-demo-2.gif" alt="Boss Victory Demo" style="width: 100%; height: auto; display: block;">
-                </div>
-                <p style="font-size: 0.73rem; color: var(--text-muted); line-height: 1.35;">
-                  <span class="lang-en"><strong>Boss Victory (Adaptive Counter-Pressure):</strong> ChimeraBoss punishes ranged spacing and defensive guard with predictive volleys and shockwaves.</span>
-                  <span class="lang-es"><strong>Victoria del Jefe (Contra-Presión Adaptativa):</strong> ChimeraBoss castiga la distancia y la guardia pasiva con ráfagas predictivas y ondas expansivas.</span>
-                </p>
-              </div>
-            </div>
-
-            <p style="font-size: 0.78rem; color: var(--accent-green); margin: 0.6rem 0 0.45rem 0; font-weight: bold;">
-              <span class="lang-en">// Arena Telemetry HUD & TensorBoard Convergence (Click to expand):</span>
-              <span class="lang-es">// Arena con HUD de Telemetría y Convergencia TensorBoard (Clic para ampliar):</span>
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-bottom: 1rem;">
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: #070a08; padding: 6px; display: flex; align-items: center; justify-content: center;">
-                <img src="chimera-arena.png" alt="Octagonal Arena & Layer 1 HUD" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 135px; object-fit: contain; display: block;">
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: #070a08; padding: 6px; display: flex; align-items: center; justify-content: center;">
-                <img src="chimera-tb-reward.png" alt="TensorBoard Cumulative Reward" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 135px; object-fit: contain; display: block;">
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: #070a08; padding: 6px; display: flex; align-items: center; justify-content: center;">
-                <img src="chimera-tb-length.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 135px; object-fit: contain; display: block;">
-              </div>
-              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: #070a08; padding: 6px; display: flex; align-items: center; justify-content: center;">
-                <img src="chimera-tb-policy.png" alt="TensorBoard Policy Loss" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 135px; object-fit: contain; display: block;">
-              </div>
-            </div>
-
-            <div class="tags">
-              <span class="tag">C#</span>
-              <span class="tag">Python</span>
-              <span class="tag">Unity 6</span>
-              <span class="tag">ML-Agents</span>
-              <span class="tag">PPO</span>
-              <span class="tag">PyTorch</span>
-              <span class="tag">ONNX</span>
-              <span class="tag">Hybrid FSM</span>
-            </div>
-            <div style="display: flex; gap: 15px; margin-top: 0.6rem;">
-              <a href="https://github.com/MarketablePlushiee/project-chimera-adaptive-boss" target="_blank">📦 <span class="lang-en">View Repository</span><span class="lang-es">Ver Repositorio</span> →</a>
-            </div>
-          </div>
-
-          <!-- PROYECTO 2: PPE AUDIT (YOLOv8) -->
+          <!-- 1. PPE AUDIT (YOLOv8) -->
           <div class="project-card" data-category="ai" style="grid-column: 1 / -1;">
             <div class="project-card-header">
               <h3>PPE Audit & Monitoring System (YOLOv8)</h3>
@@ -1313,7 +1220,7 @@
             </div>
           </div>
 
-          <!-- PROYECTO 3: INTEGRASST (RAG LEGAL) -->
+          <!-- 2. INTEGRASST (RAG LEGAL) -->
           <div class="project-card" data-category="ai" style="grid-column: 1 / -1;">
             <div class="project-card-header">
               <h3>IntegraSST — Legal & OHS RAG Assistant</h3>
@@ -1399,67 +1306,7 @@
             </div>
           </div>
 
-          <!-- PROYECTO 4: AUTONOMOUS SOCCER RL (PPO & SELF-PLAY) -->
-          <div class="project-card" data-category="ai rl" style="grid-column: 1 / -1;">
-            <div class="project-card-header">
-              <h3>Autonomous 1v1 Soccer Agents (PPO & Self-Play)</h3>
-              <span class="project-year-badge">📅 2026</span>
-            </div>
-            <p class="lang-en">Competitive multi-agent Deep Reinforcement Learning environment in Unity 6 and Python. Autonomous agents learn 1v1 arcade soccer under continuous rigid-body physics via PPO and Self-Play, exporting to ONNX for real-time inference.</p>
-            <p class="lang-es">Entorno competitivo multi-agente de Aprendizaje por Refuerzo Profundo en Unity 6 y Python. Los agentes aprenden fútbol 1v1 bajo física rígida continua mediante PPO y Self-Play, exportando el modelo a ONNX para inferencia en tiempo real.</p>
-            
-            <ul style="margin: 0.7rem 0 0.85rem 1.2rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.4;">
-              <li class="lang-en"><strong>Egocentric Observation & Discrete Control:</strong> 14 local-frame continuous observations with a 3×3×3 (27-action) discrete branch space across 25 parallel arenas (50 simultaneous agents, 1M steps in 19m 19s).</li>
-              <li class="lang-es"><strong>Observación Egocéntrica y Control Discreto:</strong> 14 variables continuas proyectadas al marco local del agente y espacio discreto de 3×3×3 (27 acciones) en 25 canchas paralelas (50 agentes simultáneos, 1M pasos en 19m 19s).</li>
-              <li class="lang-en"><strong>Quantitative Convergence:</strong> Reduced mean episode duration by 77.9% (from 299-step timeouts to 66.49 steps/goal) while maintaining stable Self-Play ELO (1092.67).</li>
-              <li class="lang-es"><strong>Convergencia Cuantitativa:</strong> Reducción del 77,9% en duración media de episodio (de empates de 299 pasos a 66,49 pasos/gol) manteniendo estabilidad competitiva en Self-Play ELO (1092,67).</li>
-            </ul>
-
-            <p style="font-size: 0.78rem; color: var(--accent-green); margin: 0.4rem 0 0.45rem 0; font-weight: bold;">
-              <span class="lang-en">// Real-Time 1x Inference Demo & TensorBoard Telemetry (Click thumbnails to expand):</span>
-              <span class="lang-es">// Demostración en Tiempo Real 1x y Telemetría TensorBoard (Clic en miniaturas para ampliar):</span>
-            </p>
-
-            <div class="rl-horizontal-showcase">
-              <div class="rl-showcase-left">
-                <div class="rl-main-gif-box">
-                  <img src="demo-1x.gif" alt="Autonomous Soccer 1x Inference Demo">
-                </div>
-              </div>
-
-              <div class="rl-showcase-right">
-                <div class="rl-thumbs-2x2">
-                  <div class="rl-thumb-card">
-                    <img src="arena-preview.png" alt="Unity 6 Arena Physics" class="zoomable" onclick="openLightbox(this.src)">
-                  </div>
-                  <div class="rl-thumb-card">
-                    <img src="tb-reward.png" alt="TensorBoard Cumulative Reward" class="zoomable" onclick="openLightbox(this.src)">
-                  </div>
-                  <div class="rl-thumb-card">
-                    <img src="tb-length.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)">
-                  </div>
-                  <div class="rl-thumb-card">
-                    <img src="tb-elo.png" alt="TensorBoard Self-Play ELO" class="zoomable" onclick="openLightbox(this.src)">
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="tags">
-              <span class="tag">C#</span>
-              <span class="tag">Python</span>
-              <span class="tag">Unity 6</span>
-              <span class="tag">ML-Agents</span>
-              <span class="tag">PPO & Self-Play</span>
-              <span class="tag">PyTorch</span>
-              <span class="tag">ONNX</span>
-            </div>
-            <div style="display: flex; gap: 15px; margin-top: 0.6rem;">
-              <a href="https://github.com/MarketablePlushiee/AutonomousSoccerRL" target="_blank">📦 <span class="lang-en">View Repository</span><span class="lang-es">Ver Repositorio</span> →</a>
-            </div>
-          </div>
-
-          <!-- PROYECTO 5: SAFEVR -->
+          <!-- 3. SAFEVR -->
           <div class="project-card" data-category="vr" style="grid-column: 1 / -1;">
             <div class="project-card-header">
               <h3>SafeVR — <span class="lang-en">Industrial Safety VR Simulator</span><span class="lang-es">Simulador de Seguridad Industrial en RV</span></h3>
@@ -1526,7 +1373,170 @@
             </div>
           </div>
 
-          <!-- PROYECTO 6: AUTONOMOUS OBSTACLE AGENT -->
+          <!-- 4. PROJECT CHIMERA (HYBRID BOSS AI) -->
+          <div class="project-card" data-category="ai rl" style="grid-column: 1 / -1;">
+            <div class="project-card-header">
+              <h3>Project Chimera — <span class="lang-en">Adaptive Boss AI via Hybrid Reinforcement Learning (PPO + FSM)</span><span class="lang-es">IA Adaptativa de Jefe mediante Aprendizaje por Refuerzo Híbrido (PPO + FSM)</span></h3>
+              <span class="project-year-badge">📅 2026</span>
+            </div>
+            <p class="lang-en">Tactical 3D boss-fight prototype built in Unity 6 (URP) and Python. Solves the predictability of static boss patterns through a 3-Layer Hybrid AI Architecture: a 12s sliding-window behavioral profiler, a Proximal Policy Optimization (PPO) tactical policy network, and a deterministic Finite State Machine (FSM) guaranteeing readable telegraphs and fair hitboxes.</p>
+            <p class="lang-es">Prototipo de combate táctico 3D desarrollado en Unity 6 (URP) y Python. Resuelve la previsibilidad de los jefes con patrones estáticos mediante una Arquitectura Híbrida de IA en 3 Capas: un perfilador conductual en ventana deslizante de 12s, una red neuronal PPO para decisión táctica y una FSM determinista que garantiza telegrafías visuales justas y hitboxes precisas.</p>
+
+            <ul style="margin: 0.75rem 0 0.9rem 1.2rem; color: var(--text-muted); font-size: 0.83rem; line-height: 1.45;">
+              <li class="lang-en"><strong>Layer 1 — Real-Time Behavioral Telemetry:</strong> Samples player trajectories every 0.10s over a 12.0s window to extract 6 normalized features (Melee Aggression, Ranged Pressure, Dash Frequency, Parry Success, Lateral Dodge Bias, and Normalized Distance).</li>
+              <li class="lang-es"><strong>Capa 1 — Telemetría Conductual en Tiempo Real:</strong> Muestrea trayectorias y acciones cada 0,10s en una ventana de 12,0s para extraer 6 variables normalizadas (Agresión Melee, Presión Ranged, Frecuencia de Dash, Éxito de Parry, Sesgo Lateral y Distancia Media).</li>
+
+              <li class="lang-en"><strong>Layer 2 — Masked PPO Tactical Policy:</strong> 24 continuous observations and a 6×5 (30-combination) discrete action space using <code>IDiscreteActionMask</code> across 8 parallel arenas (500k steps in 22m 48s against 3 heuristic player archetypes), exported to ONNX (0.22 ms CPU inference).</li>
+              <li class="lang-es"><strong>Capa 2 — Política Táctica PPO Enmascarada:</strong> 24 observaciones continuas y espacio discreto de 6×5 (30 combinaciones) con <code>IDiscreteActionMask</code> entrenado en 8 arenas paralelas (500k pasos en 22m 48s frente a 3 arquetipos heurísticos), exportado a ONNX (0,22 ms en CPU).</li>
+
+              <li class="lang-en"><strong>Layer 3 — Deterministic Combat FSM & Sim-to-Human Finding:</strong> Executes 4 counter-attacks (<code>GapCloserLunge</code>, <code>ShockwaveRing</code>, velocity-predicted <code>LeadShotVolley</code>, <code>DelayedParrySlam</code>) with Phase 2 escalation (≤50% HP). Achieved 100% win rate vs training bots while revealing human out-of-distribution Perfect Parry vulnerability.</li>
+              <li class="lang-es"><strong>Capa 3 — FSM Determinista y Hallazgo Sim-to-Human:</strong> Ejecuta 4 contra-ataques (<code>GapCloserLunge</code>, <code>ShockwaveRing</code>, <code>LeadShotVolley</code> predictivo y <code>DelayedParrySlam</code>) con escalado en Fase 2 (≤50% HP). Logró 100% de victorias ante bots de entrenamiento y evidenció vulnerabilidad ante Parries Perfectos humanos (out-of-distribution).</li>
+            </ul>
+
+            <p style="font-size: 0.78rem; color: var(--accent-green); margin: 0.6rem 0 0.45rem 0; font-weight: bold;">
+              <span class="lang-en">// Quantitative Calibration Results (v1 Baseline → v2 Final):</span>
+              <span class="lang-es">// Resultados Cuantitativos de Calibración (v1 Base → v2 Final):</span>
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 1rem;">
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; background: rgba(0,0,0,0.3); text-align: center;">
+                <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">Cumulative Reward</span>
+                <strong style="font-size: 1rem; color: var(--accent-green);">+2.14 (+278.9%)</strong>
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; background: rgba(0,0,0,0.3); text-align: center;">
+                <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">Mean Episode</span>
+                <strong style="font-size: 1rem; color: var(--accent-blue);">168.75 steps</strong>
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; background: rgba(0,0,0,0.3); text-align: center;">
+                <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">CPU Inference</span>
+                <strong style="font-size: 1rem; color: var(--accent-purple);">0.22 ms / frame</strong>
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; background: rgba(0,0,0,0.3); text-align: center;">
+                <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">Bot Win Rate (1x)</span>
+                <strong style="font-size: 1rem; color: var(--text-main);">100%</strong>
+              </div>
+            </div>
+
+            <p style="font-size: 0.78rem; color: var(--accent-green); margin: 0.6rem 0 0.45rem 0; font-weight: bold;">
+              <span class="lang-en">// Real-Time 1x Inference Combat Demos (Human vs Trained ONNX Policy):</span>
+              <span class="lang-es">// Demos de Combate en Tiempo Real 1x (Humano vs Política ONNX Entrenada):</span>
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-bottom: 1rem;">
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div style="border-radius: 4px; overflow: hidden; background: #000; margin-bottom: 6px;">
+                  <img src="chimera-demo-1.gif" alt="Player Victory Demo" style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="font-size: 0.73rem; color: var(--text-muted); line-height: 1.35;">
+                  <span class="lang-en"><strong>Player Victory (Out-of-Distribution Parries):</strong> Human player defeats ChimeraBoss by chaining timed Perfect Parries (+35 reflected posture damage).</span>
+                  <span class="lang-es"><strong>Victoria del Jugador (Parries Out-of-Distribution):</strong> El jugador derrota al jefe encadenando Parries Perfectos (+35 daño de postura reflejado).</span>
+                </p>
+              </div>
+
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: var(--card-bg); padding: 8px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div style="border-radius: 4px; overflow: hidden; background: #000; margin-bottom: 6px;">
+                  <img src="chimera-demo-2.gif" alt="Boss Victory Demo" style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="font-size: 0.73rem; color: var(--text-muted); line-height: 1.35;">
+                  <span class="lang-en"><strong>Boss Victory (Adaptive Counter-Pressure):</strong> ChimeraBoss punishes ranged spacing and defensive guard with predictive volleys and shockwaves.</span>
+                  <span class="lang-es"><strong>Victoria del Jefe (Contra-Presión Adaptativa):</strong> ChimeraBoss castiga la distancia y la guardia pasiva con ráfagas predictivas y ondas expansivas.</span>
+                </p>
+              </div>
+            </div>
+
+            <p style="font-size: 0.78rem; color: var(--accent-green); margin: 0.6rem 0 0.45rem 0; font-weight: bold;">
+              <span class="lang-en">// Arena Telemetry HUD & TensorBoard Convergence (Click to expand):</span>
+              <span class="lang-es">// Arena con HUD de Telemetría y Convergencia TensorBoard (Clic para ampliar):</span>
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-bottom: 1rem;">
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: #070a08; padding: 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="chimera-arena.png" alt="Octagonal Arena & Layer 1 HUD" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 135px; object-fit: contain; display: block;">
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: #070a08; padding: 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="chimera-tb-reward.png" alt="TensorBoard Cumulative Reward" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 135px; object-fit: contain; display: block;">
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: #070a08; padding: 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="chimera-tb-length.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 135px; object-fit: contain; display: block;">
+              </div>
+              <div style="border: 1px solid var(--border-color); border-radius: 6px; background: #070a08; padding: 6px; display: flex; align-items: center; justify-content: center;">
+                <img src="chimera-tb-policy.png" alt="TensorBoard Policy Loss" class="zoomable" onclick="openLightbox(this.src)" style="width: 100%; height: 135px; object-fit: contain; display: block;">
+              </div>
+            </div>
+
+            <div class="tags">
+              <span class="tag">C#</span>
+              <span class="tag">Python</span>
+              <span class="tag">Unity 6</span>
+              <span class="tag">ML-Agents</span>
+              <span class="tag">PPO</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">ONNX</span>
+              <span class="tag">Hybrid FSM</span>
+            </div>
+            <div style="display: flex; gap: 15px; margin-top: 0.6rem;">
+              <a href="https://github.com/MarketablePlushiee/project-chimera-adaptive-boss" target="_blank">📦 <span class="lang-en">View Repository</span><span class="lang-es">Ver Repositorio</span> →</a>
+            </div>
+          </div>
+
+          <!-- 5. AUTONOMOUS SOCCER RL (PPO & SELF-PLAY) -->
+          <div class="project-card" data-category="ai rl" style="grid-column: 1 / -1;">
+            <div class="project-card-header">
+              <h3>Autonomous 1v1 Soccer Agents (PPO & Self-Play)</h3>
+              <span class="project-year-badge">📅 2026</span>
+            </div>
+            <p class="lang-en">Competitive multi-agent Deep Reinforcement Learning environment in Unity 6 and Python. Autonomous agents learn 1v1 arcade soccer under continuous rigid-body physics via PPO and Self-Play, exporting to ONNX for real-time inference.</p>
+            <p class="lang-es">Entorno competitivo multi-agente de Aprendizaje por Refuerzo Profundo en Unity 6 y Python. Los agentes aprenden fútbol 1v1 bajo física rígida continua mediante PPO y Self-Play, exportando el modelo a ONNX para inferencia en tiempo real.</p>
+            
+            <ul style="margin: 0.7rem 0 0.85rem 1.2rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.4;">
+              <li class="lang-en"><strong>Egocentric Observation & Discrete Control:</strong> 14 local-frame continuous observations with a 3×3×3 (27-action) discrete branch space across 25 parallel arenas (50 simultaneous agents, 1M steps in 19m 19s).</li>
+              <li class="lang-es"><strong>Observación Egocéntrica y Control Discreto:</strong> 14 variables continuas proyectadas al marco local del agente y espacio discreto de 3×3×3 (27 acciones) en 25 canchas paralelas (50 agentes simultáneos, 1M pasos en 19m 19s).</li>
+              <li class="lang-en"><strong>Quantitative Convergence:</strong> Reduced mean episode duration by 77.9% (from 299-step timeouts to 66.49 steps/goal) while maintaining stable Self-Play ELO (1092.67).</li>
+              <li class="lang-es"><strong>Convergencia Cuantitativa:</strong> Reducción del 77,9% en duración media de episodio (de empates de 299 pasos a 66,49 pasos/gol) manteniendo estabilidad competitiva en Self-Play ELO (1092,67).</li>
+            </ul>
+
+            <p style="font-size: 0.78rem; color: var(--accent-green); margin: 0.4rem 0 0.45rem 0; font-weight: bold;">
+              <span class="lang-en">// Real-Time 1x Inference Demo & TensorBoard Telemetry (Click thumbnails to expand):</span>
+              <span class="lang-es">// Demostración en Tiempo Real 1x y Telemetría TensorBoard (Clic en miniaturas para ampliar):</span>
+            </p>
+
+            <div class="rl-horizontal-showcase">
+              <div class="rl-showcase-left">
+                <div class="rl-main-gif-box">
+                  <img src="demo-1x.gif" alt="Autonomous Soccer 1x Inference Demo">
+                </div>
+              </div>
+
+              <div class="rl-showcase-right">
+                <div class="rl-thumbs-2x2">
+                  <div class="rl-thumb-card">
+                    <img src="arena-preview.png" alt="Unity 6 Arena Physics" class="zoomable" onclick="openLightbox(this.src)">
+                  </div>
+                  <div class="rl-thumb-card">
+                    <img src="tb-reward.png" alt="TensorBoard Cumulative Reward" class="zoomable" onclick="openLightbox(this.src)">
+                  </div>
+                  <div class="rl-thumb-card">
+                    <img src="tb-length.png" alt="TensorBoard Episode Length" class="zoomable" onclick="openLightbox(this.src)">
+                  </div>
+                  <div class="rl-thumb-card">
+                    <img src="tb-elo.png" alt="TensorBoard Self-Play ELO" class="zoomable" onclick="openLightbox(this.src)">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tags">
+              <span class="tag">C#</span>
+              <span class="tag">Python</span>
+              <span class="tag">Unity 6</span>
+              <span class="tag">ML-Agents</span>
+              <span class="tag">PPO & Self-Play</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">ONNX</span>
+            </div>
+            <div style="display: flex; gap: 15px; margin-top: 0.6rem;">
+              <a href="https://github.com/MarketablePlushiee/AutonomousSoccerRL" target="_blank">📦 <span class="lang-en">View Repository</span><span class="lang-es">Ver Repositorio</span> →</a>
+            </div>
+          </div>
+
+          <!-- 6. AUTONOMOUS OBSTACLE AGENT -->
           <div class="project-card" data-category="ai rl" style="grid-column: 1 / -1;">
             <div class="project-card-header">
               <h3>Autonomous Obstacle Agent (ML-Agents DRL)</h3>
@@ -1557,7 +1567,7 @@
               </div>
 
               <div class="rl-showcase-right">
-                <div class="rl-thumbs-3col">
+                <div class="rl-thumbs-3grid">
                   <div class="rl-thumb-card">
                     <img src="tb-1.png" alt="TensorBoard Reward" class="zoomable" onclick="openLightbox(this.src)">
                   </div>
@@ -1739,7 +1749,7 @@
       </aside>
     </section>
 
-    <!-- Proyectos Destacados (6 proyectos con año en grilla 2x3) -->
+    <!-- Proyectos Destacados (Orden exacto solicitado) -->
     <section id="exec-projects">
       <div class="exec-sec-head">
         <h2><span class="lang-en">Selected Engineering Projects</span><span class="lang-es">Proyectos de Ingeniería Seleccionados</span></h2>
@@ -1747,29 +1757,7 @@
       </div>
 
       <div class="exec-proj-grid">
-        <!-- Card 1: Project Chimera (2026) -->
-        <article class="exec-proj-card">
-          <img src="chimera-demo-2.gif" alt="Project Chimera Adaptive Boss AI" class="exec-proj-media">
-          <div class="exec-proj-content">
-            <div class="exec-proj-meta">
-              <span class="exec-proj-tag">HYBRID AI · PPO + FSM</span>
-              <span class="exec-proj-metric">2026 · +278.9% Reward</span>
-            </div>
-            <h3>Project Chimera — Adaptive Boss AI</h3>
-            <p class="lang-en">3-Layer Hybrid Boss AI in Unity 6 & PyTorch combining a 12s sliding-window behavioral profiler, masked PPO tactical decision network, and deterministic combat FSM deployed via ONNX (0.22 ms).</p>
-            <p class="lang-es">IA Híbrida de Jefe en 3 Capas en Unity 6 y PyTorch que combina un perfilador conductual de 12s, red neuronal PPO enmascarada y FSM determinista ejecutada vía ONNX (0,22 ms).</p>
-            <div class="exec-proj-links">
-              <a href="https://github.com/MarketablePlushiee/project-chimera-adaptive-boss" target="_blank" class="exec-btn-primary">
-                <span class="lang-en">GitHub Repository ↗</span><span class="lang-es">Repositorio GitHub ↗</span>
-              </a>
-              <button class="exec-btn-outline" onclick="switchMode('terminal')">
-                <span class="lang-en">Tech Details</span><span class="lang-es">Ficha Técnica</span>
-              </button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 2: PPE Audit YOLOv8 (2026) -->
+        <!-- 1. PPE Audit YOLOv8 (2026) -->
         <article class="exec-proj-card">
           <img src="ppe-preview-1.jpg" alt="PPE Audit System" class="exec-proj-media">
           <div class="exec-proj-content">
@@ -1791,7 +1779,7 @@
           </div>
         </article>
 
-        <!-- Card 3: IntegraSST RAG (2026) -->
+        <!-- 2. IntegraSST RAG (2026) -->
         <article class="exec-proj-card">
           <img src="rag-preview-1.png" alt="IntegraSST Legal RAG" class="exec-proj-media">
           <div class="exec-proj-content">
@@ -1813,29 +1801,7 @@
           </div>
         </article>
 
-        <!-- Card 4: AutonomousSoccerRL (2026) -->
-        <article class="exec-proj-card">
-          <img src="demo-1x.gif" alt="Autonomous 1v1 Soccer RL" class="exec-proj-media">
-          <div class="exec-proj-content">
-            <div class="exec-proj-meta">
-              <span class="exec-proj-tag">DEEP RL · PPO & SELF-PLAY</span>
-              <span class="exec-proj-metric">2026 · 1092.7 ELO</span>
-            </div>
-            <h3>Autonomous 1v1 Soccer Agents</h3>
-            <p class="lang-en">Multi-agent reinforcement learning environment in Unity 6 and PyTorch. Agents learn offensive alignment and defensive clearances under rigid-body physics, exported to ONNX for real-time inference.</p>
-            <p class="lang-es">Entorno competitivo multi-agente en Unity 6 y PyTorch. Los agentes aprenden conducción ofensiva y despejes defensivos bajo física continua, exportados a ONNX para inferencia en tiempo real.</p>
-            <div class="exec-proj-links">
-              <a href="https://github.com/MarketablePlushiee/AutonomousSoccerRL" target="_blank" class="exec-btn-primary">
-                <span class="lang-en">GitHub Repository ↗</span><span class="lang-es">Repositorio GitHub ↗</span>
-              </a>
-              <button class="exec-btn-outline" onclick="switchMode('terminal')">
-                <span class="lang-en">TensorBoard Data</span><span class="lang-es">Métricas TensorBoard</span>
-              </button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 5: SafeVR (2025) -->
+        <!-- 3. SafeVR (2025) -->
         <article class="exec-proj-card">
           <img src="safevr-1.png" alt="SafeVR Simulator" class="exec-proj-media">
           <div class="exec-proj-content">
@@ -1857,7 +1823,51 @@
           </div>
         </article>
 
-        <!-- Card 6: Autonomous Obstacle Agent (2024) -->
+        <!-- 4. Project Chimera (2026) -->
+        <article class="exec-proj-card">
+          <img src="chimera-demo-2.gif" alt="Project Chimera Adaptive Boss AI" class="exec-proj-media">
+          <div class="exec-proj-content">
+            <div class="exec-proj-meta">
+              <span class="exec-proj-tag">HYBRID AI · PPO + FSM</span>
+              <span class="exec-proj-metric">2026 · +278.9% Reward</span>
+            </div>
+            <h3>Project Chimera — Adaptive Boss AI</h3>
+            <p class="lang-en">3-Layer Hybrid Boss AI in Unity 6 & PyTorch combining a 12s sliding-window behavioral profiler, masked PPO tactical decision network, and deterministic combat FSM deployed via ONNX (0.22 ms).</p>
+            <p class="lang-es">IA Híbrida de Jefe en 3 Capas en Unity 6 y PyTorch que combina un perfilador conductual de 12s, red neuronal PPO enmascarada y FSM determinista ejecutada vía ONNX (0,22 ms).</p>
+            <div class="exec-proj-links">
+              <a href="https://github.com/MarketablePlushiee/project-chimera-adaptive-boss" target="_blank" class="exec-btn-primary">
+                <span class="lang-en">GitHub Repository ↗</span><span class="lang-es">Repositorio GitHub ↗</span>
+              </a>
+              <button class="exec-btn-outline" onclick="switchMode('terminal')">
+                <span class="lang-en">Tech Details</span><span class="lang-es">Ficha Técnica</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. AutonomousSoccerRL (2026) -->
+        <article class="exec-proj-card">
+          <img src="demo-1x.gif" alt="Autonomous 1v1 Soccer RL" class="exec-proj-media">
+          <div class="exec-proj-content">
+            <div class="exec-proj-meta">
+              <span class="exec-proj-tag">DEEP RL · PPO & SELF-PLAY</span>
+              <span class="exec-proj-metric">2026 · 1092.7 ELO</span>
+            </div>
+            <h3>Autonomous 1v1 Soccer Agents</h3>
+            <p class="lang-en">Multi-agent reinforcement learning environment in Unity 6 and PyTorch. Agents learn offensive alignment and defensive clearances under rigid-body physics, exported to ONNX for real-time inference.</p>
+            <p class="lang-es">Entorno competitivo multi-agente en Unity 6 y PyTorch. Los agentes aprenden conducción ofensiva y despejes defensivos bajo física continua, exportados a ONNX para inferencia en tiempo real.</p>
+            <div class="exec-proj-links">
+              <a href="https://github.com/MarketablePlushiee/AutonomousSoccerRL" target="_blank" class="exec-btn-primary">
+                <span class="lang-en">GitHub Repository ↗</span><span class="lang-es">Repositorio GitHub ↗</span>
+              </a>
+              <button class="exec-btn-outline" onclick="switchMode('terminal')">
+                <span class="lang-en">TensorBoard Data</span><span class="lang-es">Métricas TensorBoard</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Autonomous Obstacle Agent (2024) -->
         <article class="exec-proj-card">
           <img src="ml-preview.gif" alt="Autonomous Obstacle Agent" class="exec-proj-media">
           <div class="exec-proj-content">
